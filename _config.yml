@@ -30,8 +30,9 @@ instagram: yu_shiyang # Add your Instagram handle
 discus_identifier: shiyangyu # Add your discus identifier
 
 # Tracker
-analytics: Techysy # Google Analytics
-baidu-anaylysis: xxxxxxxxxxxxxxxx # Baidu Analytics
+analytics: UA-28027894-1 # Google Analytics
+# baidu-anaylysis: xxxxxxxxxxxxxxxx # Baidu Analytics
+
 # Paginate
 paginate: 6
 paginate_path: /page:num/
