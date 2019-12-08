@@ -63,6 +63,12 @@ permalink: /about/
       <li class="weibo"><a href="https://weibo.com/yushiyang2010" target="_blank"><i class="fa fa-weibo" aria-hidden="true"></i></a></li>
       {% endif %}
 
+      {% if site.bilibili %}
+      <li class="bilibili"><a href="https://space.bilibili.com/{{site.bilibili}}" target="_blank"><i class="fa fa-renren"></i></a></li>
+      {% else %}
+      <li class="bilibili"><a href="https://space.bilibili.com/10419858" target="_blank"><i class="fa fa-renren" aria-hidden="true"></i></a></li>
+      {% endif %}
+
 <!--
       {% if site.pinterest %}
         <li class="pinterest"><a href="https://pinterest.com/{{site.pinterest}}" target="_blank"><i class="fa fa-pinterest"></i></a></li>
