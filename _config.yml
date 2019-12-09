@@ -39,10 +39,8 @@ paginate: 6
 paginate_path: /page:num/
 
 # Build settings
-markdown: redcarpet
+markdown: kramdown
 
-redcarpet:
-    extensions: [ "hard_wrap","autolink", "tables", "strikethrough", "superscript", "with_toc_data", "highlight", "prettify","no_intra_emphasis"]
 
 plugins:
   - jekyll-paginate
