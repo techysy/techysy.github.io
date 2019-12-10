@@ -2,8 +2,8 @@
 layout: post
 title: B站OBS直播推流设置
 date: 2019-12-11 00:00:00 +0800
-description:  # Add post description (optional)
-img: bilibili-obs.jpg # Add image post (optional)
+description:  
+img: bilibili-obs.jpg
 tags: [教程]
 categories: obs
 ---
@@ -14,4 +14,3 @@ categories: obs
 
 2. 安装OBS-Studio软件    
 
-    
