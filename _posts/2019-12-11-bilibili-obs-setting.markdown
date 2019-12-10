@@ -25,16 +25,20 @@ categories: obs
 
     * 获取哔哩哔哩直播码
 
+    ![bilibili]({{site.baseurl}}/assets/img/bilibili-obs/bilibili.jpg) 
+
          打开直播中心 → 我的直播间 → 点击 "开始直播"按钮 获取直播码：
 
             你的rtmp地址："rtmp://txy.live-send.acg.tv/live-txy/"
 
             你的直播码："?streamname=live_10419858_6368653&key=xxxxxxxxxx"
 
-        ![bilibili]({{site.baseurl}}/assets/img/bilibili-obs/bilibili.jpg)        
+               
  
 
    * 设置OBS-Studio的推流链接
+
+   ![rtmp]({{site.baseurl}}/assets/img/bilibili-obs/rtmp.jpg)
 
         打开设置 → 推流 → 服务选项框选择"自定义"
 
@@ -42,10 +46,11 @@ categories: obs
 
             串流密钥 = 直播码 ："?streamname=live_10419858_6368653&key=xxxxxxxxxx"
 
-        ![rtmp]({{site.baseurl}}/assets/img/bilibili-obs/rtmp.jpg)
  
 
     * 设置直播码率
+
+    ![output]({{site.baseurl}}/assets/img/bilibili-obs/output.jpg)
 
         打开设置 → 输出
             
@@ -65,7 +70,6 @@ categories: obs
 
             需要暂停请使用"高质量"或者"无损" (需要注意文件大小)
 
-        ![output]({{site.baseurl}}/assets/img/bilibili-obs/output.jpg)
 
 
     * 其他设置
@@ -80,7 +84,7 @@ categories: obs
 
 4. 设置直播面板
 
-        ![main]({{site.baseurl}}/assets/img/bilibili-obs/main.jpg)
+    ![main]({{site.baseurl}}/assets/img/bilibili-obs/main.jpg)
 
     * 添加"场景"提前排好版例如生日、节日、日常、游戏 …
 
@@ -96,17 +100,16 @@ categories: obs
 
     * 点击开始推流按钮
 
-        ![live]({{site.baseurl}}/assets/img/bilibili-obs/live.jpg)
+    ![live]({{site.baseurl}}/assets/img/bilibili-obs/live.jpg)
 
 
     * 此时状态栏会实时显示直播/录屏时长、CPU占用率、帧率、码率
 
-            绿色就表示成功推流了
+    * 绿色就表示成功推流了
 
-        ![retry]({{site.baseurl}}/assets/img/bilibili-obs/retry.jpg)
+    ![retry]({{site.baseurl}}/assets/img/bilibili-obs/retry.jpg)
             
-
-            如果连接不上左下角就会显示重连提示
+    * 如果连接不上左下角就会显示重连提示
 
 
 6. 插件
