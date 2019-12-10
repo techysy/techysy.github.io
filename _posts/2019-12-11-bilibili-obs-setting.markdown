@@ -7,14 +7,14 @@ tags: [教程,Bilibili]
 categories: 教程
 ---
 
-1. 下载OBS-Studio软件
+1. 下载OBS-Studio软件 
     
     <a href="https://pan.baidu.com/s/1DAcrCoRIRCrCZGnmr3lK1Q" target="_blank">百度云链接</a>   提取码：yv6d
 
 
-2. 安装OBS-Studio软件
+2. 安装OBS-Studio软件 📦
 
-     ![sutup]({{site.baseurl}}/assets/img/bilibili-obs/setup.jpg)
+     <p align="center"><![sutup]({{site.baseurl}}/assets/img/bilibili-obs/setup.jpg) </p>
 
     *  双击打开 → (确认安装) Next> → (同意用户协议) I Agree → (设置安装路 径) Next> → (默认不勾选实感摄像头插件) Install → (Launch OBS Studio) Finish 
 
@@ -95,7 +95,7 @@ categories: 教程
 
     * 控件 最重要的几个控制开关
 
-5. 开始直播
+5. 开始直播 📺
 
     * 点击开始推流按钮
 
