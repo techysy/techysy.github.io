@@ -33,7 +33,7 @@ categories: obs
 
         打开设置 → 推流 → 服务选项框选择"自定义"
 
-            服务器 = rtmp地址 ："rtmp://txy.live-send.acg.tv/xxxxxxxxxx""
+            服务器 = rtmp地址 ："rtmp://txy.live-send.acg.tv/xxxxxxxxxx"
 
             串流密钥 = 直播码 ："?streamname=live_10419858_6368653&key=xxxxxxxxxx"
 
@@ -43,9 +43,7 @@ categories: obs
             
             🎬 默认视频码率 "2500Kbps" 可以根据你的网络带宽和需求调整 
 
-                编码器 建议使用软解 "X264" AMD YES 👌  硬解的话 NVIDIA YES 🐶 
-
-                (具体情况还得看你系统资源分配)
+                编码器 建议使用软解 "X264" AMD YES 👌 (具体情况还得看你系统资源分配)
 
             🎤 默认音频码率 "160" 个人喜欢设置为192 看上去像一个整数
 
