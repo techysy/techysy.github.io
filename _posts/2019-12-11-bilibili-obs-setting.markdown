@@ -21,6 +21,8 @@ categories: obs
 
 3. 配置OBS-Studio软件
 
+    ![bilibili]({{site.baseurl}}/assets/img/bilibili/bilibili.jpg)
+
     * 获取哔哩哔哩直播码
 
          打开直播中心 → 我的直播间 → 点击 "开始直播"按钮 获取直播码：
@@ -31,6 +33,8 @@ categories: obs
 
     * 设置OBS-Studio的推流链接
 
+    ![rtmp]({{site.baseurl}}/assets/img/bilibili/rtmp.jpg)
+
         打开设置 → 推流 → 服务选项框选择"自定义"
 
             服务器 = rtmp地址 ："rtmp://txy.live-send.acg.tv/xxxxxxxxxx"
@@ -38,6 +42,8 @@ categories: obs
             串流密钥 = 直播码 ："?streamname=live_10419858_6368653&key=xxxxxxxxxx"
 
     * 设置直播码率
+
+    ![output]({{site.baseurl}}/assets/img/bilibili/output.jpg)
 
         打开设置 → 输出
             
@@ -69,6 +75,8 @@ categories: obs
 
 4. 设置直播面板
 
+    ![主面板]({{site.baseurl}}/assets/img/bilibili/main.jpg)
+
     * 添加"场景"提前排好版例如生日、节日、日常、游戏 …
 
     * 添加"来源"显示器、窗口、图片、文本、音频的输入输出、摄像头还有自定义浏览器 …
@@ -83,9 +91,13 @@ categories: obs
 
     * 点击开始推流按钮
     
-    * 此时状态栏会实时显示直播/录屏时长、CPU占用率、帧率
+    * 此时状态栏会实时显示直播/录屏时长、CPU占用率、帧率、码率
+
+    ![live]({{site.baseurl}}/assets/img/bilibili/live.jpg)
 
             绿色就表示成功推流了
+
+    ![retry]({{site.baseurl}}/assets/img/bilibili/retry.jpg)
             
             如果连接不上左下角就会显示重连提示
 
