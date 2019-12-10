@@ -14,19 +14,16 @@ categories: 教程
 
 2. 安装OBS-Studio软件
 
-      ![sutup]({{site.baseurl}}/assets/img/bilibili-obs/setup.jpg)
+     ![sutup]({{site.baseurl}}/assets/img/bilibili-obs/setup.jpg)
 
-  
-       * 双击打开 → (确认安装) Next> → (同意用户协议) I Agree → (设置安装路径) Next> 
-
-      → (默认不勾选实感摄像头插件) Install → (Launch OBS Studio) Finish 
+    *  双击打开 → (确认安装) Next> → (同意用户协议) I Agree → (设置安装路 径) Next> → (默认不勾选实感摄像头插件) Install → (Launch OBS Studio) Finish 
 
 
 3. 配置OBS-Studio软件 ⚙️
 
     * 获取哔哩哔哩直播码
 
-    ![bilibili]({{site.baseurl}}/assets/img/bilibili-obs/bilibili.jpg) 
+        ![bilibili]({{site.baseurl}}/assets/img/bilibili-obs/bilibili.jpg) 
 
          打开直播中心 → 我的直播间 → 点击 "开始直播"按钮 获取直播码：
 
@@ -39,7 +36,7 @@ categories: 教程
 
    * 设置OBS-Studio的推流链接
 
-   ![rtmp]({{site.baseurl}}/assets/img/bilibili-obs/rtmp.jpg)
+        ![rtmp]({{site.baseurl}}/assets/img/bilibili-obs/rtmp.jpg)
 
         打开设置 → 推流 → 服务选项框选择"自定义"
 
@@ -51,15 +48,14 @@ categories: 教程
 
     * 设置直播码率
 
-    ![output]({{site.baseurl}}/assets/img/bilibili-obs/output.jpg)
+        ![output]({{site.baseurl}}/assets/img/bilibili-obs/output.jpg)
     
-    </br>
     
         打开设置 → 输出
 
              🎬 默认视频码率 "2500Kbps" 可以根据你的网络带宽和需求调整 
 
-              编码器 建议使用软解 "X264" AMD YES 👌 (具体情况还得看你系统资源分配)
+           编码器 建议使用软解 "X264" AMD YES 👌 (具体情况还得看你系统资源  分配)
 
             🎤 默认音频码率 "160" 个人喜欢设置为192 看上去像一个整数
 
@@ -103,9 +99,13 @@ categories: 教程
 
     * 点击开始推流按钮
 
-    ![live]({{site.baseurl}}/assets/img/bilibili-obs/live.jpg "此时状态栏会实时显示直播/录屏时长、CPU占用率、帧率、码率")
+    ![live]({{site.baseurl}}/assets/img/bilibili-obs/live.jpg)
 
-    ![retry]({{site.baseurl}}/assets/img/bilibili-obs/retry.jpg "如果连接不上左下角就会显示重连提示")
+    * 此时状态栏会实时显示直播/录屏时长、CPU占用率、帧率、码率
+
+    ![retry]({{site.baseurl}}/assets/img/bilibili-obs/retry.jpg)
+
+    * 如果连接不上左下角就会显示重连提示
             
 6. 插件
 
