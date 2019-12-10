@@ -13,7 +13,8 @@ categories: obs
 
 
 2. 安装OBS-Studio软件
-        ![sutup]({{site.baseurl}}/assets/img/bilibili-obs/setup.jpg)
+
+      ![sutup]({{site.baseurl}}/assets/img/bilibili-obs/setup.jpg)
 
   
     * 双击打开 → (确认安装) Next> → (同意用户协议) I Agree → (设置安装路径) Next> 
