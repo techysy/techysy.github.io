@@ -14,6 +14,8 @@ categories: obs
 
 2. 安装OBS-Studio软件
 
+    ![sutup]({{site.baseurl}}/assets/img/bilibili-obs/setup.jpg)
+
     * 双击打开 → (确认安装) Next> → (同意用户协议) I Agree → (设置安装路径) Next> 
 
       → (默认不安装实感摄像头插件) Install → (安装完成勾上Launch OBS Studio) Finish 
@@ -75,7 +77,7 @@ categories: obs
 
 4. 设置直播面板
 
-    ![主面板]({{site.baseurl}}/assets/img/bilibili-obs/main.jpg)
+    ![main]({{site.baseurl}}/assets/img/bilibili-obs/main.jpg)
 
     * 添加"场景"提前排好版例如生日、节日、日常、游戏 …
 
