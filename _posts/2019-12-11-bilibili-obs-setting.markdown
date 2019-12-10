@@ -13,8 +13,7 @@ categories: obs
 
 
 2. 安装OBS-Studio软件
-
-    ![sutup]({{site.baseurl}}/assets/img/bilibili-obs/setup.jpg)
+        ![sutup]({{site.baseurl}}/assets/img/bilibili-obs/setup.jpg)
 
   
     * 双击打开 → (确认安装) Next> → (同意用户协议) I Agree → (设置安装路径) Next> 
@@ -32,7 +31,7 @@ categories: obs
 
             你的直播码："?streamname=live_10419858_6368653&key=xxxxxxxxxx"
 
-    ![bilibili]({{site.baseurl}}/assets/img/bilibili-obs/bilibili.jpg)        
+        ![bilibili]({{site.baseurl}}/assets/img/bilibili-obs/bilibili.jpg)        
  
 
    * 设置OBS-Studio的推流链接
@@ -43,7 +42,7 @@ categories: obs
 
             串流密钥 = 直播码 ："?streamname=live_10419858_6368653&key=xxxxxxxxxx"
 
-    ![rtmp]({{site.baseurl}}/assets/img/bilibili-obs/rtmp.jpg)
+        ![rtmp]({{site.baseurl}}/assets/img/bilibili-obs/rtmp.jpg)
  
 
     * 设置直播码率
@@ -81,7 +80,7 @@ categories: obs
 
 4. 设置直播面板
 
-    ![main]({{site.baseurl}}/assets/img/bilibili-obs/main.jpg)
+        ![main]({{site.baseurl}}/assets/img/bilibili-obs/main.jpg)
 
     * 添加"场景"提前排好版例如生日、节日、日常、游戏 …
 
@@ -97,15 +96,16 @@ categories: obs
 
     * 点击开始推流按钮
 
-    ![live]({{site.baseurl}}/assets/img/bilibili-obs/live.jpg)
+        ![live]({{site.baseurl}}/assets/img/bilibili-obs/live.jpg)
+
 
     * 此时状态栏会实时显示直播/录屏时长、CPU占用率、帧率、码率
 
             绿色就表示成功推流了
 
-    ![retry]({{site.baseurl}}/assets/img/bilibili-obs/retry.jpg)
+        ![retry]({{site.baseurl}}/assets/img/bilibili-obs/retry.jpg)
             
-            
+
             如果连接不上左下角就会显示重连提示
 
 
