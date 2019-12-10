@@ -2,7 +2,7 @@
 layout: post
 title: B站OBS直播推流设置
 date: 2019-12-11 00:00:00 +0800
-img: bilibili-obs
+img: bilibili-obs.jpg
 tags: [教程]
 categories: obs
 ---
