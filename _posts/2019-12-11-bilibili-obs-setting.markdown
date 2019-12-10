@@ -21,7 +21,7 @@ categories: obs
 
 3. 配置OBS-Studio软件
 
-    ![bilibili]({{site.baseurl}}/assets/img/bilibili/bilibili.jpg)
+    ![bilibili]({{site.baseurl}}/assets/img/bilibili-obs/bilibili.jpg)
 
     * 获取哔哩哔哩直播码
 
@@ -33,7 +33,7 @@ categories: obs
 
     * 设置OBS-Studio的推流链接
 
-    ![rtmp]({{site.baseurl}}/assets/img/bilibili/rtmp.jpg)
+    ![rtmp]({{site.baseurl}}/assets/img/bilibili-obs/rtmp.jpg)
 
         打开设置 → 推流 → 服务选项框选择"自定义"
 
@@ -43,7 +43,7 @@ categories: obs
 
     * 设置直播码率
 
-    ![output]({{site.baseurl}}/assets/img/bilibili/output.jpg)
+    ![output]({{site.baseurl}}/assets/img/bilibili-obs/output.jpg)
 
         打开设置 → 输出
             
@@ -75,7 +75,7 @@ categories: obs
 
 4. 设置直播面板
 
-    ![主面板]({{site.baseurl}}/assets/img/bilibili/main.jpg)
+    ![主面板]({{site.baseurl}}/assets/img/bilibili-obs/main.jpg)
 
     * 添加"场景"提前排好版例如生日、节日、日常、游戏 …
 
@@ -93,11 +93,11 @@ categories: obs
     
     * 此时状态栏会实时显示直播/录屏时长、CPU占用率、帧率、码率
 
-    ![live]({{site.baseurl}}/assets/img/bilibili/live.jpg)
+    ![live]({{site.baseurl}}/assets/img/bilibili-obs/live.jpg)
 
             绿色就表示成功推流了
 
-    ![retry]({{site.baseurl}}/assets/img/bilibili/retry.jpg)
+    ![retry]({{site.baseurl}}/assets/img/bilibili-obs/retry.jpg)
             
             如果连接不上左下角就会显示重连提示
 
