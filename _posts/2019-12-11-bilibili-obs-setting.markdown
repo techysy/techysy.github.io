@@ -21,7 +21,7 @@ categories: 教程
 
 3. 配置OBS-Studio软件 ⚙️
 
-    * 获取哔哩哔哩直播码
+    + 获取哔哩哔哩直播码
 
         ![bilibili]({{site.baseurl}}/assets/img/bilibili-obs/bilibili.jpg) 
 
@@ -34,7 +34,7 @@ categories: 教程
                
  
 
-   * 设置OBS-Studio的推流链接
+   + 设置OBS-Studio的推流链接
 
         ![rtmp]({{site.baseurl}}/assets/img/bilibili-obs/rtmp.jpg)
 
@@ -46,7 +46,7 @@ categories: 教程
 
  
 
-    * 设置直播码率
+    + 设置直播码率
 
         ![output]({{site.baseurl}}/assets/img/bilibili-obs/output.jpg)
     
@@ -59,7 +59,7 @@ categories: 教程
 
               🎤 默认音频码率 "160" 个人喜欢设置为192 看上去像一个整数
 
-    * 设置录屏码率
+    + 设置录屏码率
 
         - 打开设置 → 输出
 
@@ -71,7 +71,7 @@ categories: 教程
 
 
 
-    * 其他设置
+    + 其他设置
 
          音频 → 音频的输入输出以及相关设备的管理
 
@@ -97,7 +97,7 @@ categories: 教程
 
 5. 开始直播 📺
 
-    * 点击开始推流按钮
+    + 点击开始推流按钮
 
     ![live]({{site.baseurl}}/assets/img/bilibili-obs/live.jpg)
 
