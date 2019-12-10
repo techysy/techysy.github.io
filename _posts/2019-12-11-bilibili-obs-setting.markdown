@@ -14,9 +14,13 @@ categories: 教程
 
 2. 安装OBS-Studio软件 📦
 
-     <p align="center"><![sutup]({{site.baseurl}}/assets/img/bilibili-obs/setup.jpg) </p>
+     <center> 
+     
+     ![sutup]({{site.baseurl}}/assets/img/bilibili-obs/setup.jpg)  
+     
+     </center>
 
-    *  双击打开 → (确认安装) Next> → (同意用户协议) I Agree → (设置安装路 径) Next> → (默认不勾选实感摄像头插件) Install → (Launch OBS Studio) Finish 
+    *  双击打开 → Next> (确认安装) → I Agree (同意用户协议) → Next> (设置安装路径) → Install (默认不勾选实感摄像头插件) → Finish (Launch OBS Studio)  
 
 
 3. 配置OBS-Studio软件 ⚙️
