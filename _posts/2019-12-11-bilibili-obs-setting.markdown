@@ -1,10 +1,10 @@
 ---
 layout: post
-title: 如何使用OBS Studio给B站直播推流
+title: 如何使用OBS给B站直播推流
 date: 2019-12-11 00:00:00 +0800
 img: bilibili-obs.jpg
-tags: [教程]
-categories: obs
+tags: [教程,Bilibili]
+categories: 教程
 ---
 
 1. 下载OBS-Studio软件
