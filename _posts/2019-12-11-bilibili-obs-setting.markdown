@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 如何使用OBS给B站直播推流
-date: 2019-12-11 00:00:00 +0800
+date: 2019-12-11 11:11:11 +0800
 img: bilibili-obs.jpg
 tags: [教程,Bilibili]
 categories: 教程
