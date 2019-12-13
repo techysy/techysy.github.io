@@ -11,7 +11,7 @@ categories: 教程
     
     * OBS-Studio 24.0.3 Windows x64
     
-    >  <a href="https://pan.baidu.com/s/1DAcrCoRIRCrCZGnmr3lK1Q" target="_blank">百度云链接</a>   提取码：yv6d
+    >  <a href="https://pan.baidu.com/s/1DAcrCoRIRCrCZGnmr3lK1Q" target="_blank">百度云链接</a>     提取码：yv6d
 
 
 2. 安装OBS-Studio软件 📦
