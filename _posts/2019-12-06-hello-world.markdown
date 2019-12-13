@@ -7,4 +7,4 @@ img: hello-world.jpg # Add image post (optional)
 tags: [Blog]
 categories: jekyll
 ---
-<iframe src="//player.bilibili.com/player.html?aid=73312029&cid=125403762&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" height="600px" width="100%"> </iframe>
+<iframe src="//player.bilibili.com/player.html?aid=73312029&cid=125403762&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" height="225px" width="400px"> </iframe>
