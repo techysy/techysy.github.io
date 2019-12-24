@@ -11,7 +11,7 @@ categories: 教程
 
 UEFI → Open Core 0.5.2 → macOS 10.15.2
 
-> 同步更新地址：https://github.com/techysy/B450M-MORTAR-Hackintosh  （EFI文件下载也在这）
+> 同步更新地址：<a href="https://github.com/techysy/B450M-MORTAR-Hackintosh" target="_blank">https://github.com/techysy/B450M-MORTAR-Hackintosh</a>   （EFI文件下载也在这）
 
 + 已知bug：
 
