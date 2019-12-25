@@ -44,9 +44,9 @@ UEFI → Open Core 0.5.2 → macOS 10.15.2
 > macOS 10.15.2 AMD_Vanilla + DaVinci Resolve 16
     
     
-   #### 原始素材 : mp4 h.264 01:40:39 1080p 50fps *50m* 
+##### 原始素材 : mp4 h.264 01:40:39 1080p 50fps *50m* 
     
-   #### 导出视频 : mp4 1080p 50fps *6000kb* 
+##### 导出视频 : mp4 1080p 50fps *6000kb* 
 
         编码 : h.264 完成时间 : 01:25
 
@@ -58,9 +58,9 @@ UEFI → Open Core 0.5.2 → macOS 10.15.2
 > Windows 10 1909 + DaVinci Resolve 16
    
     
-   #### 原始素材 : mp4 h.264 01:40:39 1080p 50fps *50m* 
+##### 原始素材 : mp4 h.264 01:40:39 1080p 50fps *50m* 
     
-   #### 导出视频 : mp4 1080p 50fps *6000kb* 
+##### 导出视频 : mp4 1080p 50fps *6000kb* 
 
         编码 : h.264 原生 完成时间 : 00:54
 
