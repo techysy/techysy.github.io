@@ -20,12 +20,12 @@ categories: 分享
 >主题：<a href="https://evanpurkhiser.com/rEFInd-minimal/" target="_blank">rEFInd Minimal</a>  、<a href="https://github.com/kgoettler/ursamajor-rEFInd" target="_blank">ursamajor-rEFInd</a>
 > 
 > 主题标签： https://github.com/topics/refind-theme
+>
+> 项目地址：https://github.com/techysy/rEFInd
 
 + **EFI** 文件夹结构图
 
 ![EFI]({{site.baseurl}}/assets/img/refind/EFI.jpg) 
-
-> 项目地址：https://github.com/techysy/rEFInd
 
 ### 项目文件说明
 
