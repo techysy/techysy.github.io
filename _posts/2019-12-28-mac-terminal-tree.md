@@ -15,11 +15,11 @@ categories: 分享
 
 ![it]({{site.baseurl}}/assets/img/terminal-tree/it.jpg) 
 
-当前目录下2层目录结构（系统的EFI引导文件夹）
-
 > tree -L 2
 
 ![tree]({{site.baseurl}}/assets/img/terminal-tree/tree.jpg) 
+
+当前目录下2层目录结构（系统的EFI引导文件夹）
 
 > tree -L 3
 
@@ -28,6 +28,8 @@ categories: 分享
 > tree -help 查看帮助
 
 ![help]({{site.baseurl}}/assets/img/terminal-tree/help.jpg) 
+
+分享黑苹果efi 的时候就很有用。能清楚的看到你的文件结构，用了那些补丁
 
 ## 相关链接：
 
