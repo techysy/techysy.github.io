@@ -13,7 +13,7 @@ categories: 分享
 >
 > 官网：http://www.rodsbooks.com/refind/
 >
-> 项目地址：https://sourceforge.net/projects/refind/
+> 下载地址：https://sourceforge.net/projects/refind/
 >
 > 官方安装教程：http://www.rodsbooks.com/refind/installing.html 
 >
@@ -24,6 +24,8 @@ categories: 分享
 + **EFI** 文件夹结构图
 
 ![EFI]({{site.baseurl}}/assets/img/refind/EFI.jpg) 
+
+> 项目地址：https://github.com/techysy/rEFInd
 
 ### 项目文件说明
 
@@ -47,6 +49,8 @@ categories: 分享
 + 手动安装
 
     建议使用手动安装的方式，拷贝refind-bin-0.11.4下的refind到EFI目录（可使用Hackintool工具、mount命令挂载）下删掉多余的驱动比如aa64 arm处理器和其他32位处理器的驱动 只保留 **drivers_x64** 。最后使用BCD、EasyUEFI工具添加UEFI启动项。
+
+![uefi]({{site.baseurl}}/assets/img/refind/uefi.jpg)    
 
 ### 配置 refind.conf
 
