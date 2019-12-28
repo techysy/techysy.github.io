@@ -1,6 +1,6 @@
 ---
 layout: post
-title: rEFInd一个好看又好用的EFI启动管理器
+title: rEFInd一个好用又好看的UEFI启动管理器
 date: 2019-12-28 20:00:00 +0800
 img: rEFInd.jpg
 tags: [MAC,野生技术协会]
@@ -8,7 +8,7 @@ categories: 分享
 ---
 # rEFInd
 
-![EFI]({{site.baseurl}}/assets/img/refind.jpg) 
+![EFI]({{site.baseurl}}/assets/img/rEFInd.jpg) 
 
 使用rEFInd引导多系统启动 Windows 10、macOS 10.15.2（基于Open Core）、其他
 
