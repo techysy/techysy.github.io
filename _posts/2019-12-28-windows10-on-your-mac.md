@@ -11,21 +11,20 @@ categories: 分享
 
 ## 在你的电脑上安装 Windows 10 需要满足的条件
 
-您的 硬盘（不同盘也行）上需要有 64GB 或更大的可用储存空间：
+#### 硬盘（不同盘也行）上需要有 64GB 或更大的可用储存空间：
 
 > 您的可用储存空间最小可为 64GB，但是要想获得最佳体验，可用储存空间需至少为 128GB。Windows 的自动更新至少需要这么多空间才能进行。
-
+>
 > 如果您的电脑 内存 (RAM) 为 128GB 或更大，那么 Windows 安装器所需的可用储存空间至少应与 Mac 的内存一样大。例如，如果您的 Mac 内存为 256GB，则您的启动磁盘必须至少有 256GB 的 Windows 可用储存空间。
-储存容量为 16GB 或更大的外置 USB 闪存驱动器，除非您使用的 Mac 不需要从闪存驱动器安装 Windows。(也可以使用一个单独的分区来引导，安装完成删除分区就好)
-
+>
+> 储存容量为 16GB 或更大的外置 USB 闪存驱动器，除非您使用的 Mac 不需要从闪存驱动器安装 Windows。(也可以使用一个单独的分区来引导，安装完成删除分区就好)
+>
 > 存储在磁盘映像 (ISO) 或其他安装介质上(比如其他分区)的  Windows 10 Home 或 Windows 10 Pro：
-
+>
 > 如果您是首次在 Mac 上安装 Windows，请使用 Windows 完整版，而不是升级包。
-如果您的 Windows 副本以 USB 闪存驱动器形式提供，或您有 Windows 产品密钥但没有安装光盘，您可以从<a href="http://www.microsoft.com/zh-cn/software-download/windows10ISO" target="_blank"> Microsoft </a> 下载磁盘映像。建议还是从 <a href="http://msdn.itellyou.cn" target="_blank"> msdn i tell you </a> 下载最新的系统（ 使用ed2k链接 ）
+如果您的 Windows 副本以 USB 闪存驱动器形式提供，或您有 Windows 产品密钥但没有安装光盘，您可以从<a href="http://www.microsoft.com/zh-cn/software-download/windows10ISO" target="_blank"> Microsoft </a> 下载磁盘映像。建议还是从 <a href="http://msdn.itellyou.cn" target="_blank"> msdn i tell you </a> 下载最新的系统（ 使用ed2k链接 )
 
-> 我也上传到了我的<a heef="https://pan.baidu.com/s/1qsnLLL07b7_UPBMaJUKqvQ" target="_blank"> 百度云盘 </a> 密码 : *3fwu* 系统版本 Windows 10 1909 Update 发布日期：*2019-12-17*
-
-
+> 我也上传到了我的<a href="http://pan.baidu.com/s/1qsnLLL07b7_UPBMaJUKqvQ" target="_blank"> 百度云盘</a> 密码 : *3fwu* 系统版本 Windows 10 1909 Update 发布日期：*2019-12-17*
 
 > 如何在 Mac 上安装 Windows 10
 要安装 Windows，请使用“启动转换助理”。它位于“应用程序”文件夹中的“实用工具”文件夹中。
