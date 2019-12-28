@@ -9,7 +9,7 @@ categories: 分享
 
 ## 使用 Homebrew 安装 tree
 
- 默认情况需要提前安装 <a herf="https://brew.sh/index_zh-cn" target="_blank">Homebrew </a>  并使用<a herf="http://mirrors.ustc.edu.cn/help/brew.git.html" target="_blank"> USTC Mirror</a> 加速
+ 默认情况需要提前安装 <a href="https://brew.sh/index_zh-cn" target="_blank">Homebrew</a>  并使用<a herf="http://mirrors.ustc.edu.cn/help/brew.git.html" target="_blank"> USTC Mirror</a> 加速
 
 > brew install tree
 
@@ -23,7 +23,7 @@ categories: 分享
 
 > tree -L 3
 
-就是当前目录下2层目录结构
+同理这就是当前目录下3层目录结构
 
 > tree -help 查看帮助
 
