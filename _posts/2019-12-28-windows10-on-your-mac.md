@@ -7,7 +7,7 @@ tags: [MAC,野生技术协会]
 categories: 分享
 ---
 
-通过“启动转换”在 Mac(Hackintosh) 上安装  Windows 10，然后在重新启动 Mac 时在 macOS 和 Windows 之间进行切换.
+通过“启动转换”在 Mac 上安装  Windows 10，然后在重新启动 Mac 时在 macOS 和 Windows 之间进行切换.
 
 ## 在你的电脑上安装 Windows 10 需要满足的条件
 
@@ -50,10 +50,8 @@ Windows 安装完成后，您的电脑 会在 Windows 中启动，并打开“�
 
 ### 如何在 Windows 和 macOS 之间切换
 
-MAC
+
 
 > 重新启动，然后在启动过程中按住 Option（或 Alt）⌥ 键，以便在 Windows 和 macOS 之间切换。
 
-Hackintosh
-
-> Open Core 列表中直接选择系统的序号
+    图片之后补上等室友休假回来 使用Macbook Pro 演示
