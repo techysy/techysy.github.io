@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 在 macOS 终端输出漂亮的目录结构
+title: 如何在 macOS 终端输出树状目录结构
 date: 2019-12-28 14:24:00 +0800
 img: terminal-tree.jpg
 tags: [MAC,野生技术协会]
@@ -13,7 +13,7 @@ categories: 分享
 
 > brew install tree
 
-![it]({{site.baseurl}}/assets/img/terminal-tree/it.jpg) 
+![install]({{site.baseurl}}/assets/img/terminal-tree/install.jpg) 
 
 > tree -L 2
 
@@ -33,10 +33,8 @@ categories: 分享
 
 ## 相关链接：
 
-+ 官方主页
-<a herf="http://brew.sh/" target="_blank">http://brew.sh</a>
++ 官方主页 <a herf="http://brew.sh/" target="_blank">http://brew.sh</a>
 
 + brew 文档 <a herf="http://docs.brew.sh" target="_blank">http://docs.brew.sh</a>
-
 
 + USTC Mirror <a herf="http://mirrors.ustc.edu.cn" target="_blank">http://mirrors.ustc.edu.cn</a>
