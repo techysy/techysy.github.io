@@ -13,13 +13,13 @@ categories: 分享
 
 > brew install tree
 
-![it]({{site.baseurl}}/assets/img/bterminal-tree/it.jpg) 
+![it]({{site.baseurl}}/assets/img/terminal-tree/it.jpg) 
 
 当前目录下2层目录结构（系统的EFI引导文件夹）
 
 > tree -L 2
 
-![tree]({{site.baseurl}}/assets/img/bterminal-tree/tree.jpg) 
+![tree]({{site.baseurl}}/assets/img/terminal-tree/tree.jpg) 
 
 > tree -L 3
 
@@ -27,14 +27,14 @@ categories: 分享
 
 > tree -help 查看帮助
 
-![help]({{site.baseurl}}/assets/img/bterminal-tree/help.jpg) 
+![help]({{site.baseurl}}/assets/img/terminal-tree/help.jpg) 
 
 ## 相关链接：
 
 + 官方主页
-<a herf="http://brew.sh/" target="_blank">http://brew.sh/</a>
+<a herf="http://brew.sh/" target="_blank">http://brew.sh</a>
 
-+ brew 文档 <a herf="http://docs.brew.sh/" target="_blank">http://docs.brew.sh/</a>
++ brew 文档 <a herf="http://docs.brew.sh" target="_blank">http://docs.brew.sh</a>
 
 
-+ USTC Mirror <a herf="http://mirrors.ustc.edu.cn/ " target="_blank">http://mirrors.ustc.edu.cn/ </a>
++ USTC Mirror <a herf="http://mirrors.ustc.edu.cn" target="_blank">http://mirrors.ustc.edu.cn</a>
