@@ -20,7 +20,9 @@ categories: 分享
 >
 > 官方安装教程：http://www.rodsbooks.com/refind/installing.html 
 >
->主题：<a href="https://evanpurkhiser.com/rEFInd-minimal/" target="_blank">rEFInd Minimal</a> 
+>主题：<a href="https://evanpurkhiser.com/rEFInd-minimal/" target="_blank">rEFInd Minimal</a>  、<a href="https://github.com/kgoettler/ursamajor-rEFInd" target="_blank">ursamajor-rEFInd</a>
+> 
+> 主题标签： https://github.com/topics/refind-theme
 
 + **EFI** 文件夹结构图
 
