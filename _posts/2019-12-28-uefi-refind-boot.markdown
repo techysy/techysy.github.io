@@ -40,11 +40,11 @@ categories: 分享
 ![refind]({{site.baseurl}}/assets/img/refind/refind.jpg)
 
 + 自动安装
+
     使用终端执行 **refind-install** 系统自动把文件拷贝到EFI文件夹下 并建立启动项，如果不认盘可能需要手动复制驱动文件 **drivers_x64** 如果存在多个EFI 引导盘 不确定回安装在哪一个
 
-+ 手动安装
-
 ![drivers]({{site.baseurl}}/assets/img/refind/drivers.jpg)
++ 手动安装
 
     建议使用手动安装的方式，拷贝refind-bin-0.11.4下的refind到EFI目录（可使用Hackintool工具、mount命令挂载）下删掉多余的驱动比如aa64 arm处理器和其他32位处理器的驱动 只保留 **drivers_x64** 。最后使用BCD、EasyUEFI工具添加UEFI启动项。
 
