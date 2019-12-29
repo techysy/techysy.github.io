@@ -3,13 +3,13 @@ layout: post
 title: B450M迫击炮OC引导EFI分享
 date: 2019-12-24 23:59:59 +0800
 img: Hackintosh-b450.jpg
-tags: [分享,野生技术协会]
+tags: [MAC,野生技术协会]
 categories: 分享
 ---
 
 # MSI B450M MORTAR MAX (MS-7B89)
 
-UEFI → Open Core 0.5.2 → macOS 10.15.2
+通过 UEFI → rEFInd → Open Core 0.5.2 → macOS 10.15.2  实现多系统引导
 
 > 同步更新地址：<a href="https://github.com/techysy/B450M-MORTAR-Hackintosh" target="_blank">https://github.com/techysy/B450M-MORTAR-Hackintosh</a>   （EFI文件也在这）
         
