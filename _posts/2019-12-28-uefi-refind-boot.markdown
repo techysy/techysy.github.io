@@ -50,7 +50,7 @@ categories: 分享
 
     建议使用手动安装的方式，拷贝refind-bin-0.11.4下的refind到EFI目录（可使用Hackintool工具、mount命令挂载）下删掉多余的驱动比如aa64 arm处理器和其他32位处理器的驱动 只保留 **drivers_x64** 。最后使用BCD、EasyUEFI工具添加UEFI启动项。
 
-![uefi]({{site.baseurl}}/assets/img/refind/uefi.jpg)    
+![uefi]({{site.baseurl}}/assets/img/refind/UEFI.jpg)    
 
 ### 配置 refind.conf
 
