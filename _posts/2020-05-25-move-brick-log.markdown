@@ -2,7 +2,7 @@
 layout: post
 title: 搬砖日志 持续更新
 date: 2020-05-25 09:00:00 +0800
-img: bzday01.jpg
+img: move-brick-log.jpg
 tags: [blog,学习日志]
 categories: 分享
 ---
