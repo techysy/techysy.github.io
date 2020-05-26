@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 搬砖日志 持续更新
+title: 搬砖日志ing~
 date: 2020-05-25 09:00:00 +0800
 img: move-brick-log.jpg
 tags: [blog,学习日志]
