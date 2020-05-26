@@ -50,6 +50,6 @@ categories: 分享
 
 ### 下载地址
 
-+ 安装包 🌐 https://tortoisesvn.net/downloads.html
++ 安装包 🌐 <a href="https://tortoisesvn.net/downloads.html" target="_blank"> TortoiseSVN  </a> 
 
-+ 中文语言包在同一页面 👉 Language packs
++ 语言包 👉 Language packs
