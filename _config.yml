@@ -36,7 +36,7 @@ analytics: UA-28027894-1 # Google Analytics
 # baidu-anaylysis: xxxxxxxxxxxxxxxx # Baidu Analytics
 
 # Paginate
-paginate: 6
+paginate: 8
 paginate_path: /page:num/
 
 # Build settings
