@@ -44,12 +44,16 @@ categories: 分享
 
 ### SVN客户端
 
-+ TortoiseSVN  
++ TortoiseSVN      （ fro Win）   
 
-+ Cornstone
++ Cornstone        （ fro macOS）
 
 ### 下载地址
 
 + 安装包 🌐 <a href="https://tortoisesvn.net/downloads.html" target="_blank"> TortoiseSVN  </a> 
 
-+ 语言包 👉 Language packs
++ 语言包  👉 Language packs
+
+### 参考
+
+B站：技术宅爱Python 
