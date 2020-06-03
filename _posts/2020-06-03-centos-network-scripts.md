@@ -25,7 +25,7 @@ categories: 分享
 
 > vi /etc/sysconfig/network-scripts/ifcfg-ens33
 
-    BOOTPROTO=static
+     BOOTPROTO=static
      IPADDR=192.168.50.216
      NETMASK=255.255.255.0
      GATEWAY=192.168.50.1
@@ -36,7 +36,16 @@ categories: 分享
 
 > systemctl restart network  
 
-#### 重启
+#### 重启CentOS
+
+> reboot
+
     如果IP冲突路由器会重新分配一个  
-    在这之前我设置的是120
-    ip addr 查看就是216了
+    在这之前我设置的是.120
+    ip addr 查看就是.216了
+
+#### 测试
+
+宿主主机ping虚拟机地址
+
+> ping 192.168.50.216
