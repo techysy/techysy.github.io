@@ -66,19 +66,19 @@ categories: 分享
 
 ### DAY 07
 
-通过svn 下载部门文件
+>通过svn 下载部门文件
 
-再发一个控制器到通辽
+>再发一个控制器到通辽
 
 ### DAY 08
 
-安装VM环境下的CentOS 7 
+> 安装VM环境下的CentOS 7 
 
-配置网络和开启SSH服务
+>配置网络和开启SSH服务
 
-Windows Server 2012 R2
+>Windows Server 2012 R2
 
-配置网络和开启远程桌面服务
+>配置网络和开启远程桌面服务
 
 ### DAY 09
 
