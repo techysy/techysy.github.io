@@ -79,3 +79,7 @@ categories: 分享
 Windows Server 2012 R2
 
 配置网络和开启远程桌面服务
+
+### DAY 09
+
+到绵阳出差
