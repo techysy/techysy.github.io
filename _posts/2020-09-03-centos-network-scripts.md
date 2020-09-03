@@ -14,6 +14,7 @@ categories: 分享
 使用`ipconfig`命令或者直接在设置中查看网络信息以及网卡的名字
 
 #### 我的配置
+> Windows 10 2004 / VMware® Workstation 15 Pro
 
     ip：192.168.50.116
     子网掩码：255.255.255.0
