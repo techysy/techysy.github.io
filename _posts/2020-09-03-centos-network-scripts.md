@@ -2,7 +2,7 @@
 layout: post
 title: CentOS 7 VMware 静态网络配置
 date: 2020-09-27 09:00:00 +0800
-img: anyoffice.jpg
+img: vm-network.jpg
 tags: [blog,学习日志]
 categories: 分享
 ---
@@ -25,7 +25,7 @@ categories: 分享
 
     netsh interface ip set address "网卡名称" static 本机ip 子网掩码 网关 
 
-> netsh interface ip set address "VMware Network Adapter VMnet8" static 192.168.0.2 255.255.255.0 192.168.0.1
+> netsh interface ip set address "VMware Network Adapter VMnet8" static 192.168.0.3 255.255.255.0 192.168.0.1
 
 #### 配置网络
 
@@ -33,12 +33,12 @@ categories: 分享
 
 > vi /etc/sysconfig/network-scripts/ifcfg-ens33
 
-     BOOTPROTO=static
-     IPADDR=192.168.0.3
-     NETMASK=255.255.255.0
-     GATEWAY=192.168.50.1
-     DNS1=8.8.8.8
-     ONBOOT=yes
+     BOOTPROTO=static           #静态变量
+     IPADDR=192.168.0.2         #IP地址
+     NETMASK=255.255.255.0      #子网掩码
+     GATEWAY=192.168.0.1        #网关
+     DNS1=8.8.8.8               #DNS
+     ONBOOT=yes                 #自启
  
 #### 重启网络
 
@@ -54,4 +54,8 @@ categories: 分享
 
 宿主主机ping虚拟机地址
 
-> ping 192.168.0.3
+> ping 192.168.0.2
+
+使用SSH工具连接
+
+> ssh 用户名@192.168.0.2
