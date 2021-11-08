@@ -6,7 +6,7 @@ img: vm-network.jpg
 tags: [blog,野生技术协会]
 categories: 分享
 ---
-|       软件名        |                           官方网站                           | 当前版本 |                       相关版本下载地址                       |
+|       软件名        |                           官方网站                           | 当前版本 |                       下载地址                       |
 | :-----------------: | :----------------------------------------------------------: | -------- | :----------------------------------------------------------: |
 |        7-ZIP        | [EN](https://www.7-zip.org/) [ZH](https://sparanoid.com/lab/7z/) |          | [1900](https://www.7-zip.org/a/7z1900-x64.exe)   [2101](https://www.7-zip.org/a/7z2101-x64.exe) |
 | Advanced IP Scanner |        [ZH](https://www.advanced-ip-scanner.com/cn/)         |          | [2.5.3850](https://www.advanced-ip-scanner.com/download/Advanced_IP_Scanner_2.5.3850.exe) |
