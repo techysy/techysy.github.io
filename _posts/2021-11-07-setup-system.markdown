@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 软件库
+title: 重 装 系 统
 date: 2021-11-07 08:00:00 +0800
 img: setup-system.jpg
 tags: [blog,野生技术协会]
