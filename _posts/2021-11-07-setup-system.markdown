@@ -12,7 +12,9 @@ categories: 分享
 
 > <a href="https://next.itellyou.cn/" target="_blank">ITELLYOU.CN</a>  
 
-> <a href="https://www.microsoft.com/zh-cn/windows/windows-11/" target="_blank">Microsoft</a> <a href="https://support.apple.com/zh-cn/macos/upgrade" target="_blank">Apple</a> <a href="https://www.centos.org/download/" target="_blank">CentOS</a> <a href="https://ubuntu.com/download/desktop" target="_blank">Ubuntu</a>
+> <a href="https://www.microsoft.com/zh-cn/windows/windows-11/" target="_blank">Windows</a> <a href="https://support.apple.com/zh-cn/macos/upgrade" target="_blank">MacOS</a> <a href="https://www.centos.org/download/" target="_blank">CentOS</a> <a href="https://ubuntu.com/download/desktop" target="_blank">Ubuntu</a>
+
+> <a href="https://www.proxmox.com/en/downloads" target="_blank">PVE</a> <a href="https://www.truenas.com/download-truenas-scale/" target="_blank">TrueNAS-Scale</a> <a href="https://www.centos.org/download/" target="_blank">ikuai</a> <a href="https://ubuntu.com/download/desktop" target="_blank">DSM</a>
 
 启动盘制作工具 
 
