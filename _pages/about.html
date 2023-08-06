@@ -39,17 +39,17 @@ permalink: /about/
       <li class="xiaohongshu"><a href="https://www.xiaohongshu.com/user/profile/5a5d020711be101b3d65cece " target="_blank"><i class="icon-xiaohongshu" aria-hidden="true"></i></a></li>
       {% endif %} 
 
-      {% if site.youtube %}
-      <li class="youtube"><a href="https://www.youtube.com/channel/{{site.youtube}}" target="_blank"><i class="iconfont icon-youtube-line" style="font-size:larger;"></i></a></li>
-    {% else %}
-      <li class="youtube"><a href="https://www.youtube.com/channel/UCmRYVbLAnJo1ynmpruQNJAw" target="_blank"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
-    {% endif %}  
-
       {% if site.instagram %}
         <li class="instagram"><a href="https://instagram.com/{{site.instagram}}" target="_blank"><i class="iconfont icon-instagram-line" style="font-size:larger;"></i></a></li>
       {% else %}
         <li class="instagram"><a href="https://instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
       {% endif %}
+
+      {% if site.youtube %}
+      <li class="youtube"><a href="https://www.youtube.com/channel/{{site.youtube}}" target="_blank"><i class="iconfont icon-youtube-line" style="font-size:larger;"></i></a></li>
+      {% else %}
+      <li class="youtube"><a href="https://www.youtube.com/channel/UCmRYVbLAnJo1ynmpruQNJAw" target="_blank"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
+      {% endif %}  
 
       {% if site.facebook %}
         <li class="facebook"><a href="https://facebook.com/{{site.facebook}}" target="_blank"><i class="iconfont icon-facebook-box-line" style="font-size:larger;"></i></a></li>
