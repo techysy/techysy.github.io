@@ -33,6 +33,12 @@ permalink: /about/
       <li class="strava"><a href="https://www.strava.com/athletes/yangyu " target="_blank"><i class="icon-strava" aria-hidden="true"></i></a></li>
       {% endif %} 
 
+      {% if site.xiaohongshu %}
+      <li class="xiaohongshu"><a href="https://www.xiaohongshu.com/user/profile/{{site.xiaohongshu}}" target="_blank"><i class="iconfont icon-xiaohongshu" style="font-size:90%;"></i></a></li>
+      {% else %}
+      <li class="xiaohongshu"><a href="https://www.xiaohongshu.com/user/profile/5a5d020711be101b3d65cece " target="_blank"><i class="icon-xiaohongshu" aria-hidden="true"></i></a></li>
+      {% endif %} 
+
       {% if site.youtube %}
       <li class="youtube"><a href="https://www.youtube.com/channel/{{site.youtube}}" target="_blank"><i class="iconfont icon-youtube-line" style="font-size:larger;"></i></a></li>
     {% else %}
