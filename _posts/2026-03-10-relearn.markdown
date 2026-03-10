@@ -12,7 +12,7 @@ categories: 分享
 ### 构建本地环境
   
  + WSL 适用于Linux的Windows子系统
-
+ 
         >   wsl --install
 
 ![wsl]({{site.baseurl}}/assets/img/relearn/wsl.png)
