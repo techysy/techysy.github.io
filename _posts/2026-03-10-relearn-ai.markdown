@@ -7,22 +7,15 @@ tags: [blog,学习日志]
 categories: 分享
 ---
 
++ 本地部署大模型使用率LM Studio和 Ollama 都比较高，LM Studio 更加强大，Ollama 更简单。
++ LM Studio 可视化操作界面，更方便用户操作。更好下载和管理大模型。
+
+> 最终选择 LM Studio
+
 ## LM Studio
+> LM Studio 就是把 “本地跑大模型” 这件事，从复杂的命令行操作，变成了一个人人能用的桌面软件
 
+官方地址：👉 [LM Studio](https://lmstudio.ai/)
 
-### 构建本地环境
-  
- + WSL 适用于Linux的Windows子系统
- 
-        >   wsl --install
+![LM Studio]({{site.baseurl}}/assets/img/relearn-ai/LMStudio.webp)
 
-![wsl]({{site.baseurl}}/assets/img/relearn/wsl.png)
-
- + Node.js (使用Docker下部署)
-
-        >   docker pull node:24-alpine           # 拉取 Node.js Docker 镜像
-        >   docker run -it --rm --entrypoint sh node:24-alpine   # 创建 Node.js 容器并启动一个 Shell 会话   
-        >   node -v # Should print "v24.14.0".
-        >   npm -v # Should print "11.9.0".
-
-![docker]({{site.baseurl}}/assets/img/relearn/docker.png)
