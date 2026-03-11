@@ -1,13 +1,14 @@
 ---
 layout: post
-title: 评论测试页面
-date: 2021-11-30 08:00:00 +0800
-img: disqus.png
+title: 本地部署大模型
+date: 2026-03-10 08:00:00 +0800
+img: LMStudio.png
 tags: [blog,学习日志]
 categories: 分享
 ---
 
-## 剑心犹在
+## LM Studio
+
 
 ### 构建本地环境
   
