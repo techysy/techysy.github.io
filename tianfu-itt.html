@@ -348,12 +348,12 @@
         }
 
         .highlight-link {
-            background: linear-gradient(135deg, #f6ffbe, #f5f0e6);
+            background: linear-gradient(135deg, #f0f4d391, #fffdebba);
             color: #7eb5cdcc !important;
             padding: 3px 10px;
             border-radius: 6px;
             display: inline-block;
-            border-bottom: 2px solid #6daba98f !important;
+            border-bottom: 2px solid #26414068 !important;
             text-decoration: none !important;
             font-weight: 600;
             transition: all 0.2s ease;
@@ -452,6 +452,10 @@
                     <div class="stat-label">平均坡度</div>
                 </div>
                 <div class="stat-item">
+                    <div class="stat-value">470</div>
+                    <div class="stat-label">最低海拔(m)</div>
+                </div>
+                <div class="stat-item">
                     <div class="stat-value">530</div>
                     <div class="stat-label">最高海拔(m)</div>
                 </div>
@@ -464,9 +468,9 @@
             <div>
                 <h2 class="section-title">🏆 单飞数据排行榜</h2>
 
-                <p class="section-subtitle" id="statsCount" style="font-size: 0.85em; color: #e74c3c; margin-top: 5px;"></p> 
-                <p style="font-size: 0.8em; color: #e74c3c; margin-top: 5px;">• 用时 ≤ 2:30:59 的记录高亮显示  ❕ 部分赛段距离异常会导致均速过快</p>
-                <p style="font-size: 0.8em; color: #e74c3c; margin-top: 5px;">• Tips：数据来源为strava公开数据，仅用于学习和研究，不涉及任何商业用途</p>
+                <p class="section-subtitle" id="statsCount" style="font-size: 0.85em; color: #c1c1c1b1; margin-top: 5px;"></p> 
+                <p style="font-size: 0.8em; color: #ff5f5f;; margin-top: 5px;">• 用时 ≤ 2:30:59 的记录高亮显示，部分赛段距离异常会导致均速过快</p>
+                <p style="font-size: 0.8em; color: #ff5f5f; margin-top: 5px;">• Tips：数据来源为strava公开数据，仅用于学习和研究，不涉及任何商业用途 ❕ </p>
             </div>
             <div style="display: flex; gap: 10px; margin-top: 10px;">
                 <span style="font-size: 0.85em; color: #636e72; align-self: center;">排序：</span>
@@ -616,7 +620,7 @@
             const year = now.getFullYear();
             const month = String(now.getMonth() + 1).padStart(2, '0');
             const day = String(now.getDate()).padStart(2, '0');
-            document.getElementById('statsCount').textContent = `截止${year}.${month}.${day} 已统计${ridersData.length}位骑友数据 · 点击头像或日期可跳转至Strava`;
+            document.getElementById('statsCount').textContent = `截止${year}.${month}.${day} 已统计${ridersData.length}位骑友数据 · 点击头像或日期可进行跳转`   ;
         }
 
         function updateDate() {
