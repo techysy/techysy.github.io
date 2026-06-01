@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strava 活动信息获取工具</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #fc4a1a 0%, #f7b733 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 16px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+
+        .input-section {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .input-group {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 600;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 15px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #fc4a1a;
+            box-shadow: 0 0 0 3px rgba(252, 74, 26, 0.1);
+        }
+
+        .btn {
+            padding: 14px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+            align-self: flex-end;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #fc4a1a 0%, #f7b733 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(252, 74, 26, 0.4);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-copy {
+            background: #4caf50;
+            color: white;
+            padding: 10px 20px;
+            font-size: 14px;
+        }
+
+        .btn-copy:hover {
+            background: #43a047;
+            transform: translateY(-1px);
+        }
+
+        .btn-copy.copied {
+            background: #2e7d32;
+        }
+
+        .result-section {
+            margin-top: 20px;
+        }
+
+        .result-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: transform 0.2s;
+        }
+
+        .result-card:hover {
+            transform: translateX(5px);
+        }
+
+        .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #fc4a1a 0%, #f7b733 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .activity-name {
+            font-weight: 600;
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 5px;
+            word-break: break-all;
+        }
+
+        .activity-meta {
+            font-size: 13px;
+            color: #666;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .meta-item svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .copy-actions {
+            display: flex;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .config-section {
+            margin-top: 20px;
+        }
+
+        .config-section textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 13px;
+            resize: vertical;
+        }
+
+        .config-section textarea:focus {
+            outline: none;
+            border-color: #fc4a1a;
+        }
+
+        .config-hint {
+            font-size: 12px;
+            color: #888;
+            margin-top: 8px;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #4caf50;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-weight: 600;
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        .toast.error {
+            background: #f44336;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #fc4a1a;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .api-config {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 20px;
+        }
+
+        .api-config label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .api-config input {
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .api-hint {
+            font-size: 12px;
+            color: #ff9800;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏃 Strava 活动信息获取工具</h1>
+            <p>输入活动链接，自动获取活动信息并支持一键复制</p>
+        </div>
+
+        <div class="card">
+            <div class="api-config">
+                <label>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 20h9"/>
+                        <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+                    </svg>
+                    Strava API Access Token
+                </label>
+                <input type="text" id="apiToken" placeholder="请输入你的 Strava API Access Token" value="">
+                <div class="api-hint">提示：需要在 Strava 开发者控制台创建应用获取 Access Token</div>
+            </div>
+
+            <div class="input-section">
+                <div class="input-group">
+                    <label for="urlInput">活动链接</label>
+                    <input type="text" id="urlInput" placeholder="例如: https://www.strava.com/activities/1234567890">
+                </div>
+                <button class="btn btn-primary" id="fetchBtn">
+                    <span id="btnText">获取信息</span>
+                    <span id="btnLoading" class="loading" style="display:none;"></span>
+                </button>
+            </div>
+
+            <div class="result-section" id="resultSection">
+                <div style="text-align: center; color: #999; padding: 40px;">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polyline points="12 6 12 12 16 14"/>
+                    </svg>
+                    <p style="margin-top: 15px;">输入活动链接并点击获取信息</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3 style="margin-bottom: 15px; color: #333;">📋 用户配置数组</h3>
+            <textarea id="userConfig" placeholder="用户配置数组..."></textarea>
+            <div class="config-hint">格式示例: [{ name: '-', stravaId: null, activityId: null, activityname:'-', avatar: null, time: '-', speed: 0, heart: 0, power: 0, date: '-', remark: '-', female: false }]</div>
+            <button class="btn btn-primary" style="margin-top: 15px;" id="exportBtn">导出配置</button>
+        </div>
+    </div>
+
+    <div class="toast" id="toast">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20 6 9 17 4 12"/>
+        </svg>
+        <span id="toastText">操作成功！</span>
+    </div>
+
+    <script>
+        const urlInput = document.getElementById('urlInput');
+        const fetchBtn = document.getElementById('fetchBtn');
+        const btnText = document.getElementById('btnText');
+        const btnLoading = document.getElementById('btnLoading');
+        const resultSection = document.getElementById('resultSection');
+        const apiToken = document.getElementById('apiToken');
+        const userConfig = document.getElementById('userConfig');
+        const exportBtn = document.getElementById('exportBtn');
+        const toast = document.getElementById('toast');
+        const toastText = document.getElementById('toastText');
+
+        let userArray = [];
+
+        function extractActivityId(url) {
+            if (!url) return '';
+            const match = url.match(/activities\/(\d+)/);
+            return match ? match[1] : '';
+        }
+
+        function formatTime(seconds) {
+            const hrs = Math.floor(seconds / 3600);
+            const mins = Math.floor((seconds % 3600) / 60);
+            const secs = seconds % 60;
+            if (hrs > 0) {
+                return `${hrs}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            }
+            return `${mins}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('zh-CN', { 
+                year: 'numeric', 
+                month: '2-digit', 
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        function showToast(message, isError = false) {
+            toastText.textContent = message;
+            toast.className = `toast ${isError ? 'error' : ''} show`;
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2500);
+        }
+
+        async function copyToClipboard(text, btn) {
+            try {
+                await navigator.clipboard.writeText(text);
+                btn.classList.add('copied');
+                btn.innerHTML = '✓ 已复制';
+                setTimeout(() => {
+                    btn.classList.remove('copied');
+                    btn.innerHTML = '复制';
+                }, 2000);
+                showToast('已复制到剪贴板！');
+            } catch (err) {
+                showToast('复制失败，请手动复制', true);
+            }
+        }
+
+        async function fetchActivityInfo(activityId) {
+            const token = apiToken.value.trim();
+            if (!token) {
+                showToast('请先输入 API Access Token', true);
+                return null;
+            }
+
+            try {
+                const response = await fetch(`https://www.strava.com/api/v3/activities/${activityId}`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                if (!response.ok) {
+                    if (response.status === 401) {
+                        showToast('Token 无效或已过期', true);
+                    } else {
+                        showToast(`API 请求失败: ${response.status}`, true);
+                    }
+                    return null;
+                }
+
+                return await response.json();
+            } catch (err) {
+                showToast('网络请求失败', true);
+                return null;
+            }
+        }
+
+        async function handleFetch() {
+            const url = urlInput.value.trim();
+            const activityId = extractActivityId(url);
+
+            if (!activityId) {
+                showToast('请输入有效的活动链接', true);
+                return;
+            }
+
+            btnText.style.display = 'none';
+            btnLoading.style.display = 'inline-block';
+            fetchBtn.disabled = true;
+
+            const activity = await fetchActivityInfo(activityId);
+
+            btnText.style.display = 'inline-block';
+            btnLoading.style.display = 'none';
+            fetchBtn.disabled = false;
+
+            if (!activity) return;
+
+            const user = {
+                name: activity.athlete.firstname || '-',
+                stravaId: activity.athlete.id || null,
+                activityId: parseInt(activityId),
+                activityname: activity.name || '-',
+                avatar: activity.athlete.profile || null,
+                time: activity.moving_time ? formatTime(activity.moving_time) : '-',
+                speed: activity.average_speed ? (activity.average_speed * 3.6).toFixed(1) : 0,
+                heart: Math.round(activity.average_heartrate) || 0,
+                power: Math.round(activity.average_watts) || 0,
+                date: activity.start_date_local ? formatDate(activity.start_date_local) : '-',
+                remark: '-',
+                female: activity.athlete.sex === 'F'
+            };
+
+            userArray.push(user);
+            updateUserConfig();
+            renderResult(user);
+        }
+
+        function renderResult(user) {
+            const card = document.createElement('div');
+            card.className = 'result-card';
+            card.innerHTML = `
+                <div class="avatar">
+                    ${user.avatar ? `<img src="${user.avatar}" alt="${user.name}">` : user.name.charAt(0)}
+                </div>
+                <div class="info">
+                    <div class="activity-name">${user.activityname}</div>
+                    <div class="activity-meta">
+                        <div class="meta-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                            ${user.name}
+                        </div>
+                        <div class="meta-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12 6 12 12 16 14"/>
+                            </svg>
+                            ${user.time}
+                        </div>
+                        <div class="meta-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                            </svg>
+                            ${user.speed} km/h
+                        </div>
+                        ${user.heart > 0 ? `<div class="meta-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                            </svg>
+                            ${user.heart} bpm
+                        </div>` : ''}
+                        ${user.power > 0 ? `<div class="meta-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="2" x2="12" y2="14"/>
+                                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                            </svg>
+                            ${user.power}W
+                        </div>` : ''}
+                    </div>
+                </div>
+                <div class="copy-actions">
+                    <button class="btn btn-copy" onclick="copyToClipboard('${user.activityId}', this)">复制ID</button>
+                    <button class="btn btn-copy" onclick="copyToClipboard('${JSON.stringify(user)}', this)">复制JSON</button>
+                </div>
+            `;
+            
+            resultSection.innerHTML = '';
+            resultSection.appendChild(card);
+        }
+
+        function updateUserConfig() {
+            userConfig.value = JSON.stringify(userArray, null, 2);
+        }
+
+        function handleExport() {
+            if (userArray.length === 0) {
+                showToast('暂无数据可导出', true);
+                return;
+            }
+            
+            const dataStr = JSON.stringify(userArray, null, 2);
+            const blob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `strava_users_${new Date().toISOString().split('T')[0]}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+            showToast('导出成功！');
+        }
+
+        fetchBtn.addEventListener('click', handleFetch);
+        exportBtn.addEventListener('click', handleExport);
+
+        urlInput.addEventListener('keyup', (e) => {
+            if (e.key === 'Enter') {
+                handleFetch();
+            }
+        });
+    </script>
+</body>
+</html>
