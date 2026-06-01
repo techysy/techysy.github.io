@@ -346,7 +346,25 @@
             cursor: pointer;
             transition: all 0.2s ease;
         }
-        
+
+        .highlight-link {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            color: #e65100 !important;
+            padding: 3px 10px;
+            border-radius: 6px;
+            display: inline-block;
+            border-bottom: 2px solid #ff9800 !important;
+            text-decoration: none !important;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .highlight-link:hover {
+            background: linear-gradient(135deg, #ffe0b2, #ffcc80);
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(255, 152, 0, 0.3);
+        }
+
         .sort-btn:hover {
             background: #e0e0e0;
         }
@@ -432,8 +450,9 @@
         <div class="section-header">
             <div>
                 <h2 class="section-title">🏆 单飞数据排行榜</h2>
-                <p class="section-subtitle" id="statsCount">已统计19位骑友数据 · 默认按用时排序（越短越靠前）</p>
-                <p style="font-size: 0.8em; color: #e74c3c; margin-top: 5px;">• 用时 ≤ 2:30:59 的记录已高亮显示（含 2:30:xx）  ❕ 部分赛段距离异常会导致均速过快</p>
+                <p class="section-subtitle" id="statsCount">截止 2026.06.02 已统计20位骑友数据 · 默认按用时排序（越短越靠前）</p>
+                <p style="font-size: 0.8em; color: #e74c3c; margin-top: 5px;">• 用时 ≤ 2:30:59 的记录高亮显示  ❕ 部分赛段距离异常会导致均速过快</p>
+                <p style="font-size: 0.8em; color: #e74c3c; margin-top: 5px;">• Tips：数据来源为strava公开数据，仅用于学习和研究，不涉及任何商业用途</p>
             </div>
             <div style="display: flex; gap: 10px; margin-top: 10px;">
                 <span style="font-size: 0.85em; color: #636e72; align-self: center;">排序：</span>
@@ -449,9 +468,8 @@
     </div>
     
     <div class="footer">
-        <p>天府绿道单飞ITT排行榜 · 记录每一次挑战，拒绝数据膨胀</p>
-        <p>数据来源：余师洋（洋芋🐟）手动统计、秦浩然认证（230内找他领取230车头贴纸）</p>
-        <p id="update-date"></p>
+        <p>部分数据 <a href="https://www.xiaohongshu.com/user/profile/5ff03bec0000000001001fc2" target="_blank" title="秦浩然的小红书主页" class="highlight-link">秦浩然</a> 进行认证（找他领取230火车头贴纸）</p>
+        <p>页面由 <a href="https://shiyangyu.com/about/" target="_blank" title="余师洋的关于页面" class="highlight-link">余师洋（洋芋🐟）</a>使用 VibeCoding 搭建 </p>
     </div>
     
     <script>
@@ -586,7 +604,10 @@
             const year = now.getFullYear();
             const month = String(now.getMonth() + 1).padStart(2, '0');
             const day = String(now.getDate()).padStart(2, '0');
-            document.getElementById('update-date').textContent = `${year}.${month}.${day} 更新`;
+            const updateEl = document.getElementById('update-date');
+            if (updateEl) {
+                updateEl.textContent = `${year}.${month}.${day} 更新`;
+            }
         }
 
         updateDate();
