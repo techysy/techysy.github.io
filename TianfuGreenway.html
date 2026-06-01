@@ -232,6 +232,11 @@
             white-space: nowrap;
         }
         
+        .remark-cell {
+            min-width: 150px;
+            max-width: 200px;
+        }
+        
         /* 页脚 */
         .footer {
             text-align: center;
@@ -302,8 +307,8 @@
 <body>
     <!-- 顶部横幅 -->
     <div class="hero-section">
-        <h1 class="hero-title">🚴 天府绿道单飞排行榜</h1>
-        <p class="hero-subtitle">成都绕城绿道 逆时针方向 | 0公里出发</p>
+        <h1 class="hero-title">🚴 天府绿道单飞ITT排行榜</h1>
+        <p class="hero-subtitle">成都绕城绿道 逆时针方向 | 0公里出发 （其他）</p>
         <div class="stage-info">
             <h3>赛段信息</h3>
             <div class="stage-stats">
@@ -354,6 +359,7 @@
                     <th>心率</th>
                     <th>功率</th>
                     <th class="date-cell">日期</th>
+                    <th class="remark-cell">备注</th>
                 </tr>
             </thead>
             <tbody id="tableBody">
@@ -370,6 +376,7 @@
                     <td class="heart-cell">163 bpm</td>
                     <td class="power-cell">257 W</td>
                     <td class="date-cell">2026年6月1日</td>
+                    <td class="remark-cell">—</td>
                 </tr>
                 <tr data-time="2:27:20" data-speed="39.2" data-heart="158" data-power="236">
                     <td>
@@ -384,6 +391,7 @@
                     <td class="heart-cell">158 bpm</td>
                     <td class="power-cell">236 W</td>
                     <td class="date-cell">2026年5月26日</td>
+                    <td class="remark-cell">—</td>
                 </tr>
                 <tr data-time="2:28:24" data-speed="38.9" data-heart="159" data-power="230">
                     <td>
@@ -398,6 +406,7 @@
                     <td class="heart-cell">159 bpm</td>
                     <td class="power-cell">230 W</td>
                     <td class="date-cell">2026年5月28日</td>
+                    <td class="remark-cell">—</td>
                 </tr>
                 <tr data-time="2:28:38" data-speed="38.9" data-heart="0" data-power="251">
                     <td>
@@ -412,11 +421,27 @@
                     <td class="heart-cell">—</td>
                     <td class="power-cell">251 W</td>
                     <td class="date-cell">2026年5月27日</td>
+                    <td class="remark-cell">—</td>
+                </tr>
+                <tr data-time="2:28:49" data-speed="38.9" data-heart="168" data-power="291">
+                    <td>
+                        <div class="rank-cell">
+                            <div class="rank-number other">5</div>
+                            <div class="avatar">喝</div>
+                        </div>
+                    </td>
+                    <td class="name-cell">喝茶配汉堡</td>
+                    <td class="time-cell fast">2:28:49</td>
+                    <td class="speed-cell">38.9 km/h</td>
+                    <td class="heart-cell">168 bpm</td>
+                    <td class="power-cell">291 W</td>
+                    <td class="date-cell">2026年3月20日</td>
+                    <td class="remark-cell">追梦起点 96.44km</td>
                 </tr>
                 <tr data-time="2:30:17" data-speed="38.4" data-heart="165" data-power="238">
                     <td>
                         <div class="rank-cell">
-                            <div class="rank-number other">5</div>
+                            <div class="rank-number other">6</div>
                             <div class="avatar">秦</div>
                         </div>
                     </td>
@@ -426,6 +451,7 @@
                     <td class="heart-cell">165 bpm</td>
                     <td class="power-cell">238 W</td>
                     <td class="date-cell">2026年5月21日</td>
+                    <td class="remark-cell">—</td>
                 </tr>
                 <tr data-time="2:30:46" data-speed="38.3" data-heart="170" data-power="276">
                     <td>
@@ -440,11 +466,27 @@
                     <td class="heart-cell">170 bpm</td>
                     <td class="power-cell">276 W</td>
                     <td class="date-cell">2026年4月25日</td>
+                    <td class="remark-cell">真空胎爆胎补上了</td>
+                </tr>
+                <tr data-time="2:31:42" data-speed="38.1" data-heart="182" data-power="192">
+                    <td>
+                        <div class="rank-cell">
+                            <div class="rank-number other">8</div>
+                            <div class="avatar">唐</div>
+                        </div>
+                    </td>
+                    <td class="name-cell">唐笑林 XyLon.Tang</td>
+                    <td class="time-cell normal">2:31:42</td>
+                    <td class="speed-cell">38.1 km/h</td>
+                    <td class="heart-cell">182 bpm</td>
+                    <td class="power-cell">192 W</td>
+                    <td class="date-cell">2024年8月2日</td>
+                    <td class="remark-cell">后轮大饼 wise挂件</td>
                 </tr>
                 <tr data-time="2:39:12" data-speed="36.4" data-heart="157" data-power="250">
                     <td>
                         <div class="rank-cell">
-                            <div class="rank-number other">7</div>
+                            <div class="rank-number other">9</div>
                             <div class="avatar">T</div>
                         </div>
                     </td>
@@ -453,12 +495,13 @@
                     <td class="speed-cell">36.4 km/h</td>
                     <td class="heart-cell">157 bpm</td>
                     <td class="power-cell">250 W</td>
-                    <td class="date-cell">—</td>
+                    <td class="date-cell">2024年4月27日</td>
+                    <td class="remark-cell">—</td>
                 </tr>
                 <tr data-time="2:39:28" data-speed="36.2" data-heart="172" data-power="229">
                     <td>
                         <div class="rank-cell">
-                            <div class="rank-number other">8</div>
+                            <div class="rank-number other">10</div>
                             <div class="avatar">s</div>
                         </div>
                     </td>
@@ -468,11 +511,12 @@
                     <td class="heart-cell">172 bpm</td>
                     <td class="power-cell">229 W</td>
                     <td class="date-cell">2026年5月12日</td>
+                    <td class="remark-cell">—</td>
                 </tr>
                 <tr data-time="2:44:47" data-speed="35.1" data-heart="169" data-power="0">
                     <td>
                         <div class="rank-cell">
-                            <div class="rank-number other">9</div>
+                            <div class="rank-number other">11</div>
                             <div class="avatar">A</div>
                         </div>
                     </td>
@@ -482,11 +526,12 @@
                     <td class="heart-cell">169 bpm</td>
                     <td class="power-cell">174 W</td>
                     <td class="date-cell">2026年5月20日</td>
+                    <td class="remark-cell">—</td>
                 </tr>
                 <tr data-time="2:46:47" data-speed="34.6" data-heart="170" data-power="208">
                     <td>
                         <div class="rank-cell">
-                            <div class="rank-number other">10</div>
+                            <div class="rank-number other">12</div>
                             <div class="avatar">Y</div>
                         </div>
                     </td>
@@ -496,11 +541,12 @@
                     <td class="heart-cell">170 bpm</td>
                     <td class="power-cell">208 W</td>
                     <td class="date-cell">2025年5月2日</td>
+                    <td class="remark-cell">—</td>
                 </tr>
                 <tr data-time="2:48:52" data-speed="34.2" data-heart="153" data-power="221">
                     <td>
                         <div class="rank-cell">
-                            <div class="rank-number other">11</div>
+                            <div class="rank-number other">13</div>
                             <div class="avatar">法</div>
                         </div>
                     </td>
@@ -510,11 +556,12 @@
                     <td class="heart-cell">153 bpm</td>
                     <td class="power-cell">221 W</td>
                     <td class="date-cell">2025年10月24日</td>
+                    <td class="remark-cell">—</td>
                 </tr>
                 <tr data-time="2:49:14" data-speed="34.1" data-heart="160" data-power="216">
                     <td>
                         <div class="rank-cell">
-                            <div class="rank-number other">12</div>
+                            <div class="rank-number other">14</div>
                             <div class="avatar">J</div>
                         </div>
                     </td>
@@ -524,11 +571,12 @@
                     <td class="heart-cell">160 bpm</td>
                     <td class="power-cell">216 W</td>
                     <td class="date-cell">2024年10月1日</td>
+                    <td class="remark-cell">—</td>
                 </tr>
                 <tr data-time="2:59:06" data-speed="32.3" data-heart="166" data-power="0">
                     <td>
                         <div class="rank-cell">
-                            <div class="rank-number other">13</div>
+                            <div class="rank-number other">15</div>
                             <div class="avatar">秋</div>
                         </div>
                     </td>
@@ -538,6 +586,7 @@
                     <td class="heart-cell">166 bpm</td>
                     <td class="power-cell">133 W</td>
                     <td class="date-cell">2024年6月3日</td>
+                    <td class="remark-cell">锦城湖起点 96.42 km</td>
                 </tr>
             </tbody>
         </table>
