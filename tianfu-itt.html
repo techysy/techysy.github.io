@@ -267,7 +267,7 @@
         
         .remark-cell {
             color: #7f8c8d;
-            width: 140px;
+            width: 150px;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
@@ -487,6 +487,10 @@
                     <input type="checkbox" id="qzCheckbox" onchange="toggleQzFilter()" style="cursor: pointer;">
                     仅显示认证记录
                 </label>
+                <label style="display: flex; align-items: center; gap: 5px; font-size: 0.85em; color: #e91e63; cursor: pointer; margin-left: 10px;">
+                    <input type="checkbox" id="femaleCheckbox" onchange="toggleFemaleFilter()" style="cursor: pointer;">
+                    仅显示女子组
+                </label>
             </div>
         </div>
         
@@ -502,6 +506,7 @@
     <script>
         let showPowerPerKg = false;
         let showQzOnly = false;
+        let showFemaleOnly = false;
         
         const ridersData = [
             { name: 'SZS白小黑—黑小白', stravaId: 43381862, avatar: 'https://dgalywyr863hv.cloudfront.net/pictures/athletes/43381862/22344042/5/large.jpg', female: false },
@@ -591,6 +596,13 @@
                         document.querySelector('.sort-btn.active')?.textContent?.includes('心率') ? 'heart' : 'power');
         }
 
+        function toggleFemaleFilter() {
+            showFemaleOnly = document.getElementById('femaleCheckbox').checked;
+            renderCards(document.querySelector('.sort-btn.active')?.textContent?.includes('用时') ? 'time' : 
+                        document.querySelector('.sort-btn.active')?.textContent?.includes('速度') ? 'speed' : 
+                        document.querySelector('.sort-btn.active')?.textContent?.includes('心率') ? 'heart' : 'power');
+        }
+
         function togglePowerDisplay() {
             showPowerPerKg = !showPowerPerKg;
             renderCards(document.querySelector('.sort-btn.active')?.textContent?.includes('用时') ? 'time' : 
@@ -616,6 +628,10 @@
             
             if (showQzOnly) {
                 filteredData = filteredData.filter(rider => rider.qz);
+            }
+            
+            if (showFemaleOnly) {
+                filteredData = filteredData.filter(rider => rider.female === true);
             }
 
             const sortedData = filteredData.sort((a, b) => {
