@@ -391,6 +391,47 @@
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: #fff;
         }
+
+        .filter-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85em;
+            cursor: pointer;
+            padding: 5px 12px;
+            border-radius: 20px;
+            background: #f5f5f5;
+            color: #666;
+            border: 1px solid #e0e0e0;
+            transition: all 0.2s ease;
+        }
+
+        .filter-tag:hover {
+            background: #e8e8e8;
+        }
+
+        .filter-tag.active {
+            background: #667eea;
+            color: #fff;
+            border-color: #667eea;
+        }
+
+        .filter-tag.active .filter-dot {
+            background: #fff;
+        }
+
+        .filter-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #999;
+            transition: all 0.2s ease;
+        }
+
+        .filter-tag.female-filter.active {
+            background: linear-gradient(135deg, #e91e63, #ec407a);
+            border-color: #e91e63;
+        }
         
         @media (max-width: 768px) {
             .hero-title {
@@ -483,14 +524,15 @@
                 <button class="sort-btn" onclick="renderCards('speed')">速度</button>
                 <button class="sort-btn" onclick="renderCards('heart')">心率</button>
                 <button class="sort-btn" onclick="renderCards('power')">功率</button>
-                <label style="display: flex; align-items: center; gap: 5px; font-size: 0.85em; color: #636e72; cursor: pointer; margin-left: 10px;">
-                    <input type="checkbox" id="qzCheckbox" onchange="toggleQzFilter()" style="cursor: pointer;">
-                    仅显示认证记录
-                </label>
-                <label style="display: flex; align-items: center; gap: 5px; font-size: 0.85em; color: #e91e63; cursor: pointer; margin-left: 10px;">
-                    <input type="checkbox" id="femaleCheckbox" onchange="toggleFemaleFilter()" style="cursor: pointer;">
-                    仅显示女子组
-                </label>
+                <div style="width: 20px;"></div>
+                <div class="filter-tag" id="qzFilterTag" onclick="toggleQzFilter()">
+                    <span class="filter-dot"></span>
+                    <span>QZ认证</span>
+                </div>
+                <div class="filter-tag female-filter" id="femaleFilterTag" onclick="toggleFemaleFilter()">
+                    <span class="filter-dot"></span>
+                    <span>女子组</span>
+                </div>
             </div>
         </div>
         
@@ -598,14 +640,22 @@
         }
 
         function toggleQzFilter() {
-            showQzOnly = document.getElementById('qzCheckbox').checked;
+            showQzOnly = !showQzOnly;
+            const filterTag = document.getElementById('qzFilterTag');
+            if (filterTag) {
+                filterTag.classList.toggle('active', showQzOnly);
+            }
             renderCards(document.querySelector('.sort-btn.active')?.textContent?.includes('用时') ? 'time' : 
                         document.querySelector('.sort-btn.active')?.textContent?.includes('速度') ? 'speed' : 
                         document.querySelector('.sort-btn.active')?.textContent?.includes('心率') ? 'heart' : 'power');
         }
 
         function toggleFemaleFilter() {
-            showFemaleOnly = document.getElementById('femaleCheckbox').checked;
+            showFemaleOnly = !showFemaleOnly;
+            const filterTag = document.getElementById('femaleFilterTag');
+            if (filterTag) {
+                filterTag.classList.toggle('active', showFemaleOnly);
+            }
             renderCards(document.querySelector('.sort-btn.active')?.textContent?.includes('用时') ? 'time' : 
                         document.querySelector('.sort-btn.active')?.textContent?.includes('速度') ? 'speed' : 
                         document.querySelector('.sort-btn.active')?.textContent?.includes('心率') ? 'heart' : 'power');
