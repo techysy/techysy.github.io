@@ -310,6 +310,75 @@
             display: inline-block;
             margin: 5px 0;
         }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+                align-items: flex-start;
+                padding-top: 20px;
+            }
+            
+            .container {
+                padding: 20px;
+                border-radius: 15px;
+            }
+            
+            h1 {
+                font-size: 1.5em;
+            }
+            
+            .subtitle {
+                font-size: 14px;
+                margin-bottom: 20px;
+            }
+            
+            .tabs {
+                flex-wrap: wrap;
+                gap: 5px;
+            }
+            
+            .tab {
+                padding: 8px 12px;
+                font-size: 13px;
+            }
+            
+            .calculator-section {
+                padding: 20px;
+            }
+            
+            .calculator-grid {
+                gap: 15px;
+            }
+            
+            input, select {
+                padding: 10px 12px;
+                font-size: 14px;
+            }
+            
+            th, td {
+                padding: 8px 4px;
+                font-size: 12px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 5px;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 1.3em;
+            }
+            
+            .tab {
+                padding: 6px 10px;
+                font-size: 12px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -740,7 +809,7 @@
         <!-- 圈数计算 -->
         <div id="calc" class="tab-content">
             <div class="calculator-section">
-                <h3 style="margin-bottom: 20px;">螺纹圈数与角度计算</h3>
+                <h3 style="margin-bottom: 20px;">3D打印螺纹圈数与角度计算</h3>
                 <div class="calculator-grid">
                     <div class="input-group">
                         <label>螺纹类型</label>
@@ -820,6 +889,10 @@
                 </div>
             </div>
         </div>
+            <footer style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; color: #888; font-size: 12px;">
+            <p style="margin-top: 5px;">螺纹数据参考 GB/T 196-2003, GB/T 7307-2001 标准</p>
+            <p style="margin-top: 8px;">该页面由 <a href="https://shiyangyu.com/about/" target="_blank" style="color: #667eea;">余师洋</a> 使用 <a href="https://solo.trae.cn/" target="_blank" style="color: #667eea;">TRAE SOLO</a> 进行页面的搭建维护</p>
+        </footer>
     </div>
     
     <script>
