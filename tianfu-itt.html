@@ -305,6 +305,25 @@
         .remark-cell:hover .remark-tooltip {
             display: block;
         }
+
+        .group-members {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            margin-top: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .group-members.hidden {
+            opacity: 0;
+            height: 0;
+            margin-top: 0;
+            overflow: hidden;
+        }
+
+        .rider-card:hover {
+            cursor: pointer;
+        }
         
         .empty-state {
             text-align: center;
@@ -533,6 +552,10 @@
                     <span class="filter-dot"></span>
                     <span>女子组</span>
                 </div>
+                <div class="filter-tag group-ride-filter" id="groupRideFilterTag" onclick="toggleGroupRideFilter()">
+                    <span class="filter-dot"></span>
+                    <span>团骑</span>
+                </div>
             </div>
         </div>
         
@@ -549,11 +572,14 @@
         let showPowerPerKg = false;
         let showQzOnly = false;
         let showFemaleOnly = false;
+        let showGroupRideOnly = false;
         
         const ridersData = [
+            { name: '破风手 喵哥', stravaId: 115833622, avatar: 'https://dgalywyr863hv.cloudfront.net/pictures/athletes/115833622/26990687/1/large.jpg', female: false },
             { name: 'SZS白小黑—黑小白', stravaId: 43381862, avatar: 'https://dgalywyr863hv.cloudfront.net/pictures/athletes/43381862/22344042/5/large.jpg', female: false },
             { name: '大鸡鸡 单', stravaId: 39924583, avatar: 'https://dgalywyr863hv.cloudfront.net/pictures/athletes/39924583/11680081/1/large.jpg', female: false },
             { name: 'Kai Yang', stravaId: 111465079, avatar: 'https://dgalywyr863hv.cloudfront.net/pictures/athletes/111465079/26848780/4/large.jpg', female: false },
+            { name: '远 方', stravaId: 114977953, avatar: 'https://dgalywyr863hv.cloudfront.net/pictures/athletes/114977953/27922710/1/large.jpg', female: false },
             { name: '阿 浩', stravaId: 106397036, avatar: 'https://dgalywyr863hv.cloudfront.net/pictures/athletes/106397036/25563862/3/large.jpg', female: false },
             { name: '龟龟 正在全力输出，哼', stravaId: 118723284, avatar: 'https://dgalywyr863hv.cloudfront.net/pictures/athletes/118723284/30337474/5/large.jpg', female: false },
             { name: '老错 Fan', stravaId: 120596483, avatar: 'https://dgalywyr863hv.cloudfront.net/pictures/athletes/120596483/28069731/2/large.jpg', female: false },
@@ -568,6 +594,9 @@
             { name: 'TMG 牛奶糖', stravaId: 108094956, avatar: 'https://dgalywyr863hv.cloudfront.net/pictures/athletes/108094956/27542203/1/large.jpg', female: false },
             { name: 'soos .', stravaId: 125715944, avatar: 'https://dgalywyr863hv.cloudfront.net/pictures/athletes/125715944/28857513/1/large.jpg', female: false },
             { name: 'Angebot L', stravaId: 122968010, avatar: 'https://dgalywyr863hv.cloudfront.net/pictures/athletes/122968010/28902961/1/large.jpg', female: true },
+            { name: '菜菜 古', stravaId: 132340309, avatar: 'https://dgalywyr863hv.cloudfront.net/pictures/athletes/132340309/30140492/10/large.jpg', female: true },
+            { name: 'Sld Liu', stravaId: 121356773, avatar: 'https://dgalywyr863hv.cloudfront.net/pictures/athletes/121356773/27932696/5/large.jpg', female: true },
+            { name: '胖娃 橙皮丁', stravaId: 153984972, avatar: 'https://dgalywyr863hv.cloudfront.net/pictures/athletes/153984972/34558730/2/large.jpg', female: true },
             { name: 'YangYu 🐟', stravaId: 121173304, avatar: 'https://dgalywyr863hv.cloudfront.net/pictures/athletes/121173304/27885415/1/large.jpg', female: false },
             { name: '法 F正L', stravaId: 84853614, avatar: 'https://dgalywyr863hv.cloudfront.net/pictures/athletes/84853614/25981496/5/large.jpg', female: false },
             { name: 'Joe Liu', stravaId: 44387344, avatar: 'https://dgalywyr863hv.cloudfront.net/pictures/athletes/44387344/25337196/5/large.jpg', female: false },
@@ -578,40 +607,52 @@
             { name: '哥哥 行', stravaId: 147004026, avatar: 'https://dgalywyr863hv.cloudfront.net/pictures/athletes/147004026/33764511/3/large.jpg', female: false }      
         ];
 
-        const ittData = [
-            { stravaId: 43381862, activityId: 15462485096, time: '2:10:20', speed: 44.3, heart: 0, power: 302, date: '2025年8月15日', remark: '—', qz: false, weight: 0, heightFront: 0, heightBack: 0 },
-            { stravaId: 39924583, activityId: 11257541145, time: '2:18:15', speed: 41.8, heart: 159, power: 274, date: '2024年4月25日', remark: '—', qz: false, weight: 0, heightFront: 0, heightBack: 0 },
-            { stravaId: 111465079, activityId: 11087486375, time: '2:23:52', speed: 40.2, heart: 165, power: 307, date: '2024年4月21日', remark: '远方挂件', qz: false, weight: 0, heightFront: 0, heightBack: 0 },
-            { stravaId: 106397036, activityId: 11536866927, time: '2:24:11', speed: 40.3, heart: 165, power: 267, date: '2024年5月31日', remark: '电子科大起点 96.75km', qz: false, weight: 0, heightFront: 0, heightBack: 0 },
-            { stravaId: 118723284, activityId: 18736320928, time: '2:26:17', speed: 39.5, heart: 163, power: 257, date: '2026年6月1日', remark: '—', qz: true, weight: 71, heightFront: 40, heightBack: 40 },
-            { stravaId: 120596483, activityId: 18655313885, time: '2:27:20', speed: 39.2, heart: 158, power: 236, date: '2026年5月26日', remark: '—', qz: true, weight: 71, heightFront: 80, heightBack: 80 },
-            { stravaId: 134886224, activityId: 18684081470, time: '2:28:24', speed: 38.9, heart: 159, power: 230, date: '2026年5月28日', remark: '—', qz: true, weight: 61, heightFront: 45, heightBack: 45 },
-            { stravaId: 117852113, activityId: 18668746334, time: '2:28:38', speed: 38.9, heart: 0, power: 251, date: '2026年5月27日', remark: '—', qz: true, weight: 63, heightFront: 51, heightBack: 60 },
-            { stravaId: 124372227, activityId: 17787250017, time: '2:28:49', speed: 38.9, heart: 168, power: 291, date: '2026年3月20日', remark: '追梦起点 96.44km', qz: false, weight: 0, heightFront: 0, heightBack: 0 },
-            { stravaId: 129734837, activityId: 14584998182, time: '2:29:25', speed: 39.4, heart: 156, power: 241, date: '2025年5月25日', remark: '光华大道入口 98.19km', qz: false, weight: 0, heightFront: 0, heightBack: 0 },
-            { stravaId: 124313576, activityId: 18589151138, time: '2:30:17', speed: 38.4, heart: 165, power: 238, date: '2026年5月21日', remark: '—', qz: true, weight: 64, heightFront: 80, heightBack: 80 },
-            { stravaId: 107136053, activityId: 18749765300, time: '2:30:12', speed: 38.5, heart: 166, power: 252, date: '2026年6月2日', remark: '—', qz: true, weight: 63, heightFront: 50, heightBack: 50 },
-            { stravaId: 123704750, activityId: 18244884161, time: '2:30:46', speed: 38.3, heart: 170, power: 276, date: '2026年4月25日', remark: '真空胎爆胎补上了', qz: false, weight: 0, heightFront: 0, heightBack: 0 },
-            { stravaId: 16132158, activityId: 12039648854, time: '2:31:42', speed: 38.1, heart: 182, power: 192, date: '2024年8月2日', remark: '后轮大饼 wise挂件', qz: false, weight: 55, heightFront: 60, heightBack: '封闭' },
-            { stravaId: 108094956, activityId: 11271570164, time: '2:39:12', speed: 36.4, heart: 157, power: 250, date: '2024年4月27日', remark: '—', qz: false, weight: 0, heightFront: 0, heightBack: 0 },
-            { stravaId: 125715944, activityId: 18471120383, time: '2:39:28', speed: 36.2, heart: 172, power: 229, date: '2026年5月12日', remark: '—', qz: false, weight: 0, heightFront: 0, heightBack: 0 },
-            { stravaId: 122968010, activityId: 18575677631, time: '2:44:47', speed: 35.1, heart: 169, power: 174, date: '2026年5月20日', remark: '后半圈逆风，风大的要死', qz: true, weight: 0, heightFront: 0, heightBack: 0 },
-            { stravaId: 121173304, activityId: 14350040716, time: '2:46:47', speed: 34.6, heart: 170, power: 208, date: '2025年5月2日', remark: '—', qz: false, weight: 66, heightFront: 45, heightBack: 55 },
-            { stravaId: 84853614, activityId: 16239238905, time: '2:48:52', speed: 34.2, heart: 153, power: 221, date: '2025年10月24日', remark: '—', qz: false, weight: 0, heightFront: 0, heightBack: 0 },
-            { stravaId: 44387344, activityId: 12544894667, time: '2:49:14', speed: 34.1, heart: 160, power: 216, date: '2024年10月1日', remark: '—', qz: false, weight: 0, heightFront: 0, heightBack: 0 },
-            { stravaId: 121579383, activityId: 11560329805, time: '2:59:06', speed: 32.3, heart: 166, power: 133, date: '2024年6月3日', remark: '锦城湖起点 96.42 km', qz: false, weight: 0, heightFront: 0, heightBack: 0 },
-            { stravaId: 115099652, activityId: 15303578689, time: '2:48:18', speed: 34.5, heart: 158, power: 174, date: '2025年8月8日', remark: 'tt车一带一路，目标245', qz: false, weight: 0, heightFront: 60, heightBack: '封闭' },
-            { stravaId: 95801820, activityId: 10129400405, time: '3:09:39', speed: 30.5, heart: 153, power: 155, date: '2023年10月30日', remark: '—', qz: false, weight: 0, heightFront: 0, heightBack: 0 },
-            { stravaId: 171451744, activityId: 18750546501, time: '2:30:52', speed: 38.3, heart: 162, power: 0, date: '2026年6月2日', remark: '—', qz: true, weight: 80, heightFront: 50, heightBack: 50 },
-            { stravaId: 147004026, activityId: 18669837985, time: '2:32:16', speed: 37.9, heart: 163, power: 306, date: '2026年6月2日', remark: '—', qz: true, weight: 88, heightFront: 51, heightBack: 60 }      
+        const groupData = [
+            { groupId: '0001', name: '巾帼号', members: [122968010, 132340309, 121356773, 153984972] },
+            { groupId: '0002', name: 'YY', members: [114977953, 111465079] },
         ];
 
-        function getBestIttDataBySpeed() {
+        const activityData = [
+            { stravaId: 43381862, activityId: 15462485096, time: '2:10:20', speed: 44.3, heart: 0, power: 302, date: '2025年8月15日', remark: '—', qz: false, weight: 0, heightFront: 0, heightBack: 0, groupId: null },
+            { stravaId: 39924583, activityId: 11257541145, time: '2:18:15', speed: 41.8, heart: 159, power: 274, date: '2024年4月25日', remark: '—', qz: false, weight: 0, heightFront: 0, heightBack: 0, groupId: null },
+            { stravaId: 111465079, activityId: 11087486375, time: '2:23:52', speed: 40.2, heart: 165, power: 307, date: '2024年4月21日', remark: '远方挂件', qz: false, weight: 0, heightFront: 0, heightBack: 0, groupId: null },
+            { stravaId: 106397036, activityId: 11536866927, time: '2:24:11', speed: 40.3, heart: 165, power: 267, date: '2024年5月31日', remark: '电子科大起点 96.75km', qz: false, weight: 0, heightFront: 0, heightBack: 0, groupId: null },
+            { stravaId: 118723284, activityId: 18736320928, time: '2:26:17', speed: 39.5, heart: 163, power: 257, date: '2026年6月1日', remark: '—', qz: true, weight: 71, heightFront: 40, heightBack: 40, groupId: null },
+            { stravaId: 120596483, activityId: 18655313885, time: '2:27:20', speed: 39.2, heart: 158, power: 236, date: '2026年5月26日', remark: '—', qz: true, weight: 71, heightFront: 80, heightBack: 80, groupId: null },
+            { stravaId: 134886224, activityId: 18684081470, time: '2:28:24', speed: 38.9, heart: 159, power: 230, date: '2026年5月28日', remark: '—', qz: true, weight: 61, heightFront: 45, heightBack: 45, groupId: null },
+            { stravaId: 117852113, activityId: 18668746334, time: '2:28:38', speed: 38.9, heart: 0, power: 251, date: '2026年5月27日', remark: '—', qz: true, weight: 63, heightFront: 51, heightBack: 60, groupId: null },
+            { stravaId: 124372227, activityId: 17787250017, time: '2:28:49', speed: 38.9, heart: 168, power: 291, date: '2026年3月20日', remark: '追梦起点 96.44km', qz: false, weight: 0, heightFront: 0, heightBack: 0, groupId: null },
+            { stravaId: 129734837, activityId: 14584998182, time: '2:29:25', speed: 39.4, heart: 156, power: 241, date: '2025年5月25日', remark: '光华大道入口 98.19km', qz: false, weight: 0, heightFront: 0, heightBack: 0, groupId: null },
+            { stravaId: 124313576, activityId: 18589151138, time: '2:30:17', speed: 38.4, heart: 165, power: 238, date: '2026年5月21日', remark: '—', qz: true, weight: 64, heightFront: 80, heightBack: 80, groupId: null },
+            { stravaId: 107136053, activityId: 18749765300, time: '2:30:12', speed: 38.5, heart: 166, power: 252, date: '2026年6月2日', remark: '—', qz: true, weight: 63, heightFront: 50, heightBack: 50, groupId: null },
+            { stravaId: 123704750, activityId: 18244884161, time: '2:30:46', speed: 38.3, heart: 170, power: 276, date: '2026年4月25日', remark: '真空胎爆胎补上了', qz: false, weight: 0, heightFront: 0, heightBack: 0, groupId: null },
+            { stravaId: 16132158, activityId: 12039648854, time: '2:31:42', speed: 38.1, heart: 182, power: 192, date: '2024年8月2日', remark: '后轮大饼 wise挂件', qz: false, weight: 55, heightFront: 60, heightBack: '封闭', groupId: null },
+            { stravaId: 108094956, activityId: 11271570164, time: '2:39:12', speed: 36.4, heart: 157, power: 250, date: '2024年4月27日', remark: '—', qz: false, weight: 0, heightFront: 0, heightBack: 0, groupId: null },
+            { stravaId: 125715944, activityId: 18471120383, time: '2:39:28', speed: 36.2, heart: 172, power: 229, date: '2026年5月12日', remark: '—', qz: false, weight: 0, heightFront: 0, heightBack: 0, groupId: null },
+            { stravaId: 122968010, activityId: 18575677631, time: '2:44:47', speed: 35.1, heart: 169, power: 174, date: '2026年5月20日', remark: '后半圈逆风，风大的要死', qz: true, weight: 0, heightFront: 0, heightBack: 0, groupId: null },
+            { stravaId: 121173304, activityId: 14350040716, time: '2:46:47', speed: 34.6, heart: 170, power: 208, date: '2025年5月2日', remark: '—', qz: false, weight: 66, heightFront: 45, heightBack: 55, groupId: null },
+            { stravaId: 84853614, activityId: 16239238905, time: '2:48:52', speed: 34.2, heart: 153, power: 221, date: '2025年10月24日', remark: '—', qz: false, weight: 0, heightFront: 0, heightBack: 0, groupId: null },
+            { stravaId: 44387344, activityId: 12544894667, time: '2:49:14', speed: 34.1, heart: 160, power: 216, date: '2024年10月1日', remark: '—', qz: false, weight: 0, heightFront: 0, heightBack: 0, groupId: null },
+            { stravaId: 121579383, activityId: 11560329805, time: '2:59:06', speed: 32.3, heart: 166, power: 133, date: '2024年6月3日', remark: '锦城湖起点 96.42 km', qz: false, weight: 0, heightFront: 0, heightBack: 0, groupId: null },
+            { stravaId: 115099652, activityId: 15303578689, time: '2:48:18', speed: 34.5, heart: 158, power: 174, date: '2025年8月8日', remark: 'tt车一带一路,目标245', qz: false, weight: 0, heightFront: 60, heightBack: '封闭', groupId: null },
+            { stravaId: 95801820, activityId: 10129400405, time: '3:09:39', speed: 30.5, heart: 153, power: 155, date: '2023年10月30日', remark: '—', qz: false, weight: 0, heightFront: 0, heightBack: 0, groupId: null },
+            { stravaId: 171451744, activityId: 18750546501, time: '2:30:52', speed: 38.3, heart: 162, power: 0, date: '2026年6月2日', remark: '—', qz: true, weight: 80, heightFront: 50, heightBack: 50, groupId: null },
+            { stravaId: 147004026, activityId: 18669837985, time: '2:32:16', speed: 37.9, heart: 163, power: 306, date: '2026年6月2日', remark: '—', qz: true, weight: 88, heightFront: 51, heightBack: 60, groupId: null },
+            { stravaId: 115833622, activityId: 11271845105, time: '2:40:19', speed: 36.0, heart: 156, power: 207, date: '2024年4月27日', remark: '—', qz: false, weight: 0, heightFront: 0, heightBack: 0, groupId: null },
+            { stravaId: 122968010, activityId: 18777123822, time: '2:32:10', speed: 38.0, heart: 174, power: 0, date: '2026年6月4日', remark: '🚄巾帼号高铁', qz: true, weight: 0, heightFront: 0, heightBack: 0, groupId: '0001' },
+            { stravaId: 121356773, activityId: 18777162052, time: '2:32:17', speed: 37.9, heart: 168, power: 133, date: '2026年6月4日', remark: '🚄巾帼号高铁', qz: true, weight: 0, heightFront: 0, heightBack: 0, groupId: '0001' },
+            { stravaId: 153984972, activityId: 18777193522, time: '2:32:18', speed: 37.9, heart: 163, power: 0, date: '2026年6月4日', remark: '🚄巾帼号高铁', qz: true, weight: 0, heightFront: 0, heightBack: 0, groupId: '0001' },
+            { stravaId: 132340309, activityId: 18777674875, time: '2:32:12', speed: 37.9, heart: 156, power: 181, date: '2026年6月4日', remark: '🚄巾帼号高铁', qz: true, weight: 0, heightFront: 0, heightBack: 0, groupId: '0001' },
+            { stravaId: 114977953, activityId: 11087503931, time: '2:23:52', speed: 40.2, heart: 161, power: 210, date: '2024年4月2日', remark: '杨凯车头', qz: false, weight: 0, heightFront: 0, heightBack: 0, groupId: '0002' }      
+        ];
+
+        function getBestActivityDataBySpeed() {
             const bestDataMap = {};
-            ittData.forEach(item => {
-                const existing = bestDataMap[item.stravaId];
+            activityData.forEach(item => {
+                const key = `${item.stravaId}_${item.groupId === null ? 'solo' : 'group'}`;
+                const existing = bestDataMap[key];
                 if (!existing || item.speed > existing.speed) {
-                    bestDataMap[item.stravaId] = item;
+                    bestDataMap[key] = item;
                 }
             });
             return Object.values(bestDataMap);
@@ -668,19 +709,58 @@
                         document.querySelector('.sort-btn.active')?.textContent?.includes('心率') ? 'heart' : 'power');
         }
 
+        function toggleGroupRideFilter() {
+            showGroupRideOnly = !showGroupRideOnly;
+            const filterTag = document.getElementById('groupRideFilterTag');
+            if (filterTag) {
+                filterTag.classList.toggle('active', showGroupRideOnly);
+            }
+            renderCards(document.querySelector('.sort-btn.active')?.textContent?.includes('用时') ? 'time' : 
+                        document.querySelector('.sort-btn.active')?.textContent?.includes('速度') ? 'speed' : 
+                        document.querySelector('.sort-btn.active')?.textContent?.includes('心率') ? 'heart' : 'power');
+        }
+
+        function getFemaleGroupIds() {
+            const femaleGroupIds = [];
+            groupData.forEach(group => {
+                const allFemale = group.members.every(memberStravaId => {
+                    const rider = ridersData.find(r => r.stravaId === memberStravaId);
+                    return rider && rider.female === true;
+                });
+                if (allFemale) {
+                    femaleGroupIds.push(group.groupId);
+                }
+            });
+            return femaleGroupIds;
+        }
+
+        function getGroupMembers(groupId, excludeStravaId) {
+            const group = groupData.find(g => g.groupId === groupId);
+            if (!group) return [];
+            return group.members
+                .filter(id => id !== excludeStravaId)
+                .map(memberId => ridersData.find(r => r.stravaId === memberId))
+                .filter(Boolean);
+        }
+
         function renderCards(sortBy = 'time') {
             const buttons = document.querySelectorAll('.sort-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
             const activeBtn = Array.from(buttons).find(btn => btn.textContent === (sortBy === 'time' ? '用时' : sortBy === 'speed' ? '速度' : sortBy === 'heart' ? '心率' : '功率'));
             if (activeBtn) activeBtn.classList.add('active');
 
-            const bestIttData = getBestIttDataBySpeed();
-            const ittMap = new Map(bestIttData.map(item => [item.stravaId, item]));
+            const bestActivityData = getBestActivityDataBySpeed();
             
-            const mergedData = ridersData.map(rider => ({
-                ...rider,
-                ...ittMap.get(rider.stravaId)
-            })).filter(rider => rider.activityId);
+            const mergedData = [];
+            bestActivityData.forEach(activity => {
+                const rider = ridersData.find(r => r.stravaId === activity.stravaId);
+                if (rider) {
+                    mergedData.push({
+                        ...rider,
+                        ...activity
+                    });
+                }
+            });
             
             let filteredData = [...mergedData];
             
@@ -688,7 +768,18 @@
                 filteredData = filteredData.filter(rider => rider.qz);
             }
             
-            if (showFemaleOnly) {
+            if (!showGroupRideOnly) {
+                filteredData = filteredData.filter(rider => rider.groupId === null);
+            } else {
+                filteredData = filteredData.filter(rider => rider.groupId !== null);
+                
+                if (showFemaleOnly) {
+                    const femaleGroupIds = getFemaleGroupIds();
+                    filteredData = filteredData.filter(rider => femaleGroupIds.includes(rider.groupId));
+                }
+            }
+            
+            if (showFemaleOnly && !showGroupRideOnly) {
                 filteredData = filteredData.filter(rider => rider.female === true);
             }
 
@@ -719,6 +810,9 @@
                 const rankClass = getRankClass(index);
                 const card = document.createElement('div');
                 card.className = `rider-card ${rankClass}`;
+                if (rider.groupId) {
+                    card.title = '点击卡片查看团队成员';
+                }
 
                 const avatarHtml = rider.avatar 
                     ? `<a href="https://www.strava.com/athletes/${rider.stravaId}" target="_blank" title="查看Strava主页" style="position: relative; display: inline-block;"><img class="avatar" src="${rider.avatar}" alt="${rider.name}">${rider.qz ? '<span style="position: absolute; bottom: -1px; right: -1px; font-size: 12px;">⚡️</span>' : ''}</a>`
@@ -758,12 +852,25 @@
                     extraInfoHtml.push(`<span style="color: #666; font-size: 0.75em;">${rider.weight}kg</span>`);
                 }
                 
+                const groupMembers = rider.groupId ? getGroupMembers(rider.groupId, rider.stravaId) : [];
+                const groupMembersHtml = groupMembers.length > 0 ? `
+                    <div class="group-members hidden" title="点击卡片查看团队成员">
+                        <span style="font-size: 0.75em; color: #666; margin-right: 5px; display: flex; align-items: center;"><div class="group-icon" style="width: 14px; height: 14px; background: url('https://d3nn82uaxijpm6.cloudfront.net/assets/icon-group-519a9129e821cf3622ac7b89c186536b0825940d854106902f9fd1e45322daf0.svg') no-repeat; background-position: 0 -42px; background-size: 14px 56px;"></div></span>
+                        ${groupMembers.map(member => `
+                            <a href="https://www.strava.com/athletes/${member.stravaId}" target="_blank" title="${member.name}" class="group-member-avatar">
+                                <img src="${member.avatar}" alt="${member.name}" style="width: 20px; height: 20px; border-radius: 50%; border: 1px solid #ddd;">
+                            </a>
+                        `).join('')}
+                    </div>
+                ` : '';
+                
                 card.innerHTML = `
                     <div class="rank-badge ${rankClass}">${index + 1}</div>
                     ${avatarHtml}
                     <div class="rider-info">
                         <div class="rider-name${rider.female ? ' female' : ''}">${nameHtml}</div>
                         ${extraInfoHtml.length > 0 ? `<div style="display: flex; gap: 10px; margin-top: 3px;">${extraInfoHtml.join('')}</div>` : ''}
+                        ${groupMembersHtml}
                     </div>
                     ${timeHtml}
                     <div class="stats-inline">
@@ -788,6 +895,15 @@
                         </div>
                     </div>
                 `;
+
+                card.addEventListener('click', function(e) {
+                    if (groupMembers.length > 0) {
+                        const groupMembersEl = card.querySelector('.group-members');
+                        if (groupMembersEl) {
+                            groupMembersEl.classList.toggle('hidden');
+                        }
+                    }
+                });
 
                 container.appendChild(card);
             });
