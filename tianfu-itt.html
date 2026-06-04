@@ -668,13 +668,25 @@
             { stravaId: 146631968, activityId: 14978990323, time: '2:14:55', speed: 42.8, heart: 157, power: 211, date: '2025年7月2日', remark: '南门绿道pr局', qz: false, weight: 0, heightFront: 0, heightBack: 0, groupId: '0003', itt: false }      
         ];
 
-        function getBestActivityDataBySpeed() {
+        function getBestActivityDataBySpeed(qzOnly) {
             const bestDataMap = {};
             activityData.forEach(item => {
                 const key = `${item.stravaId}_${item.itt ? 'itt' : (item.groupId === null ? 'solo' : 'group')}`;
                 const existing = bestDataMap[key];
-                if (!existing || item.speed > existing.speed) {
+                if (!existing) {
                     bestDataMap[key] = item;
+                } else {
+                    if (qzOnly) {
+                        if (item.qz && !existing.qz) {
+                            bestDataMap[key] = item;
+                        } else if (item.qz && existing.qz && item.speed > existing.speed) {
+                            bestDataMap[key] = item;
+                        }
+                    } else {
+                        if (item.speed > existing.speed) {
+                            bestDataMap[key] = item;
+                        }
+                    }
                 }
             });
             return Object.values(bestDataMap);
@@ -771,7 +783,7 @@
             const activeBtn = Array.from(buttons).find(btn => btn.textContent === (sortBy === 'time' ? '用时' : sortBy === 'speed' ? '速度' : sortBy === 'heart' ? '心率' : '功率'));
             if (activeBtn) activeBtn.classList.add('active');
 
-            const bestActivityData = getBestActivityDataBySpeed();
+            const bestActivityData = getBestActivityDataBySpeed(showQzOnly);
             
             const mergedData = [];
             bestActivityData.forEach(activity => {
