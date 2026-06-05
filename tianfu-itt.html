@@ -904,7 +904,7 @@
                 
                 const extraInfoHtml = [];
                 if (rider.heightFront && rider.heightBack) {
-                    extraInfoHtml.push(`<span style="color: #666; font-size: 0.75em;">框高${rider.heightFront}-${rider.heightBack}</span>`);
+                    extraInfoHtml.push(`<span style="color: #666; font-size: 0.75em;">${rider.heightFront}-${rider.heightBack}</span>`);
                 }
                 if (rider.weight > 0) {
                     extraInfoHtml.push(`<span style="color: #666; font-size: 0.75em;">${rider.weight}kg</span>`);
