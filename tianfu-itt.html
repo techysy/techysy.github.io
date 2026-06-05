@@ -5,6 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>天府绿道 - 逆时针单飞排行榜</title>
     <style>
+        :root {
+            --primary: #667eea;
+            --primary-dark: #764ba2;
+            --gold: #ffd700;
+            --bronze: #cd7f32;
+            --female: #e91e63;
+            --fast-time: #e74c3c;
+            --text: #2d3436;
+            --text-secondary: #636e72;
+            --text-muted: #95a5a6;
+            --border: #e0e0e0;
+            --bg-body: #f5f7fa;
+            --bg-card: #fff;
+            --bg-subtle: #f0f0f0;
+            --speed-color: #27ae60;
+            --heart-color: #e67e22;
+            --power-color: #9b59b6;
+            --card-radius: 12px;
+            --transition: all 0.2s ease;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -13,13 +34,13 @@
         
         body {
             font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
-            background: #f5f7fa;
+            background: var(--bg-body);
             min-height: 100vh;
             color: #333;
         }
         
         .hero-section {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             padding: 40px 30px;
             text-align: center;
             color: #fff;
@@ -40,7 +61,7 @@
         .stage-info {
             display: inline-block;
             background: rgba(255,255,255,0.15);
-            border-radius: 12px;
+            border-radius: var(--card-radius);
             padding: 15px 30px;
             backdrop-filter: blur(10px);
         }
@@ -48,7 +69,7 @@
         .stage-info h3 {
             font-size: 1.1em;
             margin-bottom: 10px;
-            color: #ffd700;
+            color: var(--gold);
         }
         
         .stage-stats {
@@ -56,21 +77,6 @@
             gap: 25px;
             flex-wrap: wrap;
             justify-content: center;
-        }
-        
-        .stat-item {
-            text-align: center;
-        }
-        
-        .stat-value {
-            font-size: 1.6em;
-            font-weight: 700;
-        }
-        
-        .stat-label {
-            font-size: 0.85em;
-            opacity: 0.85;
-            margin-top: 2px;
         }
         
         .ranking-section {
@@ -82,20 +88,20 @@
         .section-header {
             margin-bottom: 20px;
             padding: 20px 25px;
-            background: #fff;
-            border-radius: 12px;
+            background: var(--bg-card);
+            border-radius: var(--card-radius);
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
         
         .section-title {
             font-size: 1.4em;
             font-weight: 600;
-            color: #2d3436;
+            color: var(--text);
         }
         
         .section-subtitle {
             font-size: 0.8em;
-            color: #636e72;
+            color: var(--text-secondary);
             margin-top: 5px;
         }
         
@@ -106,8 +112,8 @@
         }
         
         .rider-card {
-            background: #fff;
-            border-radius: 12px;
+            background: var(--bg-card);
+            border-radius: var(--card-radius);
             padding: 12px 16px;
             box-shadow: 0 1px 8px rgba(0,0,0,0.06);
             display: flex;
@@ -115,6 +121,7 @@
             gap: 16px;
             transition: transform 0.15s ease, box-shadow 0.15s ease;
             overflow: visible;
+            cursor: pointer;
         }
         
         .rider-card:hover {
@@ -124,7 +131,7 @@
         
         .rider-card.gold {
             background: linear-gradient(135deg, #fffef5, #fff9e6);
-            border: 2px solid #ffd700;
+            border: 2px solid var(--gold);
         }
         
         .rider-card.silver {
@@ -134,7 +141,7 @@
         
         .rider-card.bronze {
             background: linear-gradient(135deg, #fdf8f3, #f5ebe0);
-            border: 2px solid #cd7f32;
+            border: 2px solid var(--bronze);
         }
         
         .rank-badge {
@@ -150,7 +157,7 @@
         }
         
         .rank-badge.gold {
-            background: linear-gradient(135deg, #ffd700, #ffb700);
+            background: linear-gradient(135deg, var(--gold), #ffb700);
             color: #8b6914;
         }
         
@@ -160,20 +167,20 @@
         }
         
         .rank-badge.bronze {
-            background: linear-gradient(135deg, #cd7f32, #b87333);
+            background: linear-gradient(135deg, var(--bronze), #b87333);
             color: #fff;
         }
         
         .rank-badge.other {
-            background: #f0f0f0;
-            color: #636e72;
+            background: var(--bg-subtle);
+            color: var(--text-secondary);
         }
         
         .avatar {
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             display: flex;
             align-items: center;
             justify-content: center;
@@ -193,14 +200,14 @@
         .rider-name {
             font-weight: 600;
             font-size: 1em;
-            color: #2d3436;
+            color: var(--text);
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
         }
         
         .rider-name.female {
-            color: #e91e63;
+            color: var(--female);
         }
         
         .time-badge {
@@ -210,8 +217,6 @@
             padding: 4px 12px;
             border-radius: 6px;
             white-space: nowrap;
-            cursor: pointer;
-            text-decoration: none;
             text-align: center;
             min-width: 80px;
             flex-shrink: 0;
@@ -219,12 +224,12 @@
         
         .time-badge.fast {
             background: #fff5f5;
-            color: #e74c3c;
+            color: var(--fast-time);
         }
         
         .time-badge.normal {
             background: #f5f5f5;
-            color: #636e72;
+            color: var(--text-secondary);
         }
         
         .stats-inline {
@@ -243,13 +248,13 @@
             font-weight: 700;
         }
         
-        .stat-item-value.speed { color: #27ae60; }
-        .stat-item-value.heart { color: #e67e22; }
-        .stat-item-value.power { color: #9b59b6; }
+        .stat-item-value.speed { color: var(--speed-color); }
+        .stat-item-value.heart { color: var(--heart-color); }
+        .stat-item-value.power { color: var(--power-color); }
         
         .stat-item-label {
             font-size: 0.7em;
-            color: #636e72;
+            color: var(--text-secondary);
         }
         
         .card-footer {
@@ -257,7 +262,7 @@
             gap: 12px;
             align-items: center;
             font-size: 0.8em;
-            color: #636e72;
+            color: var(--text-secondary);
             flex-shrink: 0;
         }
         
@@ -291,7 +296,7 @@
             bottom: calc(100% + 6px);
             left: 50%;
             transform: translateX(-50%);
-            background: #2d3436;
+            background: var(--text);
             color: #fff;
             padding: 6px 12px;
             border-radius: 6px;
@@ -320,15 +325,11 @@
             margin-top: 0;
             overflow: hidden;
         }
-
-        .rider-card:hover {
-            cursor: pointer;
-        }
         
         .empty-state {
             text-align: center;
             padding: 60px 20px;
-            color: #95a5a6;
+            color: var(--text-muted);
         }
         
         .empty-state-icon {
@@ -350,64 +351,28 @@
         .footer {
             text-align: center;
             padding: 30px;
-            color: #95a5a6;
+            color: var(--text-muted);
             font-size: 0.9em;
             margin-top: 30px;
         }
         
         .sort-btn {
-            background: #f0f0f0;
+            background: var(--bg-subtle);
             border: none;
             padding: 6px 16px;
             border-radius: 20px;
             font-size: 0.85em;
-            color: #636e72;
+            color: var(--text-secondary);
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: var(--transition);
         }
-
-        .highlight-link {
-            background: linear-gradient(135deg, #f0f4d391, #fffdebba);
-            color: #7eb5cdcc !important;
-            padding: 3px 10px;
-            border-radius: 6px;
-            display: inline-block;
-            border-bottom: 2px solid #26414068 !important;
-            text-decoration: none !important;
-            font-weight: 600;
-            transition: all 0.2s ease;
-        }
-
-        .highlight-link:hover {
-            background: linear-gradient(135deg, #f5f0e6, #efe6d8);
-            transform: translateY(-1px);
-            box-shadow: 0 2px 8px rgba(161, 136, 127, 0.25);
-        }
-
-        .date-link {
-            color: #1976d2 !important;
-            text-decoration: none !important;
-            font-weight: 500;
-            transition: all 0.2s ease;
-        }
-
-        .date-link:hover {
-            color: #1565c0 !important;
-            text-decoration: underline !important;
-        }
-
-        .rider-name a:hover {
-            text-decoration: underline !important;
-        }
-
-
 
         .sort-btn:hover {
             background: #e0e0e0;
         }
         
         .sort-btn.active {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: #fff;
         }
 
@@ -421,8 +386,8 @@
             border-radius: 20px;
             background: #f5f5f5;
             color: #666;
-            border: 1px solid #e0e0e0;
-            transition: all 0.2s ease;
+            border: 1px solid var(--border);
+            transition: var(--transition);
         }
 
         .filter-tag:hover {
@@ -430,9 +395,9 @@
         }
 
         .filter-tag.active {
-            background: #667eea;
+            background: var(--primary);
             color: #fff;
-            border-color: #667eea;
+            border-color: var(--primary);
         }
 
         .filter-tag.active .filter-dot {
@@ -444,12 +409,46 @@
             height: 8px;
             border-radius: 50%;
             background: #999;
-            transition: all 0.2s ease;
+            transition: var(--transition);
         }
 
         .filter-tag.female-filter.active {
-            background: linear-gradient(135deg, #e91e63, #ec407a);
-            border-color: #e91e63;
+            background: linear-gradient(135deg, var(--female), #ec407a);
+            border-color: var(--female);
+        }
+
+        .highlight-link {
+            background: linear-gradient(135deg, #f0f4d391, #fffdebba);
+            color: #7eb5cdcc !important;
+            padding: 3px 10px;
+            border-radius: 6px;
+            display: inline-block;
+            border-bottom: 2px solid #26414068 !important;
+            text-decoration: none !important;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .highlight-link:hover {
+            background: linear-gradient(135deg, #f5f0e6, #efe6d8);
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(161, 136, 127, 0.25);
+        }
+
+        .date-link {
+            color: #1976d2 !important;
+            text-decoration: none !important;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .date-link:hover {
+            color: #1565c0 !important;
+            text-decoration: underline !important;
+        }
+
+        .rider-name a:hover {
+            text-decoration: underline !important;
         }
         
         @media (max-width: 768px) {
@@ -569,6 +568,7 @@
     </div>
     
     <script>
+        let currentSortBy = 'time';
         let showPowerPerKg = false;
         let showQzOnly = false;
         let showFemaleOnly = false;
@@ -577,6 +577,17 @@
         let ridersData = [];
         let groupData = [];
         let activityData = [];
+        let riderMap = {};
+
+        const SORT_LABEL_MAP = { 'time': '用时', 'speed': '速度', 'heart': '心率', 'power': '功率' };
+
+        function getCurrentSortBy() {
+            return currentSortBy;
+        }
+
+        function reRender() {
+            renderCards(currentSortBy);
+        }
 
         function getBestActivityDataBySpeed(qzOnly, groupRideOnly, femaleOnly) {
             const bestDataMap = {};
@@ -640,51 +651,31 @@
 
         function toggleQzFilter() {
             showQzOnly = !showQzOnly;
-            const filterTag = document.getElementById('qzFilterTag');
-            if (filterTag) {
-                filterTag.classList.toggle('active', showQzOnly);
-            }
-            renderCards(document.querySelector('.sort-btn.active')?.textContent?.includes('用时') ? 'time' : 
-                        document.querySelector('.sort-btn.active')?.textContent?.includes('速度') ? 'speed' : 
-                        document.querySelector('.sort-btn.active')?.textContent?.includes('心率') ? 'heart' : 'power');
+            document.getElementById('qzFilterTag').classList.toggle('active', showQzOnly);
+            reRender();
         }
 
         function toggleFemaleFilter() {
             showFemaleOnly = !showFemaleOnly;
-            const filterTag = document.getElementById('femaleFilterTag');
-            if (filterTag) {
-                filterTag.classList.toggle('active', showFemaleOnly);
-            }
-            renderCards(document.querySelector('.sort-btn.active')?.textContent?.includes('用时') ? 'time' : 
-                        document.querySelector('.sort-btn.active')?.textContent?.includes('速度') ? 'speed' : 
-                        document.querySelector('.sort-btn.active')?.textContent?.includes('心率') ? 'heart' : 'power');
+            document.getElementById('femaleFilterTag').classList.toggle('active', showFemaleOnly);
+            reRender();
         }
 
         function togglePowerDisplay() {
             showPowerPerKg = !showPowerPerKg;
-            renderCards(document.querySelector('.sort-btn.active')?.textContent?.includes('用时') ? 'time' : 
-                        document.querySelector('.sort-btn.active')?.textContent?.includes('速度') ? 'speed' : 
-                        document.querySelector('.sort-btn.active')?.textContent?.includes('心率') ? 'heart' : 'power');
+            reRender();
         }
 
         function toggleGroupRideFilter() {
             showGroupRideOnly = !showGroupRideOnly;
-            const filterTag = document.getElementById('groupRideFilterTag');
-            if (filterTag) {
-                filterTag.classList.toggle('active', showGroupRideOnly);
-            }
-            renderCards(document.querySelector('.sort-btn.active')?.textContent?.includes('用时') ? 'time' : 
-                        document.querySelector('.sort-btn.active')?.textContent?.includes('速度') ? 'speed' : 
-                        document.querySelector('.sort-btn.active')?.textContent?.includes('心率') ? 'heart' : 'power');
+            document.getElementById('groupRideFilterTag').classList.toggle('active', showGroupRideOnly);
+            reRender();
         }
 
         function getFemaleGroupIds() {
             const femaleGroupIds = [];
             groupData.forEach(group => {
-                const allFemale = group.members.every(memberStravaId => {
-                    const rider = ridersData.find(r => r.stravaId === memberStravaId);
-                    return rider && rider.female === true;
-                });
+                const allFemale = group.members.every(sid => riderMap[sid] && riderMap[sid].female);
                 if (allFemale) {
                     femaleGroupIds.push(group.groupId);
                 }
@@ -697,21 +688,24 @@
             if (!group) return [];
             return group.members
                 .filter(id => id !== excludeStravaId)
-                .map(memberId => ridersData.find(r => r.stravaId === memberId))
+                .map(id => riderMap[id])
                 .filter(Boolean);
         }
 
         function renderCards(sortBy = 'time') {
+            currentSortBy = sortBy;
+
             const buttons = document.querySelectorAll('.sort-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
-            const activeBtn = Array.from(buttons).find(btn => btn.textContent === (sortBy === 'time' ? '用时' : sortBy === 'speed' ? '速度' : sortBy === 'heart' ? '心率' : '功率'));
+            const activeLabel = SORT_LABEL_MAP[sortBy];
+            const activeBtn = Array.from(buttons).find(btn => btn.textContent === activeLabel);
             if (activeBtn) activeBtn.classList.add('active');
 
             const bestActivityData = getBestActivityDataBySpeed(showQzOnly, showGroupRideOnly, showFemaleOnly);
             
             const mergedData = [];
             bestActivityData.forEach(activity => {
-                const rider = ridersData.find(r => r.stravaId === activity.stravaId);
+                const rider = riderMap[activity.stravaId];
                 if (rider) {
                     mergedData.push({
                         ...rider,
@@ -873,17 +867,6 @@
             document.getElementById('statsCount').textContent = `截止${year}.${month}.${day} 已统计${filteredData.length}位骑友数据 · 点击头像或日期可进行跳转`   ;
         }
 
-        function updateDate() {
-            const now = new Date();
-            const year = now.getFullYear();
-            const month = String(now.getMonth() + 1).padStart(2, '0');
-            const day = String(now.getDate()).padStart(2, '0');
-            const updateEl = document.getElementById('update-date');
-            if (updateEl) {
-                updateEl.textContent = `${year}.${month}.${day} 更新`;
-            }
-        }
-
         function init() {
             fetch('tianfu-data.json')
                 .then(res => res.json())
@@ -891,7 +874,7 @@
                     ridersData = data.riders;
                     groupData = data.groups;
                     activityData = data.activities;
-                    updateDate();
+                    ridersData.forEach(r => riderMap[r.stravaId] = r);
                     renderCards('time');
                 })
                 .catch(err => {
