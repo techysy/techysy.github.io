@@ -1,6 +1,12 @@
 {
     "ridersData": [
         {
+            "name": "破风手 喵哥",
+            "stravaId": 115833622,
+            "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/115833622/26990687/1/large.jpg",
+            "female": false
+        },
+        {
             "name": "SZS白小黑—白小黑",
             "stravaId": 93307904,
             "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/93307904/22370370/1/large.jpg",
@@ -13,9 +19,9 @@
             "female": false
         },
         {
-            "name": "陈 云",
+            "name": "大鸡鸡 单",
             "stravaId": 39924583,
-            "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/39924583/22274514/1/large.jpg",
+            "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/39924583/11680081/1/large.jpg",
             "female": false
         },
         {
@@ -25,81 +31,87 @@
             "female": false
         },
         {
-            "name": "周 涛",
+            "name": "远 方",
+            "stravaId": 114977953,
+            "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/114977953/27922710/1/large.jpg",
+            "female": false
+        },
+        {
+            "name": "阿 浩",
             "stravaId": 106397036,
-            "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/106397036/26455216/2/large.jpg",
+            "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/106397036/25563862/3/large.jpg",
             "female": false
         },
         {
-            "name": "陈 翔",
+            "name": "龟龟 正在全力输出，哼",
             "stravaId": 118723284,
-            "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/118723284/27037768/4/large.jpg",
+            "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/118723284/30337474/5/large.jpg",
             "female": false
         },
         {
-            "name": "张 磊",
+            "name": "老错 Fan",
             "stravaId": 120596483,
-            "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/120596483/27545964/2/large.jpg",
+            "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/120596483/28069731/2/large.jpg",
             "female": false
         },
         {
-            "name": "衣衣 Amber",
+            "name": "Lake Hyu",
             "stravaId": 134886224,
-            "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/134886224/28984875/1/large.jpg",
-            "female": true
+            "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/134886224/31455670/2/large.jpg",
+            "female": false
         },
         {
-            "name": "张 勇",
+            "name": "浪里 小白驹",
             "stravaId": 117852113,
-            "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/117852113/26987370/1/large.jpg",
+            "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/117852113/28006048/1/large.jpg",
             "female": false
         },
         {
-            "name": "林 涛",
+            "name": "喝茶配汉堡",
             "stravaId": 124372227,
-            "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/124372227/28281668/1/large.jpg",
+            "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/124372227/28531248/3/large.jpg",
             "female": false
         },
         {
-            "name": "王 伟",
+            "name": "O ₂氧气",
             "stravaId": 129734837,
-            "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/129734837/30598743/1/large.jpg",
+            "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/129734837/29597591/1/large.jpg",
             "female": false
         },
         {
-            "name": "李 强",
+            "name": "秦 浩然",
             "stravaId": 124313576,
-            "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/124313576/28265593/1/large.jpg",
+            "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/124313576/29173128/7/large.jpg",
             "female": false
         },
         {
-            "name": "赵 伟",
+            "name": "歧楓 🌪",
             "stravaId": 107136053,
-            "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/107136053/26576824/1/large.jpg",
+            "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/107136053/25554270/1/large.jpg",
             "female": false
         },
         {
-            "name": "孙 浩",
+            "name": "ZAYU II",
             "stravaId": 123704750,
-            "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/123704750/28082219/1/large.jpg",
+            "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/123704750/28382904/1/large.jpg",
             "female": false
         },
         {
-            "name": "周 杰",
+            "name": "唐笑林 XyLon.Tang",
             "stravaId": 16132158,
-            "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/16132158/22065343/1/large.jpg",
+            "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/16132158/5900046/4/large.jpg",
             "female": false
         },
         {
-            "name": "吴 涛",
+            "name": "TMG 牛奶糖",
             "stravaId": 108094956,
-            "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/108094956/26722915/1/large.jpg",
+            "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/108094956/27542203/1/large.jpg",
             "female": false
         },
         {
-            "name": "郑 伟",
+            "name": "soos .",
             "stravaId": 125715944,
-            "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/125715944/28493975/1/large.jpg",
+            "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/125715944/28857513/1/large.jpg",
             "female": false
         },
         {
@@ -107,60 +119,6 @@
             "stravaId": 122968010,
             "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/122968010/28902961/1/large.jpg",
             "female": true
-        },
-        {
-            "name": "黄 浩",
-            "stravaId": 121173304,
-            "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/121173304/27679405/1/large.jpg",
-            "female": false
-        },
-        {
-            "name": "许 磊",
-            "stravaId": 84853614,
-            "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/84853614/22704113/51/large.jpg",
-            "female": false
-        },
-        {
-            "name": "何 强",
-            "stravaId": 44387344,
-            "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/44387344/22633071/2/large.jpg",
-            "female": false
-        },
-        {
-            "name": "曹 杰",
-            "stravaId": 121579383,
-            "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/121579383/27797396/1/large.jpg",
-            "female": false
-        },
-        {
-            "name": "Vivie Duan",
-            "stravaId": 115099652,
-            "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/115099652/26770547/3/large.jpg",
-            "female": true
-        },
-        {
-            "name": "范 特西（超武汉版）",
-            "stravaId": 95801820,
-            "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/95801820/22704113/51/large.jpg",
-            "female": true
-        },
-        {
-            "name": "黄 鑫",
-            "stravaId": 171451744,
-            "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/171451744/37059351/1/large.jpg",
-            "female": false
-        },
-        {
-            "name": "哥哥 行",
-            "stravaId": 147004026,
-            "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/147004026/33764511/3/large.jpg",
-            "female": false
-        },
-        {
-            "name": "破风手 喵哥",
-            "stravaId": 115833622,
-            "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/115833622/26990687/1/large.jpg",
-            "female": false
         },
         {
             "name": "菜菜 古",
@@ -181,9 +139,51 @@
             "female": true
         },
         {
-            "name": "远 方",
-            "stravaId": 114977953,
-            "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/114977953/27922710/1/large.jpg",
+            "name": "YangYu 🐟",
+            "stravaId": 121173304,
+            "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/121173304/27885415/1/large.jpg",
+            "female": false
+        },
+        {
+            "name": "法 F正L",
+            "stravaId": 84853614,
+            "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/84853614/25981496/5/large.jpg",
+            "female": false
+        },
+        {
+            "name": "Joe Liu",
+            "stravaId": 44387344,
+            "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/44387344/25337196/5/large.jpg",
+            "female": false
+        },
+        {
+            "name": "秋 秋",
+            "stravaId": 121579383,
+            "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/121579383/27963559/4/large.jpg",
+            "female": true
+        },
+        {
+            "name": "Vivie Duan",
+            "stravaId": 115099652,
+            "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/115099652/26770547/3/large.jpg",
+            "female": true
+        },
+        {
+            "name": "范 特西（超武汉版）",
+            "stravaId": 95801820,
+            "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/95801820/22704113/51/large.jpg",
+            "female": true
+        },
+        {
+            "name": "风月 宝鉴",
+            "stravaId": 171451744,
+            "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/171451744/37943483/1/large.jpg",
+            "female": false
+        },
+        {
+            "name": "哥哥 行",
+            "stravaId": 147004026,
+            "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/147004026/33764511/3/large.jpg",
             "female": false
         },
         {
