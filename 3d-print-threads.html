@@ -1021,26 +1021,26 @@
     <script>
         // 螺纹规格数据
         const metricThreadData = {
-            'M3': { major: 3.000, pitch: 0.5, minor: 2.459, tapDrill: 2.5, nutThickness: 2.4, male3DPrint: 2.98, female3DPrint: 3.02 },
-            'M4': { major: 4.000, pitch: 0.7, minor: 3.242, tapDrill: 3.3, nutThickness: 3.2, male3DPrint: 3.96, female3DPrint: 4.04 },
-            'M5': { major: 5.000, pitch: 0.8, minor: 4.134, tapDrill: 4.2, nutThickness: 4, male3DPrint: 4.95, female3DPrint: 5.05 },
-            'M6': { major: 6.000, pitch: 1.0, minor: 4.917, tapDrill: 5.0, nutThickness: 4.8, male3DPrint: 5.95, female3DPrint: 6.05 },
-            'M8': { major: 8.000, pitch: 1.25, minor: 6.647, tapDrill: 6.8, nutThickness: 6.5, male3DPrint: 7.92, female3DPrint: 8.08 },
-            'M10': { major: 10.000, pitch: 1.5, minor: 8.376, tapDrill: 8.5, nutThickness: 8, male3DPrint: 9.90, female3DPrint: 10.10 },
-            'M12': { major: 12.000, pitch: 1.75, minor: 10.106, tapDrill: 10.2, nutThickness: 10, male3DPrint: 11.88, female3DPrint: 12.12 },
-            'M14': { major: 14.000, pitch: 2.0, minor: 11.835, tapDrill: 12.0, nutThickness: 11, male3DPrint: 13.85, female3DPrint: 14.15 },
-            'M16': { major: 16.000, pitch: 2.0, minor: 13.835, tapDrill: 14.0, nutThickness: 13, male3DPrint: 15.85, female3DPrint: 16.15 },
-            'M18': { major: 18.000, pitch: 2.5, minor: 15.294, tapDrill: 15.5, nutThickness: 15, male3DPrint: 17.80, female3DPrint: 18.20 },
-            'M20': { major: 20.000, pitch: 2.5, minor: 17.294, tapDrill: 17.5, nutThickness: 16, male3DPrint: 19.80, female3DPrint: 20.20 },
-            'M22': { major: 22.000, pitch: 2.5, minor: 19.294, tapDrill: 19.5, nutThickness: 18, male3DPrint: 21.80, female3DPrint: 22.20 },
-            'M24': { major: 24.000, pitch: 3.0, minor: 20.752, tapDrill: 21.0, nutThickness: 19, male3DPrint: 23.75, female3DPrint: 24.25 },
-            'M27': { major: 27.000, pitch: 3.0, minor: 23.752, tapDrill: 24.0, nutThickness: 22, male3DPrint: 26.75, female3DPrint: 27.25 },
-            'M30': { major: 30.000, pitch: 3.5, minor: 26.211, tapDrill: 26.5, nutThickness: 24, male3DPrint: 29.70, female3DPrint: 30.30 },
-            'M36': { major: 36.000, pitch: 4.0, minor: 31.670, tapDrill: 32.0, nutThickness: 29, male3DPrint: 35.65, female3DPrint: 36.35 },
-            'M42': { major: 42.000, pitch: 4.5, minor: 37.129, tapDrill: 37.5, nutThickness: 34, male3DPrint: 41.60, female3DPrint: 42.40 },
-            'M48': { major: 48.000, pitch: 5.0, minor: 42.587, tapDrill: 43.0, nutThickness: 38, male3DPrint: 47.55, female3DPrint: 48.45 },
-            'M56': { major: 56.000, pitch: 5.5, minor: 50.046, tapDrill: 50.5, nutThickness: 45, male3DPrint: 55.50, female3DPrint: 56.50 },
-            'M64': { major: 64.000, pitch: 6.0, minor: 57.505, tapDrill: 58.0, nutThickness: 51, male3DPrint: 63.45, female3DPrint: 64.55 }
+            'M3': { major: 3.000, pitch: 0.5, minor: 2.459, tapDrill: 2.5, nutThickness: 2.4, male3DPrint: 2.98, female3DPrint: 3.02, maleMinor3DPrint: 2.44, femaleMinor3DPrint: 2.48 },
+            'M4': { major: 4.000, pitch: 0.7, minor: 3.242, tapDrill: 3.3, nutThickness: 3.2, male3DPrint: 3.96, female3DPrint: 4.04, maleMinor3DPrint: 3.22, femaleMinor3DPrint: 3.26 },
+            'M5': { major: 5.000, pitch: 0.8, minor: 4.134, tapDrill: 4.2, nutThickness: 4, male3DPrint: 4.95, female3DPrint: 5.05, maleMinor3DPrint: 4.12, femaleMinor3DPrint: 4.15 },
+            'M6': { major: 6.000, pitch: 1.0, minor: 4.917, tapDrill: 5.0, nutThickness: 4.8, male3DPrint: 5.95, female3DPrint: 6.05, maleMinor3DPrint: 4.90, femaleMinor3DPrint: 4.94 },
+            'M8': { major: 8.000, pitch: 1.25, minor: 6.647, tapDrill: 6.8, nutThickness: 6.5, male3DPrint: 7.92, female3DPrint: 8.08, maleMinor3DPrint: 6.63, femaleMinor3DPrint: 6.67 },
+            'M10': { major: 10.000, pitch: 1.5, minor: 8.376, tapDrill: 8.5, nutThickness: 8, male3DPrint: 9.90, female3DPrint: 10.10, maleMinor3DPrint: 8.36, femaleMinor3DPrint: 8.40 },
+            'M12': { major: 12.000, pitch: 1.75, minor: 10.106, tapDrill: 10.2, nutThickness: 10, male3DPrint: 11.88, female3DPrint: 12.12, maleMinor3DPrint: 10.08, femaleMinor3DPrint: 10.13 },
+            'M14': { major: 14.000, pitch: 2.0, minor: 11.835, tapDrill: 12.0, nutThickness: 11, male3DPrint: 13.85, female3DPrint: 14.15, maleMinor3DPrint: 11.81, femaleMinor3DPrint: 11.86 },
+            'M16': { major: 16.000, pitch: 2.0, minor: 13.835, tapDrill: 14.0, nutThickness: 13, male3DPrint: 15.85, female3DPrint: 16.15, maleMinor3DPrint: 13.81, femaleMinor3DPrint: 13.86 },
+            'M18': { major: 18.000, pitch: 2.5, minor: 15.294, tapDrill: 15.5, nutThickness: 15, male3DPrint: 17.80, female3DPrint: 18.20, maleMinor3DPrint: 15.26, femaleMinor3DPrint: 15.32 },
+            'M20': { major: 20.000, pitch: 2.5, minor: 17.294, tapDrill: 17.5, nutThickness: 16, male3DPrint: 19.80, female3DPrint: 20.20, maleMinor3DPrint: 17.26, femaleMinor3DPrint: 17.32 },
+            'M22': { major: 22.000, pitch: 2.5, minor: 19.294, tapDrill: 19.5, nutThickness: 18, male3DPrint: 21.80, female3DPrint: 22.20, maleMinor3DPrint: 19.26, femaleMinor3DPrint: 19.32 },
+            'M24': { major: 24.000, pitch: 3.0, minor: 20.752, tapDrill: 21.0, nutThickness: 19, male3DPrint: 23.75, female3DPrint: 24.25, maleMinor3DPrint: 20.72, femaleMinor3DPrint: 20.78 },
+            'M27': { major: 27.000, pitch: 3.0, minor: 23.752, tapDrill: 24.0, nutThickness: 22, male3DPrint: 26.75, female3DPrint: 27.25, maleMinor3DPrint: 23.72, femaleMinor3DPrint: 23.78 },
+            'M30': { major: 30.000, pitch: 3.5, minor: 26.211, tapDrill: 26.5, nutThickness: 24, male3DPrint: 29.70, female3DPrint: 30.30, maleMinor3DPrint: 26.18, femaleMinor3DPrint: 26.24 },
+            'M36': { major: 36.000, pitch: 4.0, minor: 31.670, tapDrill: 32.0, nutThickness: 29, male3DPrint: 35.65, female3DPrint: 36.35, maleMinor3DPrint: 31.63, femaleMinor3DPrint: 31.70 },
+            'M42': { major: 42.000, pitch: 4.5, minor: 37.129, tapDrill: 37.5, nutThickness: 34, male3DPrint: 41.60, female3DPrint: 42.40, maleMinor3DPrint: 37.09, femaleMinor3DPrint: 37.16 },
+            'M48': { major: 48.000, pitch: 5.0, minor: 42.587, tapDrill: 43.0, nutThickness: 38, male3DPrint: 47.55, female3DPrint: 48.45, maleMinor3DPrint: 42.55, femaleMinor3DPrint: 42.62 },
+            'M56': { major: 56.000, pitch: 5.5, minor: 50.046, tapDrill: 50.5, nutThickness: 45, male3DPrint: 55.50, female3DPrint: 56.50, maleMinor3DPrint: 50.01, femaleMinor3DPrint: 50.08 },
+            'M64': { major: 64.000, pitch: 6.0, minor: 57.505, tapDrill: 58.0, nutThickness: 51, male3DPrint: 63.45, female3DPrint: 64.55, maleMinor3DPrint: 57.47, femaleMinor3DPrint: 57.54 }
         };
         
         // 英制管螺纹数据
@@ -1116,8 +1116,10 @@
                         <strong>3D打印优化尺寸：</strong><br>
                         • 外牙大径：${data.male3DPrint.toFixed(2)} mm<br>
                         • 内牙大径：${data.female3DPrint.toFixed(2)} mm<br>
+                        • 外牙小径：${data.maleMinor3DPrint.toFixed(2)} mm<br>
+                        • 内牙小径：${data.femaleMinor3DPrint.toFixed(2)} mm<br>
                         <br>
-                        <small>执行标准：GB/T 196-2003</small><br>
+                        <small>执行标准：<a href="http://shguqiao.com.cn/p/view.php?aid=1070" target="_blank" style="color: #667eea;">GB/T 196-2003</a></small><br>
                         <small>3D打印尺寸考虑收缩率与打印精度</small><br>
                         <small>由于FDM精度限制，小尺寸建议向上或向下取整到十分位</small>
                         <br>
