@@ -245,6 +245,18 @@
       "stravaId": 129573479,
       "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/129573479/33707052/6/large.jpg",
       "female": false
+    },
+    {
+      "name": "新手 华",
+      "stravaId": 138478253,
+      "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/138478253/31486401/8/large.jpg",
+      "female": false
+    },
+    {
+      "name": "咸鱼 爱抽筋的",
+      "stravaId": 111407997,
+      "avatar": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/111407997/26361881/1/large.jpg",
+      "female": false
     }
   ],
   "groups": [
@@ -277,6 +289,11 @@
       "groupId": "0006",
       "name": "VE",
       "members": [115099652, 129573479]
+    },
+    {
+      "groupId": "0007",
+      "name": "华莱士的汉堡列车",
+      "members": [124372227, 138478253, 111407997]
     }
   ],
   "activities": [
@@ -1046,6 +1063,38 @@
       "heightFront": 0,
       "heightBack": 0,
       "groupId": "0006",
+      "itt": false
+    },
+    {
+      "stravaId": 124372227,
+      "activityId": 18802926946,
+      "time": "2:28:42",
+      "speed": 38.9,
+      "heart": 169,
+      "power": 285,
+      "date": "2026年6月6日",
+      "remark": "秦少请阅兵！",
+      "qz": true,
+      "weight": 0,
+      "heightFront": 0,
+      "heightBack": 0,
+      "groupId": "0007",
+      "itt": true
+    },
+    {
+      "stravaId": 138478253,
+      "activityId": 18802936663,
+      "time": "2:28:42",
+      "speed": 38.9,
+      "heart": 146,
+      "power": 215,
+      "date": "2026年6月6日",
+      "remark": "堡哥一带一路圆230的梦！",
+      "qz": false,
+      "weight": 0,
+      "heightFront": 0,
+      "heightBack": 0,
+      "groupId": "0007",
       "itt": false
     }
   ]
