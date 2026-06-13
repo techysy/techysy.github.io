@@ -1,13 +1,148 @@
-1 2018-04-15 
+# 余师洋的个人博客
 
-*开始使用hexo
+> 一个基于 Jekyll 的个人博客 + 几个兴趣驱动的小工具
 
-*配置完成之后就一直闲置了
+[![GitHub Pages](https://img.shields.io/badge/GitHub-Pages-blue)](https://techysy.github.io)
+[![Jekyll](https://img.shields.io/badge/Jekyll-4.x-orange)](https://jekyllrb.com/)
+[![CNAME](https://img.shields.io/badge/CNAME-shiyangyu.com-brightgreen)](https://shiyangyu.com)
 
-*当时还不会使用Markdown
+---
 
-2 2019-06-24 
+## 🌐 在线访问
 
-*Instagram 上 zhwangart 发现我正在使用hexo “老司机你好，我也喜欢摄影，我看到你也用 hexo 搭建 blog ，我写的这个主题可能适合你展示照骗： https://github.com/zhwangart/hexo-theme-ocean ” 就这样给我安利了他的主题
+- **主站**：https://shiyangyu.com
+- **GitHub Pages**：https://techysy.github.io
 
-3 2019-12-05 jekyll
+---
+
+## 📁 项目结构
+
+```
+techysy.github.io/
+├── _config.yml              # Jekyll 站点配置
+├── _layouts/                # 页面布局模板
+│   ├── default.html
+│   ├── home-page.html
+│   └── post.html
+├── _includes/               # 可复用片段（header/footer/search...）
+├── _pages/                  # 静态独立页面（about/tags/tools）
+├── _posts/                  # Markdown 博客文章（15篇）
+├── assets/                  # 静态资源
+│   ├── css/sass/            # Sass 源码
+│   ├── js/                  # main.js / jquery / jekyll-search
+│   ├── fonts/font-awesome/  # 字体图标
+│   └── img/                 # 文章配图
+│
+├── 🔹 tianfu-itt.html       # 天府绿道ITT排行榜
+├── 🔹 tianfu-data.json      # 骑行数据（骑手/团队/活动）
+├── 🔹 3d-print-threads.html # 3D打印螺纹规格速查
+├── 🔹 strava-tool.html      # Strava 相关工具
+├── 🔹 long-a-side.html      # 其他独立页面
+│
+├── index.html               # 首页
+├── search.json              # 站内搜索索引
+├── CNAME                    # 自定义域名 shiyangyu.com
+├── Gemfile                  # Ruby 依赖
+├── gulpfile.js              # Gulp 构建脚本
+│
+├── google6c72564a30dfb997.html   # Google 验证
+├── baidu_verify_ZISdf60C3y.html  # 百度验证
+├── google6c72564a30dfb997.html   # Google 验证
+└── LICENSE                  # 许可协议
+```
+
+---
+
+## 🚀 主要页面
+
+### 1. [天府绿道ITT排行榜](tianfu-itt.html)
+
+骑行数据可视化展示，从 `tianfu-data.json` 动态加载。
+
+- **数据规模**：44 位骑手、7 个团队、约 50 条活动记录
+- **排序维度**：用时 / 速度 / 心率 / 功率
+- **筛选器**：QZ 认证 / 女子组 / 团骑模式
+- **交互**：功率单位切换（W ↔ W/kg）、团队成员展开、头像/日期直跳 Strava
+
+> 数据来源为 Strava 公开数据，仅用于学习研究。
+
+### 2. [3D打印螺纹规格速查](3d-print-threads.html)
+
+机械工程工具，FDM 3D打印螺纹配套参考。
+
+- **公制螺纹**：M3~M64，含小径数据（GB/T 196-2003）
+- **英制螺纹**：1/4" ~ 2"，含牙数/螺距
+- **3D打印优化**：外牙/内牙大径与小径补偿值
+- **圈数计算器**：根据螺丝高度计算所需圈数与旋转角度
+
+> 附国标 PDF 跳转（GB/T 196-2003）。
+
+---
+
+## 🛠 技术栈
+
+| 层 | 技术 |
+|----|------|
+| 站点生成器 | **Jekyll**（GitHub Pages 原生支持） |
+| Markdown 渲染 | **kramdown** |
+| 样式 | **Sass (SCSS)** → 编译为 CSS |
+| 交互 | **原生 JavaScript** + **jQuery 3.2.1** |
+| 图标 | **Font Awesome**（本地加载） |
+| 搜索 | **jekyll-search**（读取 `search.json`） |
+| 评论 | **Disqus** |
+| 统计 | **Google Analytics** + **百度统计** |
+| 构建工具 | **Gulp** |
+
+---
+
+## 📦 Jekyll 插件
+
+- `jekyll-paginate` — 分页（每页 8 篇）
+- `jekyll-feed` — RSS feed
+- `jekyll-sitemap` — sitemap.xml
+
+---
+
+## 🏃 本地运行
+
+```bash
+# 安装依赖
+bundle install
+
+# 本地预览（自动构建 + 热刷新）
+bundle exec jekyll serve
+
+# 浏览器访问 http://localhost:4000
+```
+
+**注意**：独立 HTML 工具页（`tianfu-itt.html`、`3d-print-threads.html` 等）不需要 Jekyll 构建，直接双击打开即可运行。
+
+---
+
+## 📝 博客文章
+
+共 15 篇，时间跨度 2019-12 ~ 2026-06：
+
+| 主题 | 代表文章 |
+|------|----------|
+| Hackintosh / Mac | B450M Mortar 黑苹果、Windows 10 on Mac、rEFInd 引导 |
+| 工具 / 效率 | B 站 OBS 推流、TortoiseSVN、tree 命令、WSL + Docker |
+| AI / LLM | Relearn AI |
+| **最新活跃（2026）** | 3D打印螺纹速查、天府绿道 ITT 排行榜 |
+
+---
+
+## 📬 作者
+
+- **余师洋**
+- Email：i@shiyangyu.com
+- GitHub：[@techysy](https://github.com/techysy)
+- Strava：[yangyu](https://strava.com)
+- Bilibili：10419858
+- 小红书：5a5d020711be101b3d65cece
+
+---
+
+## 📄 License
+
+请查看项目根目录的 `LICENSE` 文件。
