@@ -41,15 +41,6 @@ jobs:
       - name: Install system dependencies
         run: sudo apt-get update && sudo apt-get install -y libpng-dev
 
-      - name: Install Node dependencies
-        run: npm install --legacy-peer-deps
-
-      - name: Install Gulp CLI
-        run: npm install -g gulp-cli
-
-      - name: Build SCSS and WebP images
-        run: npm run build
-
       - name: Build Jekyll site
         run: bundle exec jekyll build
         env:
