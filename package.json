@@ -19,7 +19,7 @@
     "sass": "^1.69.0"
   },
   "scripts": {
-    "build": "gulp compile-sass && gulp webp",
+    "build": "gulp webp",
     "dev": "node_modules\\.bin\\gulp watch"
   }
 }
