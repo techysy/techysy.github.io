@@ -17,7 +17,9 @@ gulp.task('jekyll-build', function (done) {
 
 // Rebuild Jekyll and page reload
 gulp.task('jekyll-rebuild', gulp.series('jekyll-build', function (cb) {
-    browserSync.reload();
+    if (browserSync.active) {
+        browserSync.reload();
+    }
     cb();
 }));
 
@@ -52,15 +54,21 @@ gulp.task('compile-sass', function () {
 
 // Compression images
 gulp.task('img', function() {
-	return gulp.src('assets/img/**/*')
+	var stream = gulp.src('assets/img/**/*')
 		.pipe(cache(imagemin({
 			interlaced: true,
 			progressive: true,
 			svgoPlugins: [{removeViewBox: false}],
 			use: [pngquant()]
 		})))
-		.pipe(gulp.dest('_site/assets/img'))
-		.pipe(browserSync.reload({stream:true}));
+		.pipe(gulp.dest('_site/assets/img'));
+	
+	// Only reload browserSync if it's running
+	if (browserSync.active) {
+		stream = stream.pipe(browserSync.reload({stream:true}));
+	}
+	
+	return stream;
 });
 
 // Generate WebP images
