@@ -1,5 +1,5 @@
 var gulp = require('gulp');
-var sass = require('gulp-sass');
+var sass = require('gulp-sass')(require('sass'));
 var prefix = require('gulp-autoprefixer');
 var imagemin = require('gulp-imagemin');
 var pngquant = require('imagemin-pngquant');
@@ -17,27 +17,27 @@ gulp.task('jekyll-build', function (done) {
 });
 
 // Rebuild Jekyll and page reload
-gulp.task('jekyll-rebuild', ['jekyll-build'], function () {
+gulp.task('jekyll-rebuild', gulp.series('jekyll-build', function (cb) {
     browserSync.reload();
-});
+    cb();
+}));
 
 // Wait for jekyll-build, then launch the Server
-gulp.task('browser-sync', ['sass', 'jekyll-build'], function() {
+gulp.task('browser-sync', gulp.series('sass', 'jekyll-build', function() {
     browserSync({
         server: {
             baseDir: '_site'
         },
         notify: false
     });
-});
+}));
 
 // Compile files
 gulp.task('sass', function () {
     return gulp.src('assets/css/sass/main.scss')
         .pipe(sass({
-            outputStyle: 'expanded',
-            onError: browserSync.notify
-        }))
+            outputStyle: 'expanded'
+        }).on('error', sass.logError))
         .pipe(prefix(['last 15 versions', '> 1%', 'ie 8', 'ie 7'], { cascade: true }))
         .pipe(gulp.dest('_site/assets/css'))
         .pipe(browserSync.reload({stream:true}))
@@ -69,10 +69,10 @@ gulp.task('webp', function() {
 
 // Watch scss, html, img files
 gulp.task('watch', function () {
-    gulp.watch('assets/css/sass/**/*.scss', ['sass']);
-    gulp.watch('assets/js/**/*.js', ['jekyll-rebuild']);
-    gulp.watch(['*.html', '_layouts/*.html', '_includes/*.html', '_pages/*.html', '_posts/*'], ['jekyll-rebuild']);
+    gulp.watch('assets/css/sass/**/*.scss', gulp.series('sass'));
+    gulp.watch('assets/js/**/*.js', gulp.series('jekyll-rebuild'));
+    gulp.watch(['*.html', '_layouts/*.html', '_includes/*.html', '_pages/*.html', '_posts/*'], gulp.series('jekyll-rebuild'));
 });
 
 // Default task
-gulp.task('default', ['browser-sync', 'watch']);
+gulp.task('default', gulp.series('browser-sync', 'watch'));
