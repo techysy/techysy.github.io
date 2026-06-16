@@ -1,15 +1,62 @@
 ---
 layout: post
 title: Hello World!
+subtitle: 第一篇文章，正式开始我的博客之旅
 date: 2019-12-06 00:00:00 +0800
-description: You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. # Add post description (optional)
-img: hello-world.jpg # Add image post (optional)
-tags: [Blog]
+description: 这是我的个人博客的第一篇文章，标志着写作生涯的正式开启。分享我的故事、记录成长的点滴。
+img: hello-world.jpg
+tags: [Blog, Jekyll, 生活]
 categories: jekyll
 ---
 
-+ Published With Jekyll 
+# 你好，世界！
 
-+ Runs on GitHub Pages
+欢迎来到我的个人博客！这是我在这个网站发表的第一篇文章，借此机会正式开启我的写作之旅。
 
-+ 
+## 为什么写博客？
+
+在这个信息爆炸的时代，每个人都在被各种短视频、推送、算法所支配。**写博客对我来说，是一种对深度思考的回归**。
+
+我希望通过这个平台：
+
+- 📝 **记录成长** - 无论是技术学习、生活感悟还是踩坑经验
+- 🔍 **深度思考** - 强迫自己对问题进行系统性思考
+- 🤝 **结识同好** - 遇到有相同兴趣的朋友
+- 📚 **知识沉淀** - 把学到的知识变成自己的资产
+
+## 关于这个博客
+
+这个博客基于以下技术构建：
+
+- **Jekyll** - 静态站点生成器
+- **GitHub Pages** - 免费托管
+- **Markdown** - 简洁的写作格式
+- **Sass** - 优雅的样式管理
+
+> "Talk is cheap. Show me the code." 
+> 
+> —— Linus Torvalds
+
+## 写给未来的自己
+
+如果有一天你回顾这篇文章，希望你能记得：
+
+1. **保持初心** - 不被流量和算法绑架，写自己想写的东西
+2. **持续输出** - 不要因为一时没流量就放弃
+3. **拥抱变化** - 技术在更新，思维也要与时俱进
+4. **享受过程** - 写作本身比阅读量更重要
+
+## 接下来
+
+接下来我会分享：
+
+- 🔧 技术教程（Hackintosh、Linux、编程）
+- 🚴 骑行数据（Strava、天府绿道）
+- 🖨️ DIY 折腾（3D 打印、硬件折腾）
+- 🤖 AI 探索（大模型、本地部署）
+
+欢迎持续关注，我们一起成长！
+
+---
+
+*Hello, World! 这是程序员最熟悉的问候，现在它有了新的意义。*
