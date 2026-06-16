@@ -25,6 +25,8 @@ categories: 分享
 
 ### 项目结构
 
+![EFI 文件夹结构]({{site.baseurl}}/assets/img/refind/EFI.jpg)
+
 ```
 rEFInd/
 ├── EFI/                      # 配置好的 rEFInd，引导 OC 和 WIN，使用 minimal 主题
@@ -39,6 +41,8 @@ rEFInd/
 ```
 
 ### 安装 rEFInd
+
+![rEFInd 安装]({{site.baseurl}}/assets/img/refind/refind.jpg)
 
 > **注意**：安装脚本仅支持 Linux 和 macOS。Windows 用户需要手动安装。
 
@@ -69,6 +73,8 @@ sudo ./refind-install --localkeys
 # 将 rEFInd 安装到指定位置
 sudo ./refind-install --root /mountpoint
 ```
+
+![驱动文件]({{site.baseurl}}/assets/img/refind/drivers.jpg)
 
 #### Linux 手动安装
 
@@ -169,6 +175,8 @@ sudo bless --mount /Volumes/ESP --setBoot --file /Volumes/ESP/EFI/refind/refind_
 ```
 
 #### Windows 手动安装
+
+![UEFI 启动项]({{site.baseurl}}/assets/img/refind/UEFI.jpg)
 
 Windows 用户需要手动操作，推荐使用 **EasyUEFI** 工具，或使用命令行：
 
