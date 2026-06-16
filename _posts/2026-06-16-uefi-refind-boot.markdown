@@ -1,13 +1,13 @@
 ---
 layout: post
 title: rEFInd一个好用又好看的UEFI启动管理器
-date: 2019-12-28 20:00:00 +0800
+date: 2026-06-16 20:00:00 +0800
 img: rEFInd.jpg
 tags: [MAC,野生技术协会]
 categories: 分享
 ---
 
-使用rEFInd引导多系统启动 Windows 10、macOS 10.15.2（基于Open Core）、其他
+使用rEFInd引导多系统启动 Windows 10、macOS 10.15.2（基于Open Core）、Ubuntu
 
 > 软件版本：refind-bin-0.11.4
 >
@@ -66,11 +66,21 @@ categories: 分享
      
     dont_scan_files \EFI\Microsoft\Boot\bootmgfw.efi 
         
-    dont_scan_dirs /EFI/BOOT,/EFI/Microsoft,/EFI/OC
+    dont_scan_dirs /EFI/BOOT,/EFI/Microsoft,/EFI/OC,/EFI/ubuntu
 
     #手动添加启动项并设置图标
 
-    menuentry "Windows 10" {
+menuentry "Ubuntu" {
+
+volume "Ubuntu 18.04.3 LTS"
+
+icon \EFI\refind\themes\rEFInd-minimal\icons\os_ubuntu.png
+
+loader \EFI\ubuntu\grubx64.efi
+
+}
+
+menuentry "Windows 10" {
          
     volume "Windows 10"
          
