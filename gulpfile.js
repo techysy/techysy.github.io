@@ -6,6 +6,7 @@ var pngquant = require('imagemin-pngquant');
 var cache = require('gulp-cache');
 var cp = require('child_process');
 var browserSync = require('browser-sync');
+var webp = require('gulp-webp');
 
 var jekyll   = process.platform === 'win32' ? 'jekyll.bat' : 'jekyll';
 
@@ -21,7 +22,7 @@ gulp.task('jekyll-rebuild', ['jekyll-build'], function () {
 });
 
 // Wait for jekyll-build, then launch the Server
-gulp.task('browser-sync', ['sass', 'img', 'jekyll-build'], function() {
+gulp.task('browser-sync', ['sass', 'jekyll-build'], function() {
     browserSync({
         server: {
             baseDir: '_site'
@@ -52,17 +53,26 @@ gulp.task('img', function() {
 			svgoPlugins: [{removeViewBox: false}],
 			use: [pngquant()]
 		})))
-    .pipe(gulp.dest('_site/assets/img'))
-    .pipe(browserSync.reload({stream:true}));
+		.pipe(gulp.dest('_site/assets/img'))
+		.pipe(browserSync.reload({stream:true}));
+});
+
+// Generate WebP images
+gulp.task('webp', function() {
+	return gulp.src('assets/img/**/*.{jpg,jpeg,png}')
+		.pipe(webp({
+			quality: 80,
+			preset: 'photo'
+		}))
+		.pipe(gulp.dest('assets/img'));
 });
 
 // Watch scss, html, img files
 gulp.task('watch', function () {
     gulp.watch('assets/css/sass/**/*.scss', ['sass']);
     gulp.watch('assets/js/**/*.js', ['jekyll-rebuild']);
-    gulp.watch('assets/img/**/*', ['img']);
     gulp.watch(['*.html', '_layouts/*.html', '_includes/*.html', '_pages/*.html', '_posts/*'], ['jekyll-rebuild']);
 });
 
-//  Default task
+// Default task
 gulp.task('default', ['browser-sync', 'watch']);

@@ -5,13 +5,17 @@ layout: default
   {% include header.html %}
   <article class="article-page">
     <div class="page-image">
-      <div class="cover-image" style="background: url({{"/assets/img/" | prepend: site.baseurl | append : page.img}}) center no-repeat; background-size: cover;"></div>
+      {% assign webp_cover = page.img | replace: '.jpg', '.webp' | replace: '.png', '.webp' %}
+      <div class="cover-image" style="background: url('{{"/assets/img/" | prepend: site.baseurl | append: webp_cover}}'), url('{{"/assets/img/" | prepend: site.baseurl | append: page.img}}') center no-repeat; background-size: cover;"></div>
     </div>
     <div class="wrapper">
       <div class="page-content">
         <div class="header-page">
           <h1 class="page-title">{{page.title}}</h1>
           <div class="page-date"><time datetime="{{page.date}}">{{page.date | date: '%Y, %b %d'}}</time></div>
+          {% assign words = page.content | number_of_words %}
+          {% assign read_time = words | divided_by: 300 | plus: 1 %}
+          <div class="read-time">{{ read_time }} 分钟阅读</div>
         </div>
         {{page.content | markdownify}}
         <div class="page-footer">
@@ -30,7 +34,6 @@ layout: default
         </div>
         {% include author-box.html %}
         {% include recent-post.html %}
-        {% include newsletter.html %}
         {% include disqus.html %}
       </div>
     </div> <!-- End Wrapper -->

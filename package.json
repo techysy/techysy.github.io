@@ -14,9 +14,11 @@
     "gulp-cache": "^0.4.6",
     "gulp-imagemin": "^3.2.0",
     "gulp-sass": "^3.1.0",
+    "gulp-webp": "^3.0.0",
     "imagemin-pngquant": "^5.0.0"
   },
   "scripts": {
+    "build": "gulp sass",
     "dev": "node_modules\\.bin\\gulp watch"
   }
 }

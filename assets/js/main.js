@@ -4,6 +4,7 @@ $(function () {
   var searchBox = $('.search-box')
   var searchClose = $('.search-icon-close')
   var searchInput = $('#search-input')
+  var backToTop = $('#back-to-top')
 
   // Menu Settings
   $('.menu-icon, .menu-icon-close').click(function (e) {
@@ -42,5 +43,19 @@ $(function () {
     		searchBox.removeClass('search-active')
     	})
     }
+  })
+
+  // Back to Top Button
+  $(window).scroll(function () {
+    if ($(this).scrollTop() > 300) {
+      backToTop.fadeIn()
+    } else {
+      backToTop.fadeOut()
+    }
+  })
+
+  backToTop.click(function () {
+    $('html, body').animate({ scrollTop: 0 }, 300)
+    return false
   })
 })

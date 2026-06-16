@@ -6,9 +6,9 @@
     searchInput: document.getElementById('search-input'),
     resultsContainer: document.getElementById('results-container'),
     json: '{{site.baseurl}}/search.json',
-    searchResultTemplate: '<li><a href="{url}" title="{desc}">{title}</a></li>',
+    searchResultTemplate: '<li><a href="{url}" title="{excerpt}"><h4>{title}</h4><p>{excerpt}</p></a></li>',
     noResultsText: 'No results found',
-    fuzzy: false,
+    fuzzy: true,
     exclude: ['Welcome']
   });
 </script>
