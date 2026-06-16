@@ -1,41 +1,117 @@
 # 余师洋的个人博客
 
-一个基于 Jekyll 的个人博客 + 几个兴趣驱动的小工具
+> 一个基于 Jekyll 的个人博客 + 几个兴趣驱动的小工具
 
-[![GitHub](https://img.shields.io/badge/GitHub-techysy-blue.svg)](https://github.com/techysy)
-[![Jekyll](https://img.shields.io/badge/Jekyll-4.x-blue.svg)](https://jekyllrb.com)
-[![CNAME](https://img.shields.io/badge/CNAME-shiyangyu.com-green.svg)](https://shiyangyu.com)
-[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-techysy.github.io-blue.svg)](https://techysy.github.io)
+[![GitHub Pages](https://img.shields.io/badge/GitHub-Pages-blue)](https://techysy.github.io)
+[![Jekyll](https://img.shields.io/badge/Jekyll-4.x-orange)](https://jekyllrb.com/)
+[![CNAME](https://img.shields.io/badge/CNAME-shiyangyu.com-brightgreen)](https://shiyangyu.com)
 
-## 在线访问
+---
 
-- **主站**: https://shiyangyu.com
-- **GitHub Pages**: https://techysy.github.io
+## 🌐 在线访问
 
-## 技术栈
+- **主站**：https://shiyangyu.com
+- **GitHub Pages**：https://techysy.github.io
 
-- **静态站点生成器**: Jekyll 4.x
-- **构建工具**: Gulp 3.x
-- **样式预处理**: SCSS (Sass)
-- **前端框架**: jQuery 3.x
-- **搜索功能**: SimpleJekyllSearch
-- **部署平台**: GitHub Pages + GitHub Actions
+---
 
-## 安装
+## 📁 项目结构
 
-```bash
-# 安装 Ruby 依赖
-bundle install
-
-# 安装 Node.js 依赖（使用 --legacy-peer-deps 兼容旧版 Gulp）
-npm install --legacy-peer-deps
+```
+techysy.github.io/
+├── _config.yml              # Jekyll 站点配置
+├── _layouts/                # 页面布局模板
+│   ├── default.html
+│   ├── home-page.html
+│   └── post.html
+├── _includes/               # 可复用片段（header/footer/search...）
+├── _pages/                  # 静态独立页面（about/tags/tools）
+├── _posts/                  # Markdown 博客文章（15篇）
+├── assets/                  # 静态资源
+│   ├── css/sass/            # Sass 源码
+│   ├── js/                  # main.js / jquery / jekyll-search
+│   ├── fonts/font-awesome/  # 字体图标
+│   └── img/                 # 文章配图（含 WebP 版本）
+│
+├── tianfu-itt.html          # 天府绿道ITT排行榜
+├── tianfu-data.json         # 骑行数据（骑手/团队/活动）
+├── 3d-print-threads.html    # 3D打印螺纹规格速查
+├── strava-tool.html         # Strava 相关工具
+├── long-a-side.html         # 其他独立页面
+│
+├── tools/                   # WebP 转码工具
+│   ├── webp/                # cwebp.exe
+│   └── convert-webp.ps1     # 批量转换脚本
+│
+├── index.html               # 首页
+├── search.json              # 站内搜索索引
+├── CNAME                    # 自定义域名 shiyangyu.com
+├── Gemfile                  # Ruby 依赖
+├── gulpfile.js              # Gulp 构建脚本
+├── serve.rb                 # 本地服务器启动脚本
+├── build.rb                 # 构建脚本
+│
+├── google6c72564a30dfb997.html   # Google 验证
+├── baidu_verify_ZISdf60C3y.html  # 百度验证
+└── LICENSE                  # 许可协议
 ```
 
-## 本地开发
+---
+
+## 🚀 主要页面
+
+### 1. [天府绿道ITT排行榜](tianfu-itt.html)
+
+骑行数据可视化展示，从 `tianfu-data.json` 动态加载。
+
+- **数据规模**：44 位骑手、7 个团队、约 50 条活动记录
+- **排序维度**：用时 / 速度 / 心率 / 功率
+- **筛选器**：QZ 认证 / 女子组 / 团骑模式
+- **交互**：功率单位切换（W ↔ W/kg）、团队成员展开、头像/日期直跳 Strava
+
+> 数据来源为 Strava 公开数据，仅用于学习研究。
+
+### 2. [3D打印螺纹规格速查](3d-print-threads.html)
+
+机械工程工具，FDM 3D打印螺纹配套参考。
+
+- **公制螺纹**：M3~M64，含小径数据（GB/T 196-2003）
+- **英制螺纹**：1/4" ~ 2"，含牙数/螺距
+- **3D打印优化**：外牙/内牙大径与小径补偿值
+- **圈数计算器**：根据螺丝高度计算所需圈数与旋转角度
+
+> 附国标 PDF 跳转（GB/T 196-2003）。
+
+---
+
+## 🛠 技术栈
+
+| 层 | 技术 |
+|----|------|
+| 站点生成器 | **Jekyll**（GitHub Pages 原生支持） |
+| Markdown 渲染 | **kramdown** |
+| 样式 | **Sass (SCSS)** → 编译为 CSS |
+| 交互 | **原生 JavaScript** + **jQuery 3.2.1** |
+| 图标 | **Font Awesome**（本地加载） |
+| 搜索 | **jekyll-search**（读取 `search.json`） |
+| 评论 | **Disqus** |
+| 统计 | **Google Analytics** + **百度统计** |
+| 构建工具 | **Gulp** |
+| 部署 | **GitHub Actions** |
+
+---
+
+## 📦 Jekyll 插件
+
+- `jekyll-paginate` — 分页（每页 8 篇）
+- `jekyll-feed` — RSS feed
+- `jekyll-sitemap` — sitemap.xml
+
+---
+
+## 🏃 本地运行
 
 ### Windows 环境配置
-
-由于项目依赖较旧（Gulp 3.x），Windows 环境需要特殊配置：
 
 1. **安装 Ruby**（推荐安装到用户目录避免权限问题）：
    - 下载：https://github.com/oneclick/rubyinstaller2/releases
@@ -52,139 +128,58 @@ npm install --legacy-peer-deps
    gem install jekyll bundler
    ```
 
-4. **验证安装**：
-   ```powershell
-   ruby --version    # 应显示 3.x
-   jekyll --version  # 应显示 4.x
-   ```
-
-### 启动本地服务器
+### 启动命令
 
 ```bash
+# 安装 Ruby 依赖
+bundle install
+
+# 安装 Node.js 依赖（使用 --legacy-peer-deps 兼容旧版 Gulp）
+npm install --legacy-peer-deps
+
 # 编译 SCSS
 npm run build
 
-# 生成 WebP 图片（见下方说明）
+# 生成 WebP 图片
 powershell -ExecutionPolicy Bypass -File tools/convert-webp.ps1
 
-# 启动本地服务器（推荐使用项目提供的脚本）
+# 本地预览（自动构建 + 热刷新）
 ruby serve.rb
 
 # 或直接使用 Jekyll
 jekyll serve --host 0.0.0.0 --port 4000
 ```
 
-访问 http://localhost:4000 查看效果。
+**浏览器访问**：http://localhost:4000
 
-### WebP 图片转码
+**注意**：独立 HTML 工具页（`tianfu-itt.html`、`3d-print-threads.html` 等）不需要 Jekyll 构建，直接双击打开即可运行。
 
-项目使用官方 `cwebp` 工具进行图片转码，无需安装额外的 npm 包：
-
-```powershell
-# 批量转换所有 JPG/PNG 图片为 WebP
-powershell -ExecutionPolicy Bypass -File tools/convert-webp.ps1
-```
-
-**转换说明**：
-- 工具目录：`tools/webp/libwebp-1.4.0-windows-x64/bin/cwebp.exe`
-- 输出质量：80%（可在脚本中调整）
-- 已转换的文件会被跳过，不会重复转换
-- 平均压缩率：50-70%
-
-**模板支持**：
-- 首页文章卡片：CSS 背景图双重 URL（WebP + 原图降级）
-- 文章详情页：`<picture>` 标签支持（WebP + 原图降级）
-
-## 部署
-
-项目使用 GitHub Actions 自动部署。
-
-1. 推送代码到 `main` 分支
-2. GitHub Actions 自动构建并部署到 GitHub Pages
-3. 访问 https://shiyangyu.com 查看站点
-
-### GitHub Pages 配置
-
-- 仓库设置：Settings → Pages → Source 选择 "GitHub Actions"
-- 自定义域名：shiyangyu.com
-- 构建输出目录：`_site`
-
-## 功能特性
-
-- ✅ 响应式设计，支持移动端
-- ✅ 文章分类与标签
-- ✅ 全文搜索（支持模糊搜索）
-- ✅ 代码高亮
-- ✅ 评论系统（Disqus）
-- ✅ 文章阅读时间统计
-- ✅ 返回顶部按钮
-- ✅ WebP 图片支持
-- ✅ 完善的 SEO 优化（Meta 标签、结构化数据）
-- ✅ Google Analytics 统计
-- ✅ 百度统计
-
-## 项目结构
-
-```
-techysy.github.io/
-├── _includes/          # 可复用组件
-├── _layouts/           # 页面布局模板
-├── _pages/             # 静态页面
-├── _posts/             # 博客文章
-├── assets/
-│   ├── css/sass/       # SCSS 样式文件
-│   ├── fonts/          # 字体资源
-│   ├── img/            # 图片资源（含 WebP 版本）
-│   └── js/             # JavaScript 文件
-├── tools/
-│   ├── webp/           # WebP 转码工具（cwebp.exe）
-│   └── convert-webp.ps1 # 批量转换脚本
-├── .github/workflows/  # GitHub Actions 工作流
-├── _config.yml         # Jekyll 配置
-├── gulpfile.js         # Gulp 构建脚本
-├── package.json        # Node.js 依赖
-├── serve.rb            # 本地服务器启动脚本
-└── build.rb            # 构建脚本
-```
-
-## 自定义配置
-
-在 `_config.yml` 中修改以下配置：
-
-```yaml
-# 站点信息
-title: 余师洋的个人博客
-description: 余师洋的个人博客，分享技术、生活和思考
-keywords: 技术博客, 编程, 开发, 生活
-
-# 作者信息
-author: Yu ShiYanG
-email: i@shiyangyu.com
-
-# 社交链接
-github: techysy
-weibo: yushiyang2010
-bilibili: 10419858
-```
-
-## 编写文章
-
-在 `_posts/` 目录下创建新文章，命名格式：`YYYY-MM-DD-title.markdown`
-
-```markdown
----
-layout: post
-title: "文章标题"
-date: 2026-06-16
-img: cover.jpg
-description: "文章描述（用于 SEO）"
-keywords: "关键词1,关键词2"
-tags: [标签1,标签2]
 ---
 
-文章内容...
-```
+## 📝 博客文章
 
-## 许可证
+共 15 篇，时间跨度 2019-12 ~ 2026-06：
 
-MIT License
+| 主题 | 代表文章 |
+|------|----------|
+| Hackintosh / Mac | B450M Mortar 黑苹果、Windows 10 on Mac、rEFInd 引导 |
+| 工具 / 效率 | B 站 OBS 推流、TortoiseSVN、tree 命令、WSL + Docker |
+| AI / LLM | Relearn AI |
+| **最新活跃（2026）** | 3D打印螺纹速查、天府绿道 ITT 排行榜 |
+
+---
+
+## 📬 作者
+
+- **余师洋**
+- Email：i@shiyangyu.com
+- GitHub：https://github.com/techysy
+- Strava：https://strava.com
+- Bilibili：10419858
+- 小红书：5a5d020711be101b3d65cece
+
+---
+
+## 📄 License
+
+请查看项目根目录的 `LICENSE` 文件。
