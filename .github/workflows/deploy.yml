@@ -46,7 +46,7 @@ jobs:
         run: npm run build
 
       - name: Build Jekyll site
-        run: bundle exec jekyll build
+        run: ruby build.rb
         env:
           JEKYLL_ENV: production
 
