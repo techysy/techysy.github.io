@@ -23,21 +23,67 @@ npm install --legacy-peer-deps
 
 ## 本地开发
 
+### Windows 环境配置
+
+由于项目依赖较旧（Gulp 3.x），Windows 环境需要特殊配置：
+
+1. **安装 Ruby**（推荐安装到用户目录避免权限问题）：
+   - 下载：https://github.com/oneclick/rubyinstaller2/releases
+   - 安装路径建议：`C:\Users\<用户名>\Ruby34`
+   - 安装时勾选 "MSYS2 development toolchain"
+
+2. **配置环境变量**（每次新开终端需要执行）：
+   ```powershell
+   $env:Path = "C:\Users\<用户名>\Ruby34\bin;$env:Path"
+   ```
+
+3. **安装 Jekyll 和 Bundler**：
+   ```powershell
+   gem install jekyll bundler
+   ```
+
+4. **验证安装**：
+   ```powershell
+   ruby --version    # 应显示 3.x
+   jekyll --version  # 应显示 4.x
+   ```
+
+### 启动本地服务器
+
 ```bash
 # 编译 SCSS
 npm run build
 
-# 生成 WebP 图片（可选）
-npx gulp webp
+# 生成 WebP 图片（见下方说明）
+powershell -ExecutionPolicy Bypass -File tools/convert-webp.ps1
 
-# 启动本地服务器
-bundle exec jekyll serve
+# 启动本地服务器（推荐使用项目提供的脚本）
+ruby serve.rb
 
-# 或使用 Gulp 自动刷新
-npm run dev
+# 或直接使用 Jekyll
+jekyll serve --host 0.0.0.0 --port 4000
 ```
 
 访问 http://localhost:4000 查看效果。
+
+### WebP 图片转码
+
+项目使用官方 `cwebp` 工具进行图片转码，无需安装额外的 npm 包：
+
+```powershell
+# 批量转换所有 JPG/PNG 图片为 WebP
+powershell -ExecutionPolicy Bypass -File tools/convert-webp.ps1
+```
+
+**转换说明**：
+- 工具目录：`tools/webp/libwebp-1.4.0-windows-x64/bin/cwebp.exe`
+- 输出质量：80%（可在脚本中调整）
+- 已转换的文件会被跳过，不会重复转换
+- 平均压缩率：50-70%
+
+**模板支持**：
+- 首页文章卡片：CSS 背景图双重 URL（WebP + 原图降级）
+- 文章详情页：`<picture>` 标签支持（WebP + 原图降级）
 
 ## 部署
 
@@ -78,12 +124,17 @@ techysy.github.io/
 ├── assets/
 │   ├── css/sass/       # SCSS 样式文件
 │   ├── fonts/          # 字体资源
-│   ├── img/            # 图片资源
+│   ├── img/            # 图片资源（含 WebP 版本）
 │   └── js/             # JavaScript 文件
+├── tools/
+│   ├── webp/           # WebP 转码工具（cwebp.exe）
+│   └── convert-webp.ps1 # 批量转换脚本
 ├── .github/workflows/  # GitHub Actions 工作流
 ├── _config.yml         # Jekyll 配置
 ├── gulpfile.js         # Gulp 构建脚本
-└── package.json        # Node.js 依赖
+├── package.json        # Node.js 依赖
+├── serve.rb            # 本地服务器启动脚本
+└── build.rb            # 构建脚本
 ```
 
 ## 自定义配置

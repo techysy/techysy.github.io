@@ -3,7 +3,7 @@ email: i@shiyangyu.com
 description: 余师洋的个人博客，分享技术、生活和思考
 keywords: 技术博客, 编程, 开发, 生活, Mac, Windows, Linux, AI
 permalink: ':title/'
-baseurl: "/" # the subpath of your site, e.g. /blog
+baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://shiyangyu.com/" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Author settings
