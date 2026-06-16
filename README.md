@@ -174,9 +174,9 @@ jekyll serve --host 0.0.0.0 --port 4000
 - **余师洋**
 - Email：i@shiyangyu.com
 - GitHub：https://github.com/techysy
-- Strava：https://strava.com
-- Bilibili：10419858
-- 小红书：5a5d020711be101b3d65cece
+- Strava：https://www.strava.com/athletes/yangyu
+- Bilibili：https://space.bilibili.com/10419858
+- 小红书：https://www.xiaohongshu.com/user/profile/5a5d020711be101b3d65cece
 
 ---
 
