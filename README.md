@@ -1,6 +1,16 @@
 # 余师洋的个人博客
 
-基于 Jekyll + Gulp 构建的静态博客，部署在 GitHub Pages。
+一个基于 Jekyll 的个人博客 + 几个兴趣驱动的小工具
+
+[![GitHub](https://img.shields.io/badge/GitHub-techysy-blue.svg)](https://github.com/techysy)
+[![Jekyll](https://img.shields.io/badge/Jekyll-4.x-blue.svg)](https://jekyllrb.com)
+[![CNAME](https://img.shields.io/badge/CNAME-shiyangyu.com-green.svg)](https://shiyangyu.com)
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-techysy.github.io-blue.svg)](https://techysy.github.io)
+
+## 在线访问
+
+- **主站**: https://shiyangyu.com
+- **GitHub Pages**: https://techysy.github.io
 
 ## 技术栈
 
