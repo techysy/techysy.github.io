@@ -49,9 +49,12 @@ jobs:
         run: npm run build
 
       - name: Build Jekyll site
-        run: ruby build.rb
+        run: bundle exec jekyll build
         env:
           JEKYLL_ENV: production
+
+      - name: Copy WebP images to _site
+        run: cp -r assets/img/*.webp assets/img/**/*.webp _site/assets/img/ 2>/dev/null || true
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
