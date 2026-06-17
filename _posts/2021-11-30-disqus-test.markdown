@@ -109,7 +109,7 @@ disqus_shortname: your-disqus-shortname
 在 `_includes` 目录下创建 `disqus.html` 文件：
 
 ```html
-{% if page.comments != false and site.disqus.enabled %}
+{% raw %}{% if page.comments != false and site.disqus.enabled %}
 <div id="disqus_thread"></div>
 <script>
     var disqus_config = function () {
@@ -128,7 +128,7 @@ disqus_shortname: your-disqus-shortname
 <noscript>
     请启用 JavaScript 以查看 <a href="https://disqus.com/?ref_noscript">Disqus 评论</a>
 </noscript>
-{% endif %}
+{% endif %}{% endraw %}
 ```
 
 ### 创建评论计数组件
@@ -136,9 +136,9 @@ disqus_shortname: your-disqus-shortname
 在 `_includes` 目录下创建 `disqus_count.html` 文件：
 
 ```html
-{% if site.disqus.enabled %}
+{% raw %}{% if site.disqus.enabled %}
 <script id="dsq-count-scr" src="https://{{ site.disqus.shortname }}.disqus.com/count.js" async></script>
-{% endif %}
+{% endif %}{% endraw %}
 ```
 
 ## 集成到文章页面
@@ -148,7 +148,7 @@ disqus_shortname: your-disqus-shortname
 编辑 `_layouts/post.html`，在内容区域下方添加评论组件：
 
 ```html
-<div class="post-content">
+{% raw %}<div class="post-content">
     {{ content }}
 </div>
 
@@ -157,7 +157,7 @@ disqus_shortname: your-disqus-shortname
 <div class="post-comments">
     {% include disqus.html %}
 </div>
-{% endif %}
+{% endif %}{% endraw %}
 ```
 
 ### 2. 添加评论计数
@@ -165,11 +165,11 @@ disqus_shortname: your-disqus-shortname
 在文章列表或其他需要显示评论数的地方添加：
 
 ```html
-{% if site.disqus.enabled %}
+{% raw %}{% if site.disqus.enabled %}
 <span class="disqus-comment-count" data-disqus-identifier="{{ post.url }}">
     <a href="{{ post.url | absolute_url }}#disqus_thread">评论</a>
 </span>
-{% endif %}
+{% endif %}{% endraw %}
 ```
 
 ### 3. 引入计数脚本
@@ -177,7 +177,7 @@ disqus_shortname: your-disqus-shortname
 在 `head.html` 或文章页面中添加计数脚本的引用：
 
 ```html
-{% include disqus_count.html %}
+{% raw %}{% include disqus_count.html %}{% endraw %}
 ```
 
 ### 4. 控制单篇文章是否显示评论
