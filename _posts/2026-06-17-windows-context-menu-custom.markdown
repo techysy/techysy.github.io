@@ -118,7 +118,7 @@ Windows Registry Editor Version 5.00
 "Position"="Bottom"
 
 [HKEY_CLASSES_ROOT\Directory\shell\PowerShellHereAdmin\command]
-@="mshta vbscript:CreateObject(\"Shell.Application\").ShellExecute(\"powershell.exe\",\"-NoLogo -NoExit\",\"%V\",\"runas\",1)(close)"
+@="mshta vbscript:CreateObject(\"Shell.Application\").ShellExecute(\"powershell.exe\",\"-NoLogo -NoExit -Command \"\"Set-Location '%V'\"\"\",\"\",\"runas\",1)(close)"
 
 ; === Drive ===
 [HKEY_CLASSES_ROOT\Drive\shell\PowerShellHere]
@@ -135,7 +135,7 @@ Windows Registry Editor Version 5.00
 "Position"="Bottom"
 
 [HKEY_CLASSES_ROOT\Drive\shell\PowerShellHereAdmin\command]
-@="mshta vbscript:CreateObject(\"Shell.Application\").ShellExecute(\"powershell.exe\",\"-NoLogo -NoExit\",\"%V\",\"runas\",1)(close)"
+@="mshta vbscript:CreateObject(\"Shell.Application\").ShellExecute(\"powershell.exe\",\"-NoLogo -NoExit -Command \"\"Set-Location '%V'\"\"\",\"\",\"runas\",1)(close)"
 ```
 
 移除时用以下内容（删除对应的注册表键）：
