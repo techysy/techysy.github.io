@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 2026-06-17
+
+### Updates
+
+1. **文章更新**
+   - 更新了文章 `2019-12-11-bilibili-obs-setting.markdown`
+
 ## 2026-06-16
 
 ### Bug Fixes
