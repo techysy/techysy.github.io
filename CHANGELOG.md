@@ -2,6 +2,28 @@
 
 ## 2026-06-17
 
+### 安全修复
+
+1. **decompress 路径遍历漏洞 (Critical)**
+   - 问题：`decompress@<4.2.1` 存在路径遍历漏洞（CVE-2021-23425），攻击者可通过恶意压缩文件写入任意文件
+   - 严重程度：Critical (CVSS 9.8/10)
+   - 修复：升级相关依赖版本
+     - `gulp-imagemin`: ^3.2.0 → ^7.1.0
+     - `gulp-webp`: ^3.0.0 → ^4.0.1
+     - `imagemin-pngquant`: ^5.0.0 → ^9.0.2
+
+2. **lodash.template 命令注入漏洞 (High)**
+   - 问题：`lodash.template@<=4.5.0` 存在命令注入漏洞（CVE-2021-23337），攻击者可通过恶意模板输入执行任意命令
+   - 严重程度：High (CVSS 7.2/10)
+   - 修复：升级相关依赖版本
+     - `gulp-autoprefixer`: ^3.1.1 → ^9.0.0
+     - `gulp-cache`: ^0.4.6 → ^1.1.3
+
+3. **axios SSRF 漏洞 (Moderate)**
+   - 问题：`axios@<0.31.0` 在检查 `NO_PROXY` 规则时存在主机名规范化绕过漏洞（CVE-2023-45853）
+   - 严重程度：Moderate (CVSS 6.3/10)
+   - 修复：升级 `browser-sync` 从 ^2.18.8 → ^3.0.2
+
 ### 更新内容
 
 1. **文章更新**
