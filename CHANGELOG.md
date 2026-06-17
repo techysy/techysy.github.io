@@ -8,7 +8,7 @@
    - 问题：`decompress@<4.2.1` 存在路径遍历漏洞（CVE-2021-23425），攻击者可通过恶意压缩文件写入任意文件
    - 严重程度：Critical (CVSS 9.8/10)
    - 修复：升级相关依赖版本
-     - `gulp-imagemin`: ^3.2.0 → ^7.1.0
+     - `gulp-imagemin`: ^3.2.0 → ^9.2.0
      - `gulp-webp`: ^3.0.0 → ^4.0.1
      - `imagemin-pngquant`: ^5.0.0 → ^9.0.2
 
