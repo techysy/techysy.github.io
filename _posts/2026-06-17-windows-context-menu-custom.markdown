@@ -1,7 +1,7 @@
 ﻿---
 layout: post
 title: Windows右键菜单自定义：添加PowerShell与管理Git Bash
-date: 2026-06-17 21:00:00 +0800
+date: 2026-06-17 16:00:00 +0800
 img: context-menu.jpg
 tags: [Windows, PowerShell, 注册表]
 categories: 分享
@@ -87,55 +87,34 @@ $content = "Windows Registry Editor Version 5.00`r`n..."
 Windows Registry Editor Version 5.00
 
 ; === Folder Background (empty space) ===
-[HKEY_CLASSES_ROOT\Directory\Background\shell\PowerShellHere]
-@="在此处打开 PowerShell"
-"Icon"="powershell.exe"
-"Position"="Bottom"
-
-[HKEY_CLASSES_ROOT\Directory\Background\shell\PowerShellHere\command]
-@="powershell.exe -NoLogo -NoExit"
-
 [HKEY_CLASSES_ROOT\Directory\Background\shell\PowerShellHereAdmin]
 @="在此处打开 PowerShell (管理员)"
 "Icon"="powershell.exe"
 "Position"="Bottom"
+"Extended"=""
 
 [HKEY_CLASSES_ROOT\Directory\Background\shell\PowerShellHereAdmin\command]
-@="mshta vbscript:CreateObject(\"Shell.Application\").ShellExecute(\"powershell.exe\",\"-NoLogo -NoExit\",\"\",\"runas\",1)(close)"
+@="powershell.exe -Command Start-Process powershell.exe -ArgumentList '-NoLogo -NoExit -Command Set-Location ''%V''' -Verb RunAs"
 
 ; === Folder ===
-[HKEY_CLASSES_ROOT\Directory\shell\PowerShellHere]
-@="在此处打开 PowerShell"
-"Icon"="powershell.exe"
-"Position"="Bottom"
-
-[HKEY_CLASSES_ROOT\Directory\shell\PowerShellHere\command]
-@="powershell.exe -NoLogo -NoExit -Command \"Set-Location '%V'\""
-
 [HKEY_CLASSES_ROOT\Directory\shell\PowerShellHereAdmin]
 @="在此处打开 PowerShell (管理员)"
 "Icon"="powershell.exe"
 "Position"="Bottom"
+"Extended"=""
 
 [HKEY_CLASSES_ROOT\Directory\shell\PowerShellHereAdmin\command]
-@="mshta vbscript:CreateObject(\"Shell.Application\").ShellExecute(\"powershell.exe\",\"-NoLogo -NoExit -Command \"\"Set-Location '%V'\"\"\",\"\",\"runas\",1)(close)"
+@="powershell.exe -Command Start-Process powershell.exe -ArgumentList '-NoLogo -NoExit -Command Set-Location ''%V''' -Verb RunAs"
 
 ; === Drive ===
-[HKEY_CLASSES_ROOT\Drive\shell\PowerShellHere]
-@="在此处打开 PowerShell"
-"Icon"="powershell.exe"
-"Position"="Bottom"
-
-[HKEY_CLASSES_ROOT\Drive\shell\PowerShellHere\command]
-@="powershell.exe -NoLogo -NoExit -Command \"Set-Location '%V'\""
-
 [HKEY_CLASSES_ROOT\Drive\shell\PowerShellHereAdmin]
 @="在此处打开 PowerShell (管理员)"
 "Icon"="powershell.exe"
 "Position"="Bottom"
+"Extended"=""
 
 [HKEY_CLASSES_ROOT\Drive\shell\PowerShellHereAdmin\command]
-@="mshta vbscript:CreateObject(\"Shell.Application\").ShellExecute(\"powershell.exe\",\"-NoLogo -NoExit -Command \"\"Set-Location '%V'\"\"\",\"\",\"runas\",1)(close)"
+@="powershell.exe -Command Start-Process powershell.exe -ArgumentList '-NoLogo -NoExit -Command Set-Location ''%V''' -Verb RunAs"
 ```
 
 移除时用以下内容（删除对应的注册表键）：
@@ -143,11 +122,8 @@ Windows Registry Editor Version 5.00
 ```reg
 Windows Registry Editor Version 5.00
 
-[-HKEY_CLASSES_ROOT\Directory\Background\shell\PowerShellHere]
 [-HKEY_CLASSES_ROOT\Directory\Background\shell\PowerShellHereAdmin]
-[-HKEY_CLASSES_ROOT\Directory\shell\PowerShellHere]
 [-HKEY_CLASSES_ROOT\Directory\shell\PowerShellHereAdmin]
-[-HKEY_CLASSES_ROOT\Drive\shell\PowerShellHere]
 [-HKEY_CLASSES_ROOT\Drive\shell\PowerShellHereAdmin]
 ```
 
