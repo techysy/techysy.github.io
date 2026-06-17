@@ -28,7 +28,7 @@ techysy.github.io/
 ├── _pages/                  # 静态独立页面（about/tags/tools）
 ├── _posts/                  # Markdown 博客文章（15篇）
 ├── assets/                  # 静态资源
-│   ├── css/sass/            # Sass 源码
+│   ├── css/                 # CSS 样式
 │   ├── js/                  # main.js / jquery / jekyll-search
 │   ├── fonts/font-awesome/  # 字体图标
 │   └── img/                 # 文章配图（含 WebP 版本）
@@ -40,14 +40,13 @@ techysy.github.io/
 ├── long-a-side.html         # 其他独立页面
 │
 ├── tools/                   # WebP 转码工具
-│   ├── webp/                # cwebp.exe
-│   └── convert-webp.ps1     # 批量转换脚本
+│   ├── webp/                # libwebp（包含 cwebp.exe）
+│   └── convert-webp.ps1     # 批量转换脚本（本地使用）
 │
 ├── index.html               # 首页
 ├── search.json              # 站内搜索索引
 ├── CNAME                    # 自定义域名 shiyangyu.com
 ├── Gemfile                  # Ruby 依赖
-├── gulpfile.js              # Gulp 构建脚本
 ├── serve.rb                 # 本地服务器启动脚本
 ├── build.rb                 # 构建脚本
 │
@@ -90,13 +89,13 @@ techysy.github.io/
 |----|------|
 | 站点生成器 | **Jekyll**（GitHub Pages 原生支持） |
 | Markdown 渲染 | **kramdown** |
-| 样式 | **Sass (SCSS)** → 编译为 CSS |
+| 样式 | **CSS**（手写或预编译） |
 | 交互 | **原生 JavaScript** + **jQuery 3.2.1** |
 | 图标 | **Font Awesome**（本地加载） |
 | 搜索 | **jekyll-search**（读取 `search.json`） |
 | 评论 | **Disqus** |
 | 统计 | **Google Analytics** + **百度统计** |
-| 构建工具 | **Gulp** |
+| 图片处理 | **WebP 转换**（本地环境处理） |
 | 部署 | **GitHub Actions** |
 
 ---
@@ -134,13 +133,7 @@ techysy.github.io/
 # 安装 Ruby 依赖
 bundle install
 
-# 安装 Node.js 依赖（使用 --legacy-peer-deps 兼容旧版 Gulp）
-npm install --legacy-peer-deps
-
-# 编译 SCSS
-npm run build
-
-# 生成 WebP 图片
+# 生成 WebP 图片（本地环境）
 powershell -ExecutionPolicy Bypass -File tools/convert-webp.ps1
 
 # 本地预览（自动构建 + 热刷新）
@@ -152,7 +145,26 @@ jekyll serve --host 0.0.0.0 --port 4000
 
 **浏览器访问**：http://localhost:4000
 
-**注意**：独立 HTML 工具页（`tianfu-itt.html`、`3d-print-threads.html` 等）不需要 Jekyll 构建，直接双击打开即可运行。
+**注意**：
+- 独立 HTML 工具页（`tianfu-itt.html`、`3d-print-threads.html` 等）不需要 Jekyll 构建，直接双击打开即可运行
+- **WebP 图片转换已移至本地环境处理**（通过 `tools/convert-webp.ps1`），GitHub Actions 只负责 Jekyll 构建和部署
+
+---
+
+## 🚀 CI/CD 部署
+
+GitHub Actions 工作流（`.github/workflows/deploy.yml`）：
+
+1. ✅ 检出代码
+2. ✅ 安装 Ruby 依赖
+3. ✅ 运行 Jekyll build
+4. ✅ 复制预生成的 WebP 图片到输出目录
+5. ✅ 上传构建产物
+6. ✅ 部署到 GitHub Pages
+
+**关键改动**：
+- 已移除 npm/gulp 构建步骤（WebP 转换现在本地完成）
+- 构建流程更快、更稳定
 
 ---
 
