@@ -24,9 +24,27 @@
    - 严重程度：Moderate (CVSS 6.3/10)
    - 修复：升级 `browser-sync` 从 ^2.18.8 → ^3.0.2
 
+### 构建修复
+
+1. **Jekyll 构建失败**
+   - 问题：`disqus-test.markdown` 文章中包含未转义的 Liquid 模板语法，导致构建时尝试执行 `{% include disqus_count.html %}`
+   - 修复：在所有包含 Liquid 模板语法的代码块中添加 `{% raw %}` 和 `{% endraw %}` 标签进行转义
+
+2. **GitHub Actions Node.js 20 弃用警告**
+   - 问题：GitHub Actions 从 2026 年 6 月 16 日起强制使用 Node.js 24，现有工作流使用的 actions 版本不支持 Node.js 24
+   - 修复：升级所有 actions 到支持 Node.js 24 的版本
+     - `actions/checkout`: v4 → v5
+     - `actions/setup-node`: v4 → v5
+     - `actions/upload-pages-artifact`: v3 → v4
+     - `actions/deploy-pages`: v4 → v5
+
 ### 更新内容
 
-1. **文章更新**
+1. **代码高亮主题更新**
+   - 将复古浅色主题替换为 Catppuccin Mocha 深色主题
+   - 更新 `_syntax.scss` 和 `main.css` 文件
+
+2. **文章更新**
    - 更新了文章 `2019-12-11-bilibili-obs-setting.markdown`
 
 ### 文档
