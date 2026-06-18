@@ -83,7 +83,7 @@ $content = "Windows Registry Editor Version 5.00`r`n..."
 
 将以下内容保存为 `.reg` 文件（UTF-16 LE 编码），双击导入即可：
 
-```reg
+```ini
 Windows Registry Editor Version 5.00
 
 ; === Folder Background (empty space) ===
@@ -119,7 +119,7 @@ Windows Registry Editor Version 5.00
 
 移除时用以下内容（删除对应的注册表键）：
 
-```reg
+```ini
 Windows Registry Editor Version 5.00
 
 [-HKEY_CLASSES_ROOT\Directory\Background\shell\PowerShellHereAdmin]
@@ -135,7 +135,7 @@ Windows Registry Editor Version 5.00
 
 Git 安装程序在注册表中写入了以下键：
 
-```
+```ini
 HKEY_CLASSES_ROOT\Directory\Background\shell\git_shell    → Open Git Bash here
 HKEY_CLASSES_ROOT\Directory\Background\shell\git_gui     → Open Git GUI here
 HKEY_CLASSES_ROOT\Directory\shell\git_shell              → Open Git Bash here
@@ -146,7 +146,7 @@ HKEY_CLASSES_ROOT\Directory\shell\git_gui               → Open Git GUI here
 
 保存为 `.reg` 文件（UTF-16 LE），双击导入：
 
-```reg
+```ini
 Windows Registry Editor Version 5.00
 
 [-HKEY_CLASSES_ROOT\Directory\Background\shell\git_shell]
@@ -171,7 +171,7 @@ Windows Registry Editor Version 5.00
 
 例如，让 PowerShell 选项出现在菜单顶部：
 
-```reg
+```ini
 [HKEY_CLASSES_ROOT\Directory\Background\shell\PowerShellHere]
 "Position"="Top"
 ```
@@ -194,7 +194,7 @@ shell
 
 在子键中添加一个名为 `Extended` 的空字符串值，菜单项只会在按住 Shift 键再右键时才显示：
 
-```reg
+```ini
 [HKEY_CLASSES_ROOT\Directory\Background\shell\PowerShellHereAdmin]
 "Extended"=""
 ```
