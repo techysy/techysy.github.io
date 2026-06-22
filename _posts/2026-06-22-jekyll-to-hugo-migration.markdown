@@ -320,6 +320,7 @@ for filename in os.listdir(posts_dir):
 
 **Jekyll (Liquid)**：
 
+{% raw %}
 ```html
 {% for post in site.posts %}
   <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
@@ -327,9 +328,11 @@ for filename in os.listdir(posts_dir):
   <p>{{ post.excerpt }}</p>
 {% endfor %}
 ```
+{% endraw %}
 
 **Hugo (Go Template)**：
 
+{% raw %}
 ```html
 {{ range (where site.RegularPages "Section" "posts") }}
   <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
@@ -337,6 +340,7 @@ for filename in os.listdir(posts_dir):
   <p>{{ .Summary }}</p>
 {{ end }}
 ```
+{% endraw %}
 
 **常用语法对照**：
 
@@ -464,10 +468,12 @@ Jekyll 的 `assets/` 目录中如果有自定义 CSS/JS：
 
 **Hugo assets 处理**：
 
+{% raw %}
 ```html
 {{ $style := resources.Get "css/style.css" | minify }}
 <link rel="stylesheet" href="{{ $style.RelPermalink }}">
 ```
+{% endraw %}
 
 ---
 
@@ -532,7 +538,7 @@ jobs:
   deploy:
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ '{{' }} steps.deployment.outputs.page_url {{ '}}' }}
     runs-on: ubuntu-latest
     needs: build
     steps:
