@@ -320,41 +320,37 @@ for filename in os.listdir(posts_dir):
 
 **Jekyll (Liquid)**：
 
-{% raw %}
-```html
-{% for post in site.posts %}
-  <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
-  <p>{{ post.date | date: "%Y-%m-%d" }}</p>
-  <p>{{ post.excerpt }}</p>
-{% endfor %}
 ```
-{% endraw %}
+&#123;% for post in site.posts %}
+  <h2><a href="&#123;&#123; post.url }}">&#123;&#123; post.title }}</a></h2>
+  <p>&#123;&#123; post.date | date: "%Y-%m-%d" }}</p>
+  <p>&#123;&#123; post.excerpt }}</p>
+&#123;% endfor %}
+```
 
 **Hugo (Go Template)**：
 
-{% raw %}
-```html
-{{ range (where site.RegularPages "Section" "posts") }}
-  <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
-  <p>{{ .Date.Format "2006-01-02" }}</p>
-  <p>{{ .Summary }}</p>
-{{ end }}
 ```
-{% endraw %}
+&#123;&#123; range (where site.RegularPages "Section" "posts") }}
+  <h2><a href="&#123;&#123; .RelPermalink }}">&#123;&#123; .Title }}</a></h2>
+  <p>&#123;&#123; .Date.Format "2006-01-02" }}</p>
+  <p>&#123;&#123; .Summary }}</p>
+&#123;&#123; end }}
+```
 
 **常用语法对照**：
 
 | Liquid | Go Template | 说明 |
 |--------|-------------|------|
-| `{{ post.url }}` | `{{ .RelPermalink }}` | 相对 URL |
-| `{{ post.title }}` | `{{ .Title }}` | 标题 |
-| `{{ post.content }}` | `{{ .Content }}` | 内容 |
-| `{{ post.excerpt }}` | `{{ .Summary }}` | 摘要 |
-| `{{ post.date }}` | `{{ .Date }}` | 日期 |
-| `{{ site.time }}` | `{{ now }}` | 当前时间 |
-| `{% if condition %}` | `{{ if condition }}` | 条件判断 |
-| `{% for item in list %}` | `{{ range list }}` | 循环 |
-| `{{ variable \| filter }}` | `{{ filter variable }}` | 过滤器 |
+| `post.url` | `.RelPermalink` | 相对 URL |
+| `post.title` | `.Title` | 标题 |
+| `post.content` | `.Content` | 内容 |
+| `post.excerpt` | `.Summary` | 摘要 |
+| `post.date` | `.Date` | 日期 |
+| `site.time` | `now` | 当前时间 |
+| `if condition` | `if condition` | 条件判断 |
+| `for item in list` | `range list` | 循环 |
+| `variable \| filter` | `filter variable` | 过滤器 |
 
 ---
 
@@ -448,7 +444,7 @@ cp -r assets/img/* static/images/
 **Jekyll**：
 
 ```markdown
-![图片描述]({{site.baseurl}}/assets/img/photo.png)
+![图片描述](&#123;&#123;site.baseurl}}/assets/img/photo.png)
 ```
 
 **Hugo**：
@@ -468,12 +464,10 @@ Jekyll 的 `assets/` 目录中如果有自定义 CSS/JS：
 
 **Hugo assets 处理**：
 
-{% raw %}
-```html
-{{ $style := resources.Get "css/style.css" | minify }}
-<link rel="stylesheet" href="{{ $style.RelPermalink }}">
 ```
-{% endraw %}
+&#123;&#123; $style := resources.Get "css/style.css" | minify }}
+<link rel="stylesheet" href="&#123;&#123; $style.RelPermalink }}">
+```
 
 ---
 
@@ -538,7 +532,7 @@ jobs:
   deploy:
     environment:
       name: github-pages
-      url: ${{ '{{' }} steps.deployment.outputs.page_url {{ '}}' }}
+      url: $&#123;&#123; steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     needs: build
     steps:
