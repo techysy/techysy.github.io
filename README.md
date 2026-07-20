@@ -35,6 +35,7 @@ techysy.github.io/
 │
 ├── tianfu-itt.html          # 天府绿道ITT排行榜
 ├── tianfu-data.json         # 骑行数据（骑手/团队/活动）
+├── cycling-activity.html      # 骑行活动发布平台（GPX渲染）
 ├── 3d-print-threads.html    # 3D打印螺纹规格速查
 ├── strava-tool.html         # Strava 相关工具
 ├── long-a-side.html         # 其他独立页面
@@ -70,7 +71,24 @@ techysy.github.io/
 
 > 数据来源为 Strava 公开数据，仅用于学习研究。
 
-### 2. [3D打印螺纹规格速查](3d-print-threads.html)
+### 2. [骑行活动发布平台](cycling-activity.html)
+
+GPX 轨迹渲染与骑行活动发布工具。
+
+- **GPX 渲染**：上传或拖拽 GPX 文件，Leaflet 地图显示轨迹，起终点标记
+- **海拔剖面**：Canvas 绘制海拔图，带距离/海拔刻度
+- **数据统计**：距离、爬升、时长（按25km/h匀速计算）
+- **隧道过滤**：梯度检测去除GPS异常跳点，减少无效爬升
+- **电子骑友**：匀速模拟骑行，实时动画沿轨迹前进
+- **兴趣点 (POI)**：在地图上标记厕所、拍照点、休息、补给点等
+- **路书链接**：输入 Strava / iGPSPORT / Garmin Connect 链接
+- **图层切换**：街道/卫星底图一键切换
+- **社交分享**：微博、Twitter、复制链接
+- **数据导出**：GPX 文件下载、POI 数据 JSON 导出/导入
+
+> 纯静态 HTML，无需后端，直接双击打开即可使用。
+
+### 3. [3D打印螺纹规格速查](3d-print-threads.html)
 
 机械工程工具，FDM 3D打印螺纹配套参考。
 
