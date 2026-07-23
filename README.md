@@ -1,17 +1,42 @@
-# spot.studio
+# Hi, I'm 余师洋 👋
 
-> 🎯 骑行 & 徒步活动发布平台 — GPX 轨迹渲染 + 机位踩点 📷
-
-[![GitHub Pages](https://img.shields.io/badge/GitHub-Pages-blue)](https://shiyangyu.com/spot-studio)
-[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+🚴🥾 骑行 & 徒步爱好者 | Full-stack Developer
 
 ---
 
-## 🌐 在线访问
+## 🔥 Featured Project — spot-studio
 
-**https://techysy.github.io/spot-studio**
+> 骑行 & 徒步活动发布平台 | Cycling & Hiking Activity Publishing Platform
+
+纯前端单文件，双击 HTML 即可离线使用。
+Pure frontend, single HTML file, works fully offline.
+
+| | |
+|---|---|
+| 🌐 **在线体验** | [shiyangyu.com/spot-studio](https://shiyangyu.com/spot-studio) |
+| 💻 **GitHub** | [techysy/spot-studio](https://github.com/techysy/spot-studio) |
+| 📄 **License** | MIT |
+
+### ✨ 功能亮点 / Highlights
+
+- 🗺️ GPX 轨迹上传 → 地图渲染 + 海拔剖面
+- 🎨 按海拔/坡度渐变着色，一眼看出地形
+- ✏️ 轨迹编辑：添加/删除/拖拽节点，撤销重做
+- 📷 POI 机位踩点：自动吸附到轨迹，6 种类型
+- 📤 导出 GPX 自动写入兴趣点（`<wpt>`）
+- 🔗 路书链接自动识别 Strava / iGPSPORT / Garmin
+- 🚴🥾 骑行/徒步模式自动切换
+
+### 🛠️ 技术栈 / Stack
+
+Leaflet + Canvas + Vanilla JS · 零依赖 · 全部内联在一个 HTML 里
 
 ---
+
+## 📫 Contact
+
+- GitHub: [@techysy](https://github.com/techysy)
+- Strava: [@yangyu](https://www.strava.com/athletes/yangyu)
 
 ## ✨ 功能特性
 
