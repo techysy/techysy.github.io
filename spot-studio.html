@@ -1198,11 +1198,45 @@
             duration = (points[points.length-1].time - points[0].time) / 1000;
         }
 
+        const waypoints = [];
+        const wpts = doc.querySelectorAll('wpt');
+        const symToType = {
+            '鎷嶇収鐐?: 'photo', 'photo': 'photo', '馃摳': 'photo',
+            '鍘曟墍': 'toilet', 'toilet': 'toilet', '馃毣': 'toilet',
+            '浼戞伅': 'rest', 'rest': 'rest', '馃獞': 'rest',
+            '琛ョ粰鐐?: 'supply', 'supply': 'supply', '馃彧': 'supply',
+            '楗按': 'water', 'water': 'water', '馃挧': 'water',
+            '娉ㄦ剰': 'danger', 'danger': 'danger', '鈿狅笍': 'danger'
+        };
+        wpts.forEach(w => {
+            const lat = parseFloat(w.getAttribute('lat'));
+            const lon = parseFloat(w.getAttribute('lon'));
+            const nameEl = w.querySelector('name');
+            const name = nameEl ? nameEl.textContent : '';
+            const symEl = w.querySelector('sym');
+            const sym = symEl ? symEl.textContent : '';
+            const descEl = w.querySelector('desc');
+            const desc = descEl ? descEl.textContent : '';
+            let type = 'photo';
+            const matchKey = [sym, desc].find(k => symToType[k]);
+            if (matchKey) type = symToType[matchKey];
+            else if (desc.includes('馃摳')) type = 'photo';
+            else if (desc.includes('馃毣')) type = 'toilet';
+            else if (desc.includes('馃獞')) type = 'rest';
+            else if (desc.includes('馃彧')) type = 'supply';
+            else if (desc.includes('馃挧')) type = 'water';
+            else if (desc.includes('鈿狅笍')) type = 'danger';
+            if (!isNaN(lat) && !isNaN(lon)) {
+                waypoints.push({ lat, lng: lon, type, name });
+            }
+        });
+
         return {
             points,
             totalDistance: totalDist,
             totalElevationGain: totalEleGain,
-            duration
+            duration,
+            waypoints
         };
     }
 
@@ -1381,6 +1415,10 @@
         document.getElementById('coords-display').classList.add('show');
         updateWithFilter();
         updateTrackList();
+
+        if (result.waypoints && result.waypoints.length > 0) {
+            result.waypoints.forEach(w => addPoi(w.lat, w.lng, w.type, w.name));
+        }
 
         document.getElementById('download-btn').disabled = false;
         document.getElementById('map-hint').style.display = 'none';
