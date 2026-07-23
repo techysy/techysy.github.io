@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>骑行活动发布</title>
-    <meta property="og:title" content="骑行活动发布">
-    <meta property="og:description" content="骑行活动详情与GPX轨迹">
+    <title>楠戣娲诲姩鍙戝竷</title>
+    <meta property="og:title" content="楠戣娲诲姩鍙戝竷">
+    <meta property="og:description" content="楠戣娲诲姩璇︽儏涓嶨PX杞ㄨ抗">
     <meta property="og:type" content="website">
     <link rel="stylesheet" href="leaflet.css" />
     <style>
@@ -57,7 +57,7 @@
             min-height: 1.2em;
         }
         .hero-title:empty::before {
-            content: '点击输入骑行活动标题';
+            content: '鐐瑰嚮杈撳叆楠戣娲诲姩鏍囬';
             opacity: 0.5;
         }
         .hero-meta {
@@ -170,7 +170,7 @@
             color: var(--text);
         }
         .description:empty::before {
-            content: '点击编辑活动描述...';
+            content: '鐐瑰嚮缂栬緫娲诲姩鎻忚堪...';
             color: var(--text-muted);
         }
 
@@ -559,37 +559,37 @@
 <header class="hero">
     <div class="hero-title" contenteditable="true" id="title"></div>
     <div class="hero-meta">
-        <span id="date-display">📅</span>
-        <span id="location-display">📍</span>
+        <span id="date-display">馃搮</span>
+        <span id="location-display">馃搷</span>
     </div>
 </header>
 
 <section class="map-section">
     <div id="map"></div>
     <div class="layer-switcher" id="layer-switcher">
-        <button class="layer-btn active" data-layer="street">🗺️ 街道</button>
-        <button class="layer-btn" data-layer="satellite">🛰️ 卫星</button>
+        <button class="layer-btn active" data-layer="street">馃椇锔?琛楅亾</button>
+        <button class="layer-btn" data-layer="satellite">馃洶锔?鍗槦</button>
     </div>
     <div class="poi-map-toolbar" id="poi-map-toolbar">
         <div class="poi-map-toolbar-inner">
-            <button class="poi-btn" data-type="toilet"><span class="poi-emoji">🚻</span></button>
-            <button class="poi-btn" data-type="photo"><span class="poi-emoji">📸</span></button>
-            <button class="poi-btn" data-type="rest"><span class="poi-emoji">🪑</span></button>
-            <button class="poi-btn" data-type="supply"><span class="poi-emoji">🏪</span></button>
-            <button class="poi-btn" data-type="water"><span class="poi-emoji">💧</span></button>
-            <button class="poi-btn" data-type="danger"><span class="poi-emoji">⚠️</span></button>
+            <button class="poi-btn" data-type="toilet"><span class="poi-emoji">馃毣</span></button>
+            <button class="poi-btn" data-type="photo"><span class="poi-emoji">馃摳</span></button>
+            <button class="poi-btn" data-type="rest"><span class="poi-emoji">馃獞</span></button>
+            <button class="poi-btn" data-type="supply"><span class="poi-emoji">馃彧</span></button>
+            <button class="poi-btn" data-type="water"><span class="poi-emoji">馃挧</span></button>
+            <button class="poi-btn" data-type="danger"><span class="poi-emoji">鈿狅笍</span></button>
         </div>
     </div>
     <div class="color-mode-bar" id="color-mode-bar">
         <div class="color-mode-bar-inner">
-            <span class="color-mode-label">着色：</span>
-            <button class="color-mode-btn active" data-mode="none">无</button>
-            <button class="color-mode-btn" data-mode="elevation">海拔</button>
-            <button class="color-mode-btn" data-mode="slope">坡度</button>
+            <span class="color-mode-label">鐫€鑹诧細</span>
+            <button class="color-mode-btn active" data-mode="none">鏃?/button>
+            <button class="color-mode-btn" data-mode="elevation">娴锋嫈</button>
+            <button class="color-mode-btn" data-mode="slope">鍧″害</button>
         </div>
     </div>
     <div class="color-legend" id="color-legend">
-        <div class="color-legend-title" id="color-legend-title">海拔</div>
+        <div class="color-legend-title" id="color-legend-title">娴锋嫈</div>
         <div class="color-legend-bar" id="color-legend-bar"></div>
         <div class="color-legend-labels">
             <span id="color-legend-min">0m</span>
@@ -598,28 +598,28 @@
     </div>
     <div class="editor-toolbar" id="editor-toolbar">
         <div class="editor-toolbar-inner">
-            <button class="editor-tool-btn" id="tool-undo" title="撤销">↩</button>
-            <button class="editor-tool-btn" id="tool-redo" title="重做">↪</button>
-            <button class="editor-tool-btn" id="tool-measure" title="测距">📏</button>
-            <button class="editor-tool-btn" id="tool-addpoint" title="添加节点">➕</button>
-            <button class="editor-tool-btn" id="tool-deletepoint" title="删除节点">🗑️</button>
+            <button class="editor-tool-btn" id="tool-undo" title="鎾ら攢">鈫?/button>
+            <button class="editor-tool-btn" id="tool-redo" title="閲嶅仛">鈫?/button>
+            <button class="editor-tool-btn" id="tool-measure" title="娴嬭窛">馃搹</button>
+            <button class="editor-tool-btn" id="tool-addpoint" title="娣诲姞鑺傜偣">鉃?/button>
+            <button class="editor-tool-btn" id="tool-deletepoint" title="鍒犻櫎鑺傜偣">馃棏锔?/button>
         </div>
     </div>
     <div class="measure-result" id="measure-result"></div>
     <div class="coords-display" id="coords-display">0.000000, 0.000000</div>
     <div class="context-menu" id="context-menu">
-        <div class="context-menu-item" data-action="mark">📍 放置标记</div>
-        <div class="context-menu-item" data-action="measure-here">📏 从这里测距</div>
+        <div class="context-menu-item" data-action="mark">馃搷 鏀剧疆鏍囪</div>
+        <div class="context-menu-item" data-action="measure-here">馃搹 浠庤繖閲屾祴璺?/div>
         <div class="context-menu-divider"></div>
-        <div class="context-menu-item" data-action="copy-coords">📋 复制坐标</div>
-        <div class="context-menu-item" data-action="center-map">🎯 居中地图</div>
+        <div class="context-menu-item" data-action="copy-coords">馃搵 澶嶅埗鍧愭爣</div>
+        <div class="context-menu-item" data-action="center-map">馃幆 灞呬腑鍦板浘</div>
     </div>
-    <div class="map-hint" id="map-hint">上传 GPX 文件或拖拽到页面以显示轨迹</div>
+    <div class="map-hint" id="map-hint">涓婁紶 GPX 鏂囦欢鎴栨嫋鎷藉埌椤甸潰浠ユ樉绀鸿建杩?/div>
 </section>
 
 <section class="elevation-section">
     <div class="elevation-card" id="elevation-card">
-        <div class="elevation-title">海拔剖面 (Elevation Profile)</div>
+        <div class="elevation-title">娴锋嫈鍓栭潰 (Elevation Profile)</div>
         <canvas id="elevation-chart"></canvas>
     </div>
 </section>
@@ -627,31 +627,31 @@
 <section class="stats-section">
     <div class="stats-grid">
         <div class="stat-card">
-            <div class="stat-icon">🚴</div>
+            <div class="stat-icon">馃毚</div>
             <span class="stat-value" id="stat-distance">--</span>
-            <span class="stat-label">距离 (km)</span>
+            <span class="stat-label">璺濈 (km)</span>
         </div>
         <div class="stat-card">
-            <div class="stat-icon">⛰️</div>
+            <div class="stat-icon">鉀帮笍</div>
             <span class="stat-value" id="stat-elevation">--</span>
-            <span class="stat-label">爬升 (m)</span>
+            <span class="stat-label">鐖崌 (m)</span>
         </div>
         <div class="stat-card">
-            <div class="stat-icon">⏱️</div>
+            <div class="stat-icon">鈴憋笍</div>
             <span class="stat-value" id="stat-duration">--</span>
-            <span class="stat-label">时长（25km/h）</span>
+            <span class="stat-label">鏃堕暱锛?5km/h锛?/span>
         </div>
     </div>
 </section>
 
 <section class="details-section">
     <div class="detail-card">
-        <h3>📝 活动描述</h3>
+        <h3>馃摑 娲诲姩鎻忚堪</h3>
         <div class="description" contenteditable="true" id="description"></div>
     </div>
 
     <div class="detail-card">
-        <h3>🗺️ 路书链接</h3>
+        <h3>馃椇锔?璺功閾炬帴</h3>
         <div class="route-links" id="route-links">
             <a href="#" class="route-link strava" target="_blank" id="link-strava">
                 <span class="icon">S</span> Strava
@@ -680,78 +680,78 @@
     </div>
 
     <div class="detail-card">
-        <h3>📂 GPX 文件</h3>
+        <h3>馃搨 GPX 鏂囦欢</h3>
         <div class="upload-zone" id="upload-zone">
-            <div class="upload-zone-icon">📁</div>
-            <div class="upload-zone-text">点击选择或拖拽 GPX 文件到此处</div>
+            <div class="upload-zone-icon">馃搧</div>
+            <div class="upload-zone-text">鐐瑰嚮閫夋嫨鎴栨嫋鎷?GPX 鏂囦欢鍒版澶?/div>
         </div>
         <div class="gpx-actions">
-            <button class="btn btn-primary" id="upload-btn">📤 上传 GPX</button>
-            <button class="btn btn-secondary" id="download-btn" disabled>⬇️ 下载 GPX</button>
+            <button class="btn btn-primary" id="upload-btn">馃摛 涓婁紶 GPX</button>
+            <button class="btn btn-secondary" id="download-btn" disabled>猬囷笍 涓嬭浇 GPX</button>
         </div>
         <div class="gpx-info" id="gpx-info"></div>
         <div class="filter-controls hidden" id="filter-controls">
             <div class="filter-row">
                 <label class="filter-toggle">
                     <input type="checkbox" id="filter-toggle" checked>
-                    <span>隧道/桥梁过滤</span>
-                    <span class="filter-badge active" id="filter-badge">已启用</span>
+                    <span>闅ч亾/妗ユ杩囨护</span>
+                    <span class="filter-badge active" id="filter-badge">宸插惎鐢?/span>
                 </label>
             </div>
             <div class="filter-row">
                 <div class="filter-slider-group">
-                    <label>坡度阈值</label>
+                    <label>鍧″害闃堝€?/label>
                     <input type="range" id="filter-threshold" min="5" max="30" value="15" step="1">
                     <span class="value" id="filter-value">15%</span>
                 </div>
             </div>
             <div class="filter-row">
                 <div class="filter-slider-group">
-                    <label>平滑窗口</label>
+                    <label>骞虫粦绐楀彛</label>
                     <input type="range" id="filter-window" min="3" max="15" value="7" step="2">
                     <span class="value" id="filter-window-value">7</span>
                 </div>
             </div>
-            <div class="filter-hint" id="filter-hint">过滤隧道/桥梁中的GPS异常跳点，减少无效爬升。调整坡度阈值可控制过滤强度。</div>
+            <div class="filter-hint" id="filter-hint">杩囨护闅ч亾/妗ユ涓殑GPS寮傚父璺崇偣锛屽噺灏戞棤鏁堢埇鍗囥€傝皟鏁村潯搴﹂槇鍊煎彲鎺у埗杩囨护寮哄害銆?/div>
         </div>
         <input type="file" id="gpx-input" accept=".gpx" hidden>
     </div>
 
     <div class="detail-card">
-        <h3>⚙️ 速度设置</h3>
+        <h3>鈿欙笍 閫熷害璁剧疆</h3>
         <div class="speed-input" style="margin-top:8px;">
-            <label>平均速度</label>
+            <label>骞冲潎閫熷害</label>
             <input type="number" id="avg-speed" value="25" min="5" max="60" step="1">
             <span class="unit">km/h</span>
         </div>
-        <div style="margin-top:8px;font-size:0.78em;color:var(--text-muted);">用于计算预估时长</div>
+        <div style="margin-top:8px;font-size:0.78em;color:var(--text-muted);">鐢ㄤ簬璁＄畻棰勪及鏃堕暱</div>
     </div>
 
     <div class="detail-card">
-        <h3>🔗 分享</h3>
+        <h3>馃敆 鍒嗕韩</h3>
         <div class="social-links">
-            <a href="#" class="social-link weibo" target="_blank" id="share-weibo">微博</a>
-            <a href="#" class="social-link wechat" target="_blank" id="share-wechat">微信</a>
+            <a href="#" class="social-link weibo" target="_blank" id="share-weibo">寰崥</a>
+            <a href="#" class="social-link wechat" target="_blank" id="share-wechat">寰俊</a>
             <a href="#" class="social-link twitter" target="_blank" id="share-twitter">Twitter</a>
-            <a href="javascript:void(0)" class="social-link copy-link" id="share-copy">复制链接</a>
+            <a href="javascript:void(0)" class="social-link copy-link" id="share-copy">澶嶅埗閾炬帴</a>
         </div>
     </div>
 
     <div class="detail-card poi-section">
-        <h3>📍 兴趣点 (POI)</h3>
+        <h3>馃搷 鍏磋叮鐐?(POI)</h3>
         <div class="poi-list" id="poi-list">
-            <div class="poi-empty">选择地图上方工具栏，点击地图添加</div>
+            <div class="poi-empty">閫夋嫨鍦板浘涓婃柟宸ュ叿鏍忥紝鐐瑰嚮鍦板浘娣诲姞</div>
         </div>
         <div class="poi-actions">
-            <button class="btn btn-secondary" id="poi-export">📤 导出 JSON</button>
-            <button class="btn btn-secondary" id="poi-import-btn">📥 导入 JSON</button>
+            <button class="btn btn-secondary" id="poi-export">馃摛 瀵煎嚭 JSON</button>
+            <button class="btn btn-secondary" id="poi-import-btn">馃摜 瀵煎叆 JSON</button>
             <input type="file" id="poi-import-input" accept=".json" hidden>
         </div>
     </div>
 </section>
 
 <footer class="footer">
-    <p>© 2024 shiyangyu.com · 骑行活动发布平台</p>
+    <p>漏 2024 shiyangyu.com 路 楠戣娲诲姩鍙戝竷骞冲彴</p>
 </footer>
 
 <script src="leaflet.js"></script>
@@ -957,8 +957,8 @@
             iconSize: [24, 24], iconAnchor: [12, 12], className: ''
         });
 
-        state.startMarker = L.marker([points[0].lat, points[0].lon], { icon: startIcon }).addTo(state.map).bindPopup('<b>起点</b>');
-        state.endMarker = L.marker([points[points.length-1].lat, points[points.length-1].lon], { icon: endIcon }).addTo(state.map).bindPopup('<b>终点</b>');
+        state.startMarker = L.marker([points[0].lat, points[0].lon], { icon: startIcon }).addTo(state.map).bindPopup('<b>璧风偣</b>');
+        state.endMarker = L.marker([points[points.length-1].lat, points[points.length-1].lon], { icon: endIcon }).addTo(state.map).bindPopup('<b>缁堢偣</b>');
 
         const allLatLngs = points.map(p => [p.lat, p.lon]);
         const bounds = L.latLngBounds(allLatLngs);
@@ -983,12 +983,12 @@
         legend.classList.add('show');
 
         if (mode === 'elevation') {
-            title.textContent = '海拔';
+            title.textContent = '娴锋嫈';
             minLabel.textContent = Math.round(minVal) + 'm';
             maxLabel.textContent = Math.round(maxVal) + 'm';
             bar.style.background = 'linear-gradient(to right, hsl(240,80%,50%), hsl(180,80%,50%), hsl(120,80%,50%), hsl(60,80%,50%), hsl(0,80%,50%))';
         } else if (mode === 'slope') {
-            title.textContent = '坡度';
+            title.textContent = '鍧″害';
             minLabel.textContent = '-15%';
             maxLabel.textContent = '+15%';
             bar.style.background = 'linear-gradient(to right, hsl(240,80%,50%), hsl(180,80%,50%), hsl(120,80%,50%), hsl(60,80%,50%), hsl(0,80%,50%))';
@@ -998,8 +998,8 @@
     function updateSlopeLegend() {
         const minLabel = document.getElementById('color-legend-min');
         const maxLabel = document.getElementById('color-legend-max');
-        minLabel.textContent = '-15% 下坡';
-        maxLabel.textContent = '+15% 上坡';
+        minLabel.textContent = '-15% 涓嬪潯';
+        maxLabel.textContent = '+15% 涓婂潯';
     }
 
     function addDistanceMarkers() {
@@ -1082,9 +1082,9 @@
         if (filterEnabled) {
             const origStats = calcStatsFromPoints(state.rawPoints);
             const saved = Math.round(origStats.totalElevationGain - stats.totalElevationGain);
-            hint.textContent = `已过滤 ${saved}m 无效爬升（原始 ${Math.round(origStats.totalElevationGain)}m → 当前 ${Math.round(stats.totalElevationGain)}m）`;
+            hint.textContent = `宸茶繃婊?${saved}m 鏃犳晥鐖崌锛堝師濮?${Math.round(origStats.totalElevationGain)}m 鈫?褰撳墠 ${Math.round(stats.totalElevationGain)}m锛塦;
         } else {
-            hint.textContent = '隧道/桥梁过滤已关闭，显示原始GPS数据';
+            hint.textContent = '闅ч亾/妗ユ杩囨护宸插叧闂紝鏄剧ず鍘熷GPS鏁版嵁';
         }
 
         if (document.getElementById('distance-markers-toggle') && document.getElementById('distance-markers-toggle').checked) {
@@ -1096,10 +1096,10 @@
         const parser = new DOMParser();
         const doc = parser.parseFromString(gpxString, 'text/xml');
         const parseError = doc.querySelector('parsererror');
-        if (parseError) { alert('GPX 文件解析失败'); return null; }
+        if (parseError) { alert('GPX 鏂囦欢瑙ｆ瀽澶辫触'); return null; }
 
         const trkpts = doc.querySelectorAll('trkpt');
-        if (trkpts.length === 0) { alert('GPX 文件中未找到轨迹点'); return null; }
+        if (trkpts.length === 0) { alert('GPX 鏂囦欢涓湭鎵惧埌杞ㄨ抗鐐?); return null; }
 
         const points = [];
         let totalEleGain = 0;
@@ -1177,9 +1177,9 @@
         });
 
         state.startMarker = L.marker(latlngs[0], { icon: startIcon }).addTo(state.map)
-            .bindPopup('<b>起点</b>');
+            .bindPopup('<b>璧风偣</b>');
         state.endMarker = L.marker(latlngs[latlngs.length-1], { icon: endIcon }).addTo(state.map)
-            .bindPopup('<b>终点</b>');
+            .bindPopup('<b>缁堢偣</b>');
 
         state.map.fitBounds(state.trackLayer.getBounds(), { padding: [40, 40] });
     }
@@ -1289,7 +1289,7 @@
 
         const info = document.getElementById('gpx-info');
         const fileName = state.fileName || 'route.gpx';
-        info.innerHTML = `<strong>${fileName}</strong> · ${state.gpxPoints.length} 个轨迹点 · ${distKm} km`;
+        info.innerHTML = `<strong>${fileName}</strong> 路 ${state.gpxPoints.length} 涓建杩圭偣 路 ${distKm} km`;
         info.classList.add('show');
     }
 
@@ -1321,7 +1321,7 @@
 
     function handleFile(file) {
         if (!file || !file.name.endsWith('.gpx')) {
-            alert('请选择 .gpx 格式的文件');
+            alert('璇烽€夋嫨 .gpx 鏍煎紡鐨勬枃浠?);
             return;
         }
         const reader = new FileReader();
@@ -1358,7 +1358,19 @@
 
         downloadBtn.addEventListener('click', () => {
             if (!state.gpxData) return;
-            const blob = new Blob([state.gpxData], { type: 'application/gpx+xml' });
+            let gpx = state.gpxData;
+            if (pois.length > 0) {
+                const wpts = pois.map(p => {
+                    const info = POI_TYPES[p.type];
+                    return `  <wpt lat="${p.lat}" lon="${p.lng}">\n    <name>${p.name}</name>\n    <desc>${info.emoji} ${info.label}</desc>\n    <sym>${info.label}</sym>\n  </wpt>`;
+                }).join('\n');
+                if (gpx.includes('<trk>')) {
+                    gpx = gpx.replace('<trk>', wpts + '\n<trk>');
+                } else if (gpx.includes('<gpx')) {
+                    gpx = gpx.replace(/(<gpx[^>]*>)/, '$1\n' + wpts);
+                }
+            }
+            const blob = new Blob([gpx], { type: 'application/gpx+xml' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
@@ -1390,7 +1402,7 @@
 
         document.getElementById('share-wechat').addEventListener('click', e => {
             e.preventDefault();
-            alert('请截图或复制链接分享到微信');
+            alert('璇锋埅鍥炬垨澶嶅埗閾炬帴鍒嗕韩鍒板井淇?);
         });
 
         document.getElementById('share-twitter').addEventListener('click', e => {
@@ -1403,8 +1415,8 @@
         document.getElementById('share-copy').addEventListener('click', () => {
             navigator.clipboard.writeText(location.href).then(() => {
                 const el = document.getElementById('share-copy');
-                el.textContent = '已复制';
-                setTimeout(() => el.textContent = '复制链接', 1500);
+                el.textContent = '宸插鍒?;
+                setTimeout(() => el.textContent = '澶嶅埗閾炬帴', 1500);
             });
         });
     }
@@ -1419,7 +1431,7 @@
 
         toggle.addEventListener('change', () => {
             filterEnabled = toggle.checked;
-            badge.textContent = filterEnabled ? '已启用' : '已关闭';
+            badge.textContent = filterEnabled ? '宸插惎鐢? : '宸插叧闂?;
             badge.className = 'filter-badge ' + (filterEnabled ? 'active' : 'inactive');
             if (state.rawPoints.length > 0) updateWithFilter();
         });
@@ -1438,12 +1450,12 @@
     }
 
     const POI_TYPES = {
-        toilet: { emoji: '🚻', label: '厕所' },
-        photo:  { emoji: '📸', label: '拍照点' },
-        rest:   { emoji: '🪑', label: '休息' },
-        supply: { emoji: '🏪', label: '补给点' },
-        water:  { emoji: '💧', label: '饮水' },
-        danger: { emoji: '⚠️', label: '注意' }
+        toilet: { emoji: '馃毣', label: '鍘曟墍' },
+        photo:  { emoji: '馃摳', label: '鎷嶇収鐐? },
+        rest:   { emoji: '馃獞', label: '浼戞伅' },
+        supply: { emoji: '馃彧', label: '琛ョ粰鐐? },
+        water:  { emoji: '馃挧', label: '楗按' },
+        danger: { emoji: '鈿狅笍', label: '娉ㄦ剰' }
     };
 
     const pois = [];
@@ -1481,7 +1493,7 @@
     function renderPoiList() {
         const list = document.getElementById('poi-list');
         if (pois.length === 0) {
-            list.innerHTML = '<div class="poi-empty">选择地图上方工具栏，点击地图添加</div>';
+            list.innerHTML = '<div class="poi-empty">閫夋嫨鍦板浘涓婃柟宸ュ叿鏍忥紝鐐瑰嚮鍦板浘娣诲姞</div>';
             return;
         }
         list.innerHTML = pois.map((p, i) => {
@@ -1489,7 +1501,7 @@
             return `<div class="poi-item">
                 <span class="poi-type">${info.emoji}</span>
                 <span class="poi-name">${p.name}</span>
-                <button class="poi-del" data-idx="${i}">✕</button>
+                <button class="poi-del" data-idx="${i}">鉁?/button>
             </div>`;
         }).join('');
 
@@ -1519,7 +1531,7 @@
                 }
             });
         } catch (e) {
-            alert('JSON 解析失败');
+            alert('JSON 瑙ｆ瀽澶辫触');
         }
     }
 
@@ -1528,7 +1540,7 @@
 
         state.map.on('click', function(e) {
             if (!activePoiType) return;
-            const name = prompt(`为这个${POI_TYPES[activePoiType].label}取个名字（可留空）：`, POI_TYPES[activePoiType].label);
+            const name = prompt(`涓鸿繖涓?{POI_TYPES[activePoiType].label}鍙栦釜鍚嶅瓧锛堝彲鐣欑┖锛夛細`, POI_TYPES[activePoiType].label);
             if (name === null) return;
             addPoi(e.latlng.lat, e.latlng.lng, activePoiType, name || POI_TYPES[activePoiType].label);
         });
@@ -1595,7 +1607,7 @@
         row.innerHTML = `
             <label class="filter-toggle">
                 <input type="checkbox" id="distance-markers-toggle">
-                <span>距离标记（每km）</span>
+                <span>璺濈鏍囪锛堟瘡km锛?/span>
             </label>
         `;
         filterControls.appendChild(row);
@@ -1616,7 +1628,7 @@
             if (contextMarker) state.map.removeLayer(contextMarker);
             contextMarker = L.marker(e.latlng, {
                 icon: L.divIcon({
-                    html: '<div style="font-size:20px;filter:drop-shadow(0 1px 3px rgba(0,0,0,0.3));">📌</div>',
+                    html: '<div style="font-size:20px;filter:drop-shadow(0 1px 3px rgba(0,0,0,0.3));">馃搶</div>',
                     iconSize: [24, 24], iconAnchor: [12, 24], className: ''
                 })
             }).addTo(state.map);
@@ -1634,7 +1646,7 @@
             const action = item.dataset.action;
 
             if (action === 'mark') {
-                if (contextMarker) contextMarker.bindPopup('📌 标记点').openPopup();
+                if (contextMarker) contextMarker.bindPopup('馃搶 鏍囪鐐?).openPopup();
             } else if (action === 'copy-coords' && contextLatLng) {
                 navigator.clipboard.writeText(`${contextLatLng.lat.toFixed(6)}, ${contextLatLng.lng.toFixed(6)}`);
             } else if (action === 'center-map' && contextLatLng) {
@@ -1673,7 +1685,7 @@
                 clearMeasure();
                 result.classList.remove('show');
             } else {
-                result.textContent = '点击地图放置测距点，双击结束';
+                result.textContent = '鐐瑰嚮鍦板浘鏀剧疆娴嬭窛鐐癸紝鍙屽嚮缁撴潫';
                 result.classList.add('show');
             }
         });
@@ -1701,7 +1713,7 @@
                     totalDist += haversine(state.measurePoints[i-1], state.measurePoints[i]);
                 }
                 const distStr = totalDist > 1000 ? (totalDist / 1000).toFixed(2) + ' km' : Math.round(totalDist) + ' m';
-                result.textContent = `总距离: ${distStr} (${state.measurePoints.length} 个点)`;
+                result.textContent = `鎬昏窛绂? ${distStr} (${state.measurePoints.length} 涓偣)`;
                 result.classList.add('show');
             }
         });
@@ -1730,7 +1742,7 @@
         state.measureMarkers.push(marker);
 
         const result = document.getElementById('measure-result');
-        result.textContent = '继续点击添加测距点，双击结束';
+        result.textContent = '缁х画鐐瑰嚮娣诲姞娴嬭窛鐐癸紝鍙屽嚮缁撴潫';
         result.classList.add('show');
     }
 
@@ -1974,7 +1986,7 @@
             ctx.textAlign = 'left';
             ctx.fillText(`${(targetDist / 1000).toFixed(2)} km`, tipX + 8, tipY + 16);
             ctx.font = '11px -apple-system, sans-serif';
-            ctx.fillText(`海拔 ${Math.round(pt.ele)} m`, tipX + 8, tipY + 32);
+            ctx.fillText(`娴锋嫈 ${Math.round(pt.ele)} m`, tipX + 8, tipY + 32);
 
             const scaleY = pad.top + drawCh - ((pt.ele - Math.min(...state.gpxPoints.map(p => p.ele))) / (Math.max(...state.gpxPoints.map(p => p.ele)) - Math.min(...state.gpxPoints.map(p => p.ele)) || 1)) * drawCh;
             ctx.beginPath();
@@ -2046,3 +2058,4 @@
 </script>
 </body>
 </html>
+
