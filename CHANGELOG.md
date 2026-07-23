@@ -1,13 +1,13 @@
-# CHANGELOG
+# 📋 CHANGELOG
 
 ## 2026-07-23
 
-### 文章
+### 📝 文章
 
 1. **格式优化**
    - 优化 `2019-12-11-bilibili-obs-setting.markdown` 排版格式（统一标题层级、列表符号、代码块展示）
 
-### 文档
+### 📄 文档
 
 1. **README 还原**
    - 还原博客 README 内容，新增 spot-studio 项目介绍
@@ -17,19 +17,19 @@
 
 ## 2026-06-17
 
-### 更新内容
+### 📝 更新内容
 
 1. **文章更新**
    - 更新了文章 `2019-12-11-bilibili-obs-setting.markdown`
 
-### 文档
+### 📄 文档
 
 1. **CHANGELOG 添加**
    - 创建了项目变更日志文件
 
 ## 2026-06-16
 
-### Bug 修复
+### 🐛 Bug 修复
 
 1. **GitHub Actions 分支监听问题**
    - 问题：代码推送到 `master` 分支，但工作流监听的是 `main` 分支
@@ -67,7 +67,7 @@
    - 修复：修复了 `jekyll-rebuild` 和 `img` 任务中的 `browserSync.reload` 调用
    - 修复：修复了 `compile-sass` 任务中仅在 browserSync 激活时才调用 reload
 
-### 改进
+### ⚡ 改进
 
 1. **package.json 构建脚本**
    - 添加 WebP 生成：`gulp sass && gulp webp` → `gulp compile-sass && gulp webp`
@@ -89,7 +89,7 @@
    - 文档化 WebP 转换移至本地环境
    - 从 CI 中移除 Gulp/npm 构建步骤
 
-### 内容更新
+### 📝 内容更新
 
 1. **文章更新**
    - 更新 `2019-12-11-bilibili-obs-setting.markdown`
@@ -99,21 +99,21 @@
 
 ## 2026-06-13
 
-### 文档
+### 📄 文档
 
 1. **README 更新**
    - 更新 readme.md
 
 ## 2026-06-12
 
-### 清理
+### 🧹 清理
 
 1. **删除 package.json**
    - 移除 package.json 文件
 
 ## 2026-06-06
 
-### 更新内容
+### 📝 更新内容
 
 1. **数据更新**
    - 更新 `tianfu-data.json`
@@ -125,7 +125,7 @@
 
 ## 2026-06-05
 
-### 更新内容
+### 📝 更新内容
 
 1. **首页优化**
    - 优化首页内容

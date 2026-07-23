@@ -1,4 +1,4 @@
-# 余师洋的个人博客
+# 余师洋的个人博客 🏠
 
 > 一个基于 Jekyll 的个人博客 + 几个兴趣驱动的小工具
 
@@ -8,14 +8,14 @@
 
 ---
 
-## 在线访问
+## 🌐 在线访问
 
 - **主站**：https://shiyangyu.com
 - **GitHub Pages**：https://techysy.github.io
 
 ---
 
-## 项目结构
+## 📁 项目结构
 
 ```
 techysy.github.io/
@@ -33,91 +33,91 @@ techysy.github.io/
 │   ├── fonts/font-awesome/  # 字体图标
 │   └── img/                 # 文章配图（含 WebP 版本）
 │
-├── spot-studio/             # 骑行活动发布平台（独立子项目）
-├── tianfu-itt.html          # 天府绿道 ITT 排行榜
+├── spot-studio/             # 🚴 骑行活动发布平台（独立子项目）
+├── tianfu-itt.html          # 🚴 天府绿道 ITT 排行榜
 ├── tianfu-data.json         # 骑行数据（骑手/团队/活动）
-├── 3d-print-threads.html    # 3D 打印螺纹规格速查
-├── strava-tool.html         # Strava 相关工具
-├── long-a-side.html         # 其他独立页面
+├── 3d-print-threads.html    # 🔩 3D 打印螺纹规格速查
+├── strava-tool.html         # 🏃 Strava 相关工具
+├── long-a-side.html         # 📄 其他独立页面
 │
-├── tools/                   # WebP 转码工具
+├── tools/                   # 🛠️ WebP 转码工具
 │   ├── webp/                # cwebp.exe
 │   └── convert-webp.ps1     # 批量转换脚本
 │
-├── index.html               # 首页
-├── search.json              # 站内搜索索引
-├── CNAME                    # 自定义域名 shiyangyu.com
-├── Gemfile                  # Ruby 依赖
-├── gulpfile.js              # Gulp 构建脚本
-├── serve.rb                 # 本地服务器启动脚本
-├── build.rb                 # 构建脚本
+├── index.html               # 🏠 首页
+├── search.json              # 🔍 站内搜索索引
+├── CNAME                    # 🌐 自定义域名 shiyangyu.com
+├── Gemfile                  # 💎 Ruby 依赖
+├── gulpfile.js              # ⚙️ Gulp 构建脚本
+├── serve.rb                 # 🚀 本地服务器启动脚本
+├── build.rb                 # 🔨 构建脚本
 │
 ├── google6c72564a30dfb997.html   # Google 验证
 ├── baidu_verify_ZISdf60C3y.html  # 百度验证
-└── LICENSE                  # 许可协议
+└── LICENSE                  # 📄 许可协议
 ```
 
 ---
 
-## 主要页面
+## 📌 主要页面
 
-### 1. spot-studio
+### 🚴 1. spot-studio
 
-骑行 & 徒步活动发布平台 — GPX 轨迹渲染 + 机位踩点
+骑行 & 徒步活动发布平台 — GPX 轨迹渲染 + 机位踩点 📷
 
-- **在线体验**：https://shiyangyu.com/spot-studio
-- **GitHub**：https://github.com/techysy/spot-studio
-- **技术**：纯前端单文件，Leaflet + Canvas + Vanilla JS，双击 HTML 即可离线使用
-- **功能**：GPX 轨迹上传渲染、海拔/坡度着色、轨迹编辑、POI 机位踩点、海拔剖面交互、距离测量、隧道过滤
+- **🌐 在线体验**：https://shiyangyu.com/spot-studio
+- **💻 GitHub**：https://github.com/techysy/spot-studio
+- **🛠️ 技术**：纯前端单文件，Leaflet + Canvas + Vanilla JS，双击 HTML 即可离线使用
+- **✨ 功能**：GPX 轨迹上传渲染、海拔/坡度着色、轨迹编辑、POI 机位踩点、海拔剖面交互、距离测量、隧道过滤
 
-### 2. 天府绿道 ITT 排行榜
+### 🚴 2. 天府绿道 ITT 排行榜
 
 骑行数据可视化展示，从 `tianfu-data.json` 动态加载。
 
-- **数据规模**：44 位骑手、7 个团队、约 50 条活动记录
-- **排序维度**：用时 / 速度 / 心率 / 功率
-- **筛选器**：QZ 认证 / 女子组 / 团骑模式
-- **交互**：功率单位切换（W ↔ W/kg）、团队成员展开、头像/日期直跳 Strava
+- **📊 数据规模**：44 位骑手、7 个团队、约 50 条活动记录
+- **🔄 排序维度**：用时 / 速度 / 心率 / 功率
+- **🔍 筛选器**：QZ 认证 / 女子组 / 团骑模式
+- **🎮 交互**：功率单位切换（W ↔ W/kg）、团队成员展开、头像/日期直跳 Strava
 
-### 3. 3D 打印螺纹规格速查
+### 🔩 3. 3D 打印螺纹规格速查
 
 机械工程工具，FDM 3D 打印螺纹配套参考。
 
-- **公制螺纹**：M3~M64，含小径数据（GB/T 196-2003）
-- **英制螺纹**：1/4" ~ 2"，含牙数/螺距
-- **3D 打印优化**：外牙/内牙大径与小径补偿值
-- **圈数计算器**：根据螺丝高度计算所需圈数与旋转角度
+- **📏 公制螺纹**：M3~M64，含小径数据（GB/T 196-2003）
+- **📐 英制螺纹**：1/4" ~ 2"，含牙数/螺距
+- **🖨️ 3D 打印优化**：外牙/内牙大径与小径补偿值
+- **🔢 圈数计算器**：根据螺丝高度计算所需圈数与旋转角度
 
 ---
 
-## 技术栈
+## 🛠️ 技术栈
 
 | 层 | 技术 |
 |----|------|
-| 站点生成器 | **Jekyll**（GitHub Pages 原生支持） |
-| Markdown 渲染 | **kramdown** |
-| 样式 | **Sass (SCSS)** → 编译为 CSS |
-| 交互 | **原生 JavaScript** + **jQuery 3.2.1** |
-| 图标 | **Font Awesome**（本地加载） |
-| 搜索 | **jekyll-search**（读取 `search.json`） |
-| 评论 | **Disqus** |
-| 统计 | **Google Analytics** + **百度统计** |
-| 构建工具 | **Gulp** |
-| 部署 | **GitHub Actions** |
+| 🏗️ 站点生成器 | **Jekyll**（GitHub Pages 原生支持） |
+| ✍️ Markdown 渲染 | **kramdown** |
+| 🎨 样式 | **Sass (SCSS)** → 编译为 CSS |
+| 🖱️ 交互 | **原生 JavaScript** + **jQuery 3.2.1** |
+| 🎯 图标 | **Font Awesome**（本地加载） |
+| 🔍 搜索 | **jekyll-search**（读取 `search.json`） |
+| 💬 评论 | **Disqus** |
+| 📊 统计 | **Google Analytics** + **百度统计** |
+| ⚙️ 构建工具 | **Gulp** |
+| 🚀 部署 | **GitHub Actions** |
 
 ---
 
-## Jekyll 插件
+## 📦 Jekyll 插件
 
-- `jekyll-paginate` — 分页（每页 8 篇）
-- `jekyll-feed` — RSS feed
-- `jekyll-sitemap` — sitemap.xml
+- `jekyll-paginate` — 📄 分页（每页 8 篇）
+- `jekyll-feed` — 📡 RSS feed
+- `jekyll-sitemap` — 🗺️ sitemap.xml
 
 ---
 
-## 本地运行
+## 🚀 本地运行
 
-### Windows 环境配置
+### 🪟 Windows 环境配置
 
 1. **安装 Ruby**（推荐安装到用户目录避免权限问题）：
    - 下载：https://github.com/oneclick/rubyinstaller2/releases
@@ -134,58 +134,58 @@ techysy.github.io/
    gem install jekyll bundler
    ```
 
-### 启动命令
+### ▶️ 启动命令
 
 ```bash
-# 安装 Ruby 依赖
+# 📦 安装 Ruby 依赖
 bundle install
 
-# 安装 Node.js 依赖（使用 --legacy-peer-deps 兼容旧版 Gulp）
+# 📦 安装 Node.js 依赖（使用 --legacy-peer-deps 兼容旧版 Gulp）
 npm install --legacy-peer-deps
 
-# 编译 SCSS
+# 🔨 编译 SCSS
 npm run build
 
-# 生成 WebP 图片
+# 🖼️ 生成 WebP 图片
 powershell -ExecutionPolicy Bypass -File tools/convert-webp.ps1
 
-# 本地预览（自动构建 + 热刷新）
+# 🚀 本地预览（自动构建 + 热刷新）
 ruby serve.rb
 
-# 或直接使用 Jekyll
+# 💻 或直接使用 Jekyll
 jekyll serve --host 0.0.0.0 --port 4000
 ```
 
-**浏览器访问**：http://localhost:4000
+**🌐 浏览器访问**：http://localhost:4000
 
-**注意**：独立 HTML 工具页（`tianfu-itt.html`、`3d-print-threads.html`、`spot-studio/`）不需要 Jekyll 构建，直接双击打开即可运行。
+**💡 注意**：独立 HTML 工具页（`tianfu-itt.html`、`3d-print-threads.html`、`spot-studio/`）不需要 Jekyll 构建，直接双击打开即可运行。
 
 ---
 
-## 博客文章
+## 📝 博客文章
 
 时间跨度 2019-12 ~ 2026-06：
 
 | 主题 | 代表文章 |
 |------|----------|
-| Hackintosh / Mac | B450M Mortar 黑苹果、Windows 10 on Mac、rEFInd 引导 |
-| 工具 / 效率 | B 站 OBS 推流、TortoiseSVN、tree 命令、WSL + Docker |
-| AI / LLM | Relearn AI |
-| 最新活跃（2026） | 3D 打印螺纹速查、天府绿道 ITT 排行榜 |
+| 🍎 Hackintosh / Mac | B450M Mortar 黑苹果、Windows 10 on Mac、rEFInd 引导 |
+| 🛠️ 工具 / 效率 | B 站 OBS 推流、TortoiseSVN、tree 命令、WSL + Docker |
+| 🤖 AI / LLM | Relearn AI |
+| 🔥 最新活跃（2026） | 3D 打印螺纹速查、天府绿道 ITT 排行榜 |
 
 ---
 
-## 作者
+## 👤 作者
 
 - **余师洋**
-- Email：i@shiyangyu.com
-- GitHub：https://github.com/techysy
-- Strava：https://www.strava.com/athletes/yangyu
-- Bilibili：https://space.bilibili.com/10419858
-- 小红书：https://www.xiaohongshu.com/user/profile/5a5d020711be101b3d65cece
+- 📧 Email：i@shiyangyu.com
+- 💻 GitHub：https://github.com/techysy
+- 🏃 Strava：https://www.strava.com/athletes/yangyu
+- 📺 Bilibili：https://space.bilibili.com/10419858
+- 📕 小红书：https://www.xiaohongshu.com/user/profile/5a5d020711be101b3d65cece
 
 ---
 
-## License
+## 📄 License
 
 请查看项目根目录的 `LICENSE` 文件。
