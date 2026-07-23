@@ -792,7 +792,7 @@
         deletePointMode: false,
         editHandleMarkers: [],
         avgSpeed: 25,
-        markerInterval: 1
+        markerInterval: 0
     };
 
     let filterEnabled = true;
@@ -1531,7 +1531,7 @@
             windowSlider.value = smoothWindow;
             windowVal.textContent = smoothWindow;
             hint.textContent = filterEnabled
-                ? `宸茶繃婊?${Math.round(state.totalElevationGain - calcStatsFromPoints(state.rawPoints).totalElevationGain)}m 鏃犳晥鐖崌`
+                ? `宸茶繃婊?${Math.round(calcStatsFromPoints(state.rawPoints).totalElevationGain - state.totalElevationGain)}m 鏃犳晥鐖崌`
                 : '闅ч亾/妗ユ杩囨护宸插叧闂紝鏄剧ず鍘熷GPS鏁版嵁';
             overlay.classList.add('show');
         });
