@@ -1,185 +1,24 @@
-# Hi, I'm 余师洋 👋
+# 余师洋的个人博客
 
-🚴🥾 骑行 & 徒步爱好者 | Full-stack Developer
+> Life is struggle. Be willing to do, Be happy to bear.
+
+🚴🥾 骑行 & 徒步爱好者 | 全栈开发者
 
 ---
 
-## 🔥 Featured Project — spot-studio
+## 🔥 Projects
 
-> 骑行 & 徒步活动发布平台 | Cycling & Hiking Activity Publishing Platform
+### [spot-studio](https://github.com/techysy/spot-studio)
 
-纯前端单文件，双击 HTML 即可离线使用。
-Pure frontend, single HTML file, works fully offline.
+骑行 & 徒步活动发布平台 — 纯前端单文件，双击 HTML 即可离线使用。
 
-| | |
-|---|---|
-| 🌐 **在线体验** | [shiyangyu.com/spot-studio](https://shiyangyu.com/spot-studio) |
-| 💻 **GitHub** | [techysy/spot-studio](https://github.com/techysy/spot-studio) |
-| 📄 **License** | MIT |
-
-### ✨ 功能亮点 / Highlights
-
-- 🗺️ GPX 轨迹上传 → 地图渲染 + 海拔剖面
-- 🎨 按海拔/坡度渐变着色，一眼看出地形
-- ✏️ 轨迹编辑：添加/删除/拖拽节点，撤销重做
-- 📷 POI 机位踩点：自动吸附到轨迹，6 种类型
-- 📤 导出 GPX 自动写入兴趣点（`<wpt>`）
-- 🔗 路书链接自动识别 Strava / iGPSPORT / Garmin
-- 🚴🥾 骑行/徒步模式自动切换
-
-### 🛠️ 技术栈 / Stack
-
-Leaflet + Canvas + Vanilla JS · 零依赖 · 全部内联在一个 HTML 里
+🌐 [在线体验](https://shiyangyu.com/spot-studio)
 
 ---
 
 ## 📫 Contact
 
-- GitHub: [@techysy](https://github.com/techysy)
-- Strava: [@yangyu](https://www.strava.com/athletes/yangyu)
-
-## ✨ 功能特性
-
-### 🗺️ GPX 轨迹渲染
-- 上传或拖拽 GPX 文件，地图自动显示轨迹
-- 起终点标记（S/E）
-- 街道 / 卫星底图一键切换
-- **轨迹颜色编码**：按海拔 / 坡度渐变着色，附颜色图例
-
-### 📷 机位踩点 (POI)
-- 在地图上标记拍摄点 📸
-- **自动吸附**到最近的轨迹点，适配多条 GPX 路线
-- 上传 GPX 自动加载 `<wpt>` 航点标记
-- 导入时自动去重（按坐标+名称）
-- 支持多种兴趣点类型：
-  - 📸 拍照点
-  - 🚻 厕所
-  - 🪑 休息
-  - 🏪 补给点
-  - 💧 饮水
-  - ⚠️ 注意
-- POI 数据支持 JSON 导出 / 导入
-- **导出 GPX 时自动写入兴趣点**（`<wpt>` 节点）
-
-### ⛰️ 海拔剖面
-- Canvas 绘制海拔图
-- 距离 / 海拔刻度
-- **交互联动**：鼠标悬浮显示十字线 + 距离/海拔提示
-- **点击跳转**：点击海拔图某点，地图自动定位到对应位置
-
-### ✏️ 轨迹编辑
-- **编辑工具栏**（地图左上角）：
-  - ↩ 撤销 / ↪ 重做
-  - ➕ 添加节点：点击轨迹任意位置插入新节点
-  - 🗑️ 删除节点：显示所有节点，点击删除
-  - 拖拽节点重新规划路线
-
-### 📏 距离测量
-- 工具栏激活测距模式，点击放置测距点
-- 虚线连接，实时显示总距离
-- 双击结束测量
-- 右键菜单可「从这里测距」
-
-### 📌 右键菜单
-- 📍 放置标记
-- 📏 从这里测距
-- 📋 复制坐标
-- 🎯 居中地图
-
-### 📍 距离标记
-- 点击距离卡片设置标记间隔（0=关闭，1-50km）
-
-### 🚇 隧道过滤
-- 点击爬升卡片打开过滤弹窗
-- 梯度检测去除 GPS 异常跳点
-- 可调坡度阈值（5%-30%）和平滑窗口
-- 实时显示过滤了多少无效爬升
-
-### ⚙️ 速度设置
-- 点击时长卡片弹窗设置平均速度（默认 25 km/h）
-- 用于计算预估时长
-
-### 📊 数据统计
-- 距离 (km) — 骑行🚴 / 徒步🥾 图标自动识别
-- 爬升 (m)
-- 时长（按设定平均速度计算）
-- 兴趣点数量
-
-### 🔗 路书链接
-- 上传 GPX 时自动识别 Strava / iGPSPORT / Garmin 链接
-- 手动输入框可补充或覆盖
-
-### 🖥️ 坐标显示
-- 地图左下角实时显示鼠标经纬度坐标
-
----
-
-## 🛠️ 技术栈
-
-| 层 | 技术 |
-|----|------|
-| 地图 | [Leaflet](https://leafletjs.com/)（本地离线）+ CARTO / Esri 卫星 |
-| GPX 解析 | 原生 DOMParser |
-| 海拔图 | Canvas API |
-| 动画 | requestAnimationFrame |
-| 样式 | 纯 CSS（无框架依赖） |
-| 运行 | 纯静态，双击 HTML 即可离线使用 |
-
----
-
-## 🚀 使用方式
-
-### 方式一：直接打开
-双击 `spot-studio.html` 即可在浏览器中使用。
-
-### 方式二：GitHub Pages
-1. Fork 或克隆本仓库
-2. 推送到 GitHub
-3. 在 Settings → Pages 中启用 GitHub Pages
-4. 访问 `https://你的用户名.github.io/spot-studio`
-
----
-
-## 📁 项目结构
-
-```
-spot-studio/
-├── spot-studio.html    # 主页面（纯静态，所有功能内联）
-├── leaflet.css         # Leaflet 样式（本地离线）
-├── leaflet.js          # Leaflet 库文件（本地离线）
-├── README.md           # 项目文档
-├── CHANGELOG.md        # 变更日志
-└── LICENSE             # MIT 许可证
-```
-
----
-
-## 📝 使用说明
-
-1. **上传 GPX**：点击上传区域或拖拽 GPX 文件到页面，路书链接自动识别
-2. **查看轨迹**：地图自动显示轨迹，可切换卫星图
-3. **轨迹着色**：地图底部工具栏选择「海拔/坡度」渐变着色模式
-4. **添加机位**：点击地图上方工具栏选择类型，再点击地图放置（自动吸附到轨迹）
-5. **编辑轨迹**：左上角工具栏添加/删除/拖拽节点，支持撤销重做
-6. **距离测量**：点击 📏 按钮激活测距，点击地图放置测距点
-7. **海拔联动**：鼠标悬浮海拔图查看对应位置，点击跳转地图
-8. **距离标记**：点击距离卡片设置间隔（0=关闭）
-9. **隧道过滤**：点击爬升卡片调整过滤参数
-10. **速度设置**：点击时长卡片修改平均速度
-11. **兴趣点管理**：点击兴趣点卡片查看列表并定位
-12. **导出数据**：下载 GPX（含兴趣点）或导出 POI JSON
-13. **右键菜单**：在地图上右键可快速放置标记、测距、复制坐标
-
----
-
-## 📄 License
-
-[MIT](LICENSE)
-
----
-
-## 👤 作者
-
-- **余师洋**
-- GitHub：[@techysy](https://github.com/techysy)
-- Strava：[@yangyu](https://www.strava.com/athletes/yangyu)
+- 🌐 [shiyangyu.com](https://shiyangyu.com)
+- 💻 [GitHub @techysy](https://github.com/techysy)
+- 🏃 [Strava @yangyu](https://www.strava.com/athletes/yangyu)
+- 📧 i@shiyangyu.com
