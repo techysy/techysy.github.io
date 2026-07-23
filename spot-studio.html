@@ -636,10 +636,10 @@
             <span class="stat-value" id="stat-elevation">--</span>
             <span class="stat-label">鐖崌 (m)</span>
         </div>
-        <div class="stat-card">
+        <div class="stat-card" id="stat-duration-card" style="cursor:pointer;" title="鐐瑰嚮淇敼閫熷害">
             <div class="stat-icon">鈴憋笍</div>
             <span class="stat-value" id="stat-duration">--</span>
-            <span class="stat-label">鏃堕暱锛?5km/h锛?/span>
+            <span class="stat-label" id="stat-duration-label">鏃堕暱锛?span id="speed-display">25</span>km/h锛?/span>
         </div>
     </div>
 </section>
@@ -718,16 +718,6 @@
     </div>
 
     <div class="detail-card">
-        <h3>鈿欙笍 閫熷害璁剧疆</h3>
-        <div class="speed-input" style="margin-top:8px;">
-            <label>骞冲潎閫熷害</label>
-            <input type="number" id="avg-speed" value="25" min="5" max="60" step="1">
-            <span class="unit">km/h</span>
-        </div>
-        <div style="margin-top:8px;font-size:0.78em;color:var(--text-muted);">鐢ㄤ簬璁＄畻棰勪及鏃堕暱</div>
-    </div>
-
-    <div class="detail-card">
         <h3>馃敆 鍒嗕韩</h3>
         <div class="social-links">
             <a href="#" class="social-link weibo" target="_blank" id="share-weibo">寰崥</a>
@@ -784,7 +774,8 @@
         redoStack: [],
         addPointMode: false,
         deletePointMode: false,
-        editHandleMarkers: []
+        editHandleMarkers: [],
+        avgSpeed: 25
     };
 
     let filterEnabled = true;
@@ -1275,7 +1266,7 @@
     function updateStats(gpxResult) {
         const distKm = (gpxResult.totalDistance / 1000).toFixed(2);
         const eleGain = Math.round(gpxResult.totalElevationGain);
-        const avgSpeed = parseInt(document.getElementById('avg-speed').value) || 25;
+        const avgSpeed = state.avgSpeed || 25;
         const durationSec = gpxResult.totalDistance / (avgSpeed * 1000 / 3600);
 
         const h = Math.floor(durationSec / 3600);
@@ -2067,7 +2058,14 @@
         initElevationInteraction();
         updateUndoRedoButtons();
 
-        document.getElementById('avg-speed').addEventListener('change', function() {
+        document.getElementById('stat-duration-card').addEventListener('click', function() {
+            const current = state.avgSpeed || 25;
+            const val = prompt('璁剧疆骞冲潎閫熷害 (km/h)锛?, current);
+            if (val === null) return;
+            const speed = parseInt(val);
+            if (isNaN(speed) || speed < 5 || speed > 60) { alert('璇疯緭鍏?5-60 涔嬮棿鐨勬暟鍊?); return; }
+            state.avgSpeed = speed;
+            document.getElementById('speed-display').textContent = speed;
             if (state.gpxPoints.length > 0) updateStats({
                 totalDistance: state.totalDistance,
                 totalElevationGain: state.totalElevationGain
