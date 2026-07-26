@@ -7,7 +7,7 @@
     <meta property="og:title" content="spot-studio">
     <meta property="og:description" content="骑行 & 徒步活动发布平台 — GPX 轨迹渲染 + 机位踩点">
     <meta property="og:type" content="website">
-    <link rel="stylesheet" href="leaflet.css" />
+    <link rel="stylesheet" href="leaflet.css" onerror="this.onerror=null;this.href='https://unpkg.com/leaflet@1.9.4/dist/leaflet.css'">
     <style>
         :root {
             --primary: #311e3e;
@@ -31,78 +31,162 @@
             min-height: 100vh;
         }
 
-        .hero {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            padding: 48px 24px 40px;
-            text-align: center;
-            color: #fff;
+        .navbar {
+            background: var(--card);
+            height: 48px;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
             position: relative;
-            overflow: hidden;
+            z-index: 100;
         }
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at 30% 70%, rgba(255,255,255,0.08) 0%, transparent 50%);
+        .navbar-inner {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
         }
-        .hero-title {
-            font-size: 2.4em;
+        .navbar-title {
+            font-size: 1em;
             font-weight: 700;
-            margin-bottom: 8px;
-            position: relative;
+            color: var(--accent);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
             outline: none;
+            min-width: 0;
+            flex-shrink: 1;
             min-height: 1.2em;
         }
-        .hero-title:empty::before {
-            content: '点击输入骑行活动标题';
-            opacity: 0.5;
+        .navbar-title:empty::before {
+            content: 'spot-studio';
+            opacity: 0.4;
         }
+        .navbar-divider {
+            width: 1px;
+            height: 20px;
+            background: var(--border);
+            flex-shrink: 0;
+            display: none;
+        }
+        .navbar-subtitle {
+            font-size: 0.82em;
+            color: var(--text-muted);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            outline: none;
+            min-height: 1.2em;
+            flex-shrink: 1;
+            max-width: 300px;
+        }
+        .navbar-subtitle:empty { display: none; }
+        .navbar-spacer { flex: 1; }
+        .navbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+        .navbar-btn {
+            padding: 6px 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--card);
+            font-size: 0.8em;
+            font-weight: 500;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            color: var(--text-secondary);
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .navbar-btn:hover { border-color: var(--accent); color: var(--accent); }
+        .navbar-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+        .navbar-btn.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+        .navbar-btn.primary:hover { background: var(--accent-light); }
 
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
 
-        .map-section {
-            margin: -20px auto 0;
-            max-width: 1100px;
-            padding: 0 20px;
+        .map-area {
             position: relative;
-            z-index: 10;
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            background: #e8e8e8;
         }
         #map {
             width: 100%;
-            height: 70vh;
-            min-height: 450px;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
+            height: calc(100vh - 48px - 260px);
+            min-height: 350px;
             background: #e8e8e8;
         }
         .map-hint {
-            text-align: center;
-            padding: 12px;
+            position: absolute;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 500;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(6px);
+            padding: 10px 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             color: var(--text-secondary);
-            font-size: 0.9em;
+            font-size: 0.85em;
+            pointer-events: none;
         }
 
-        .elevation-section {
+        .content-area {
             max-width: 1100px;
-            margin: 16px auto 0;
-            padding: 0 20px;
+            margin: 0 auto;
+            padding: 16px 20px 40px;
         }
         .elevation-card {
             background: var(--card);
             border-radius: var(--radius);
             box-shadow: var(--shadow);
-            padding: 20px;
+            padding: 16px 20px;
             display: none;
+            margin-bottom: 14px;
         }
         .elevation-card.show { display: block; }
         .elevation-title {
-            font-size: 0.85em;
+            font-size: 0.82em;
             color: var(--text-secondary);
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .elevation-btns { display: flex; gap: 6px; }
+        .ele-calibrate-btn {
+            background: none;
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 0.82em;
+            padding: 3px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .ele-calibrate-btn:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+        .ele-calibrate-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .ele-calibrate-btn.active {
+            color: var(--accent);
+            border-color: var(--accent);
         }
         #elevation-chart {
             width: 100%;
@@ -110,79 +194,42 @@
             display: block;
         }
 
-        .stats-section {
-            max-width: 1100px;
-            margin: 20px auto 0;
-            padding: 0 20px;
-        }
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 14px;
+            gap: 12px;
+            margin-bottom: 14px;
         }
         .stat-card {
             background: var(--card);
             border-radius: var(--radius);
             box-shadow: var(--shadow);
-            padding: 22px 16px;
+            padding: 16px 12px;
             text-align: center;
             transition: transform 0.2s, box-shadow 0.2s;
         }
         .stat-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
-        .stat-icon { font-size: 1.6em; margin-bottom: 8px; }
-        .stat-value { font-size: 1.8em; font-weight: 700; color: var(--accent); display: block; line-height: 1.2; }
-        .stat-label { font-size: 0.8em; color: var(--text-secondary); margin-top: 4px; display: block; }
+        .stat-icon { font-size: 1.4em; margin-bottom: 6px; }
+        .stat-value { font-size: 1.5em; font-weight: 700; color: var(--accent); display: block; line-height: 1.2; }
+        .stat-label { font-size: 0.78em; color: var(--text-secondary); margin-top: 4px; display: block; }
 
-        .details-section {
-            max-width: 1100px;
-            margin: 24px auto 0;
-            padding: 0 20px 60px;
+        .details-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            gap: 14px;
         }
         .detail-card {
             background: var(--card);
             border-radius: var(--radius);
             box-shadow: var(--shadow);
-            padding: 24px;
+            padding: 20px;
         }
         .detail-card h3 {
-            font-size: 0.95em;
+            font-size: 0.9em;
             color: var(--text-secondary);
-            margin-bottom: 14px;
+            margin-bottom: 12px;
             font-weight: 600;
         }
-
-        .route-links { display: flex; flex-wrap: wrap; gap: 10px; }
-        .route-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 18px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-size: 0.9em;
-            font-weight: 500;
-            transition: all 0.2s;
-            border: 1px solid var(--border);
-            color: var(--text);
-        }
-        .route-link:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
-        .route-link .icon {
-            width: 22px;
-            height: 22px;
-            border-radius: 5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.75em;
-            font-weight: 700;
-            color: #fff;
-        }
-        .route-link.strava .icon { background: #FC4C02; }
-        .route-link.igp .icon { background: #00AEEF; }
-        .route-link.garmin .icon { background: #000; }
 
         .gpx-actions { display: flex; gap: 10px; flex-wrap: wrap; }
         .btn {
@@ -213,28 +260,6 @@
             display: none;
         }
         .gpx-info.show { display: block; }
-
-        .link-input-group { display: flex; flex-direction: column; gap: 10px; }
-        .link-input {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .link-input label {
-            font-size: 0.8em;
-            color: var(--text-secondary);
-            min-width: 70px;
-        }
-        .link-input input {
-            flex: 1;
-            padding: 8px 12px;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            font-size: 0.85em;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-        .link-input input:focus { border-color: var(--accent); }
 
         .upload-zone {
             border: 2px dashed var(--border);
@@ -269,7 +294,6 @@
         .speed-input input:focus { border-color: var(--accent); }
         .speed-input .unit { font-size: 0.8em; color: var(--text-muted); }
 
-        .poi-section { grid-column: 1 / -1; }
         .poi-map-toolbar {
             position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
             z-index: 1000; display: none;
@@ -279,18 +303,96 @@
             display: flex; flex-wrap: wrap; gap: 6px; padding: 8px 12px;
             background: rgba(255,255,255,0.95); border-radius: 12px;
             box-shadow: 0 4px 16px rgba(0,0,0,0.15); backdrop-filter: blur(8px);
+            align-items: center;
         }
-        .poi-toolbar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
-        .poi-btn {
-            padding: 7px 14px; border-radius: 8px; border: 1.5px solid var(--border);
-            background: var(--card); cursor: pointer; font-size: 0.82em;
-            display: flex; align-items: center; gap: 5px; transition: all 0.2s;
-            user-select: none;
+        .map-toolbar-group {
+            display: flex; gap: 4px; align-items: center;
         }
-        .poi-btn:hover { border-color: var(--accent); }
-        .poi-btn.active { border-color: var(--accent); background: rgba(135,49,78,0.08); color: var(--accent); font-weight: 600; }
-        .poi-btn .poi-emoji { font-size: 1.1em; }
-        .poi-hint { font-size: 0.78em; color: var(--text-muted); margin-bottom: 10px; }
+        .map-toolbar-sep {
+            width: 1px; height: 24px; background: var(--border); margin: 0 4px;
+        }
+        .map-tool-btn {
+            width: 32px; height: 32px; border-radius: 8px; border: 1.5px solid var(--border);
+            background: var(--card); cursor: pointer; font-size: 0.85em;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--text-secondary); transition: all 0.2s; position: relative;
+        }
+        .map-tool-btn:hover { border-color: var(--accent); color: var(--accent); }
+        .map-tool-btn.active { border-color: var(--accent); background: var(--accent); color: #fff; }
+        .map-tool-btn .badge {
+            position: absolute; top: -4px; right: -4px; background: var(--accent);
+            color: #fff; font-size: 0.55em; min-width: 14px; height: 14px;
+            border-radius: 7px; display: flex; align-items: center; justify-content: center;
+            font-weight: 700; padding: 0 3px;
+        }
+        .map-color-bar {
+            position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%);
+            z-index: 1000; display: none;
+            gap: 6px; padding: 6px 10px;
+            background: rgba(255,255,255,0.95); border-radius: 10px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.15); backdrop-filter: blur(8px);
+        }
+        .map-right-controls {
+            position: absolute; top: 12px; right: 12px;
+            z-index: 1000; display: none;
+            flex-direction: column; gap: 8px;
+        }
+        .map-ctrl-btn {
+            width: 40px; height: 40px; border-radius: 10px;
+            background: rgba(255,255,255,0.95); border: none;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; color: #333; transition: all 0.2s;
+            backdrop-filter: blur(6px);
+        }
+        .map-ctrl-btn:hover { background: #fff; box-shadow: 0 2px 12px rgba(0,0,0,0.18); }
+        .map-ctrl-btn.active { color: var(--accent); }
+        .map-ctrl-sep { height: 1px; background: rgba(0,0,0,0.08); margin: 2px 6px; }
+        .map-right-controls .layer-dropdown {
+            position: absolute; top: 100%; right: 0; margin-top: 6px;
+            background: rgba(255,255,255,0.97); border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.18); padding: 8px 0;
+            display: none; min-width: 200px; max-height: 70vh;
+            overflow-y: auto; backdrop-filter: blur(8px);
+        }
+        .layer-dropdown.show { display: block; }
+        .ld-section { padding: 0 4px; }
+        .ld-section-title {
+            font-size: 0.78em; font-weight: 600; color: var(--text-muted);
+            padding: 6px 12px 4px; user-select: none;
+        }
+        .ld-divider { height: 1px; background: var(--border); margin: 6px 12px; }
+        .ld-item {
+            display: flex; align-items: center; gap: 8px; padding: 6px 12px;
+            font-size: 0.82em; cursor: pointer; color: var(--text-secondary);
+            transition: background 0.15s; user-select: none;
+        }
+        .ld-item:hover { background: var(--bg); }
+        .ld-item input { display: none; }
+        .ld-radio-visual, .ld-check-visual {
+            width: 16px; height: 16px; border-radius: 50%; flex-shrink: 0;
+            border: 2px solid #ccc; transition: all 0.15s;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .ld-check-visual { border-radius: 4px; }
+        .ld-item input:checked ~ .ld-radio-visual {
+            border-color: var(--accent);
+        }
+        .ld-item input:checked ~ .ld-radio-visual::after {
+            content: ''; width: 8px; height: 8px; border-radius: 50%;
+            background: var(--accent);
+        }
+        .ld-item input:checked ~ .ld-check-visual {
+            border-color: var(--accent); background: var(--accent);
+        }
+        .ld-item input:checked ~ .ld-check-visual::after {
+            content: ''; width: 8px; height: 5px; border-left: 2px solid #fff;
+            border-bottom: 2px solid #fff; transform: rotate(-45deg) translateY(-1px);
+        }
+        .osm-poi-import-btn:hover {
+            background: var(--accent) !important; color: #fff !important;
+            border-color: var(--accent) !important;
+        }
         .poi-list { display: flex; flex-direction: column; gap: 6px; max-height: 240px; overflow-y: auto; }
         .poi-item {
             display: flex; align-items: center; gap: 8px; padding: 8px 10px;
@@ -309,51 +411,7 @@
         .poi-actions { display: flex; gap: 8px; margin-top: 10px; }
         .poi-actions .btn { font-size: 0.78em; padding: 6px 12px; }
 
-        .footer {
-            text-align: center;
-            padding: 24px;
-            color: var(--text-muted);
-            font-size: 0.8em;
-        }
-
-        .leaflet-control-zoom a {
-            border-radius: 8px !important;
-        }
-        .layer-switcher {
-            position: absolute; top: 12px; right: 12px; z-index: 1000;
-            background: rgba(255,255,255,0.95); border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15); display: none;
-            overflow: hidden;
-        }
-        .layer-switcher.show { display: block; }
-        .layer-btn {
-            display: block; width: 100%; padding: 7px 14px; border: none;
-            background: transparent; font-size: 0.8em; cursor: pointer;
-            color: var(--text-secondary); text-align: left; white-space: nowrap;
-            transition: all 0.15s;
-        }
-        .layer-btn.active { background: var(--accent); color: #fff; font-weight: 600; }
-        .layer-btn:hover:not(.active) { background: #f0f0f0; }
-
-        .color-mode-bar {
-            position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%);
-            z-index: 1000; display: none;
-        }
-        .color-mode-bar.show { display: block; }
-        .color-mode-bar-inner {
-            display: flex; gap: 4px; padding: 6px 10px;
-            background: rgba(255,255,255,0.95); border-radius: 10px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.15); backdrop-filter: blur(8px);
-            align-items: center;
-        }
-        .color-mode-label { font-size: 0.78em; color: var(--text-secondary); margin-right: 4px; white-space: nowrap; }
-        .color-mode-btn {
-            padding: 4px 10px; border-radius: 6px; border: 1.5px solid var(--border);
-            background: var(--card); cursor: pointer; font-size: 0.76em;
-            color: var(--text-secondary); transition: all 0.2s; white-space: nowrap;
-        }
-        .color-mode-btn:hover { border-color: var(--accent); color: var(--accent); }
-        .color-mode-btn.active { border-color: var(--accent); background: var(--accent); color: #fff; font-weight: 600; }
+        .footer { display: none; }
 
         .color-legend {
             position: absolute; bottom: 52px; right: 12px; z-index: 1000;
@@ -365,7 +423,7 @@
         .color-legend-title { font-size: 0.75em; color: var(--text-secondary); margin-bottom: 6px; font-weight: 600; }
         .color-legend-bar {
             height: 12px; border-radius: 3px; margin-bottom: 4px;
-            background: linear-gradient(to right, hsl(240,80%,50%), hsl(180,80%,50%), hsl(120,80%,50%), hsl(60,80%,50%), hsl(0,80%,50%));
+            background: linear-gradient(to right, hsl(240,70%,50%), hsl(180,70%,50%), hsl(120,70%,50%), hsl(60,70%,50%), hsl(0,70%,50%));
         }
         .color-legend-labels { display: flex; justify-content: space-between; font-size: 0.7em; color: var(--text-muted); }
 
@@ -421,25 +479,6 @@
         }
         .track-item-del:hover { opacity: 1; }
 
-        .editor-toolbar {
-            position: absolute; top: 12px; left: 12px; z-index: 1000;
-            display: none;
-        }
-        .editor-toolbar.show { display: block; }
-        .editor-toolbar-inner {
-            display: flex; gap: 4px; padding: 6px 10px;
-            background: rgba(255,255,255,0.95); border-radius: 10px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.15); backdrop-filter: blur(8px);
-        }
-        .editor-tool-btn {
-            padding: 6px 10px; border-radius: 6px; border: 1.5px solid var(--border);
-            background: var(--card); cursor: pointer; font-size: 0.82em;
-            color: var(--text-secondary); transition: all 0.2s;
-        }
-        .editor-tool-btn:hover { border-color: var(--accent); color: var(--accent); }
-        .editor-tool-btn.active { border-color: var(--accent); background: var(--accent); color: #fff; }
-        .editor-tool-btn:disabled { opacity: 0.3; cursor: not-allowed; }
-
         .coords-display {
             position: absolute; bottom: 12px; left: 12px; z-index: 1000;
             background: rgba(0,0,0,0.7); color: #fff;
@@ -491,43 +530,89 @@
         #filter-modal-toggle:focus + span:first-of-type { box-shadow: 0 0 0 2px rgba(135,49,78,0.3); }
 
         @media (max-width: 768px) {
-            .hero { padding: 36px 16px 32px; }
-            .hero-title { font-size: 1.6em; }
+            .navbar { padding: 0 10px; }
+            .navbar-subtitle { display: none; }
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
-            .details-section { grid-template-columns: 1fr; }
-            #map { height: 60vh; min-height: 350px; }
-            .stat-value { font-size: 1.4em; }
+            .details-grid { grid-template-columns: 1fr; }
+            #map { height: calc(100vh - 48px - 300px); min-height: 300px; }
+            .stat-value { font-size: 1.3em; }
         }
     </style>
 </head>
 <body>
 
-<header class="hero">
-    <div class="hero-title" contenteditable="true" id="title"></div>
-</header>
-
-<section class="map-section">
-    <div id="map"></div>
-    <div class="layer-switcher" id="layer-switcher">
-        <button class="layer-btn active" data-layer="street">🗺️ 街道</button>
-        <button class="layer-btn" data-layer="satellite">🛰️ 卫星</button>
-    </div>
-    <div class="poi-map-toolbar" id="poi-map-toolbar">
-        <div class="poi-map-toolbar-inner">
-            <button class="poi-btn" data-type="toilet"><span class="poi-emoji">🚻</span></button>
-            <button class="poi-btn" data-type="photo"><span class="poi-emoji">📸</span></button>
-            <button class="poi-btn" data-type="rest"><span class="poi-emoji">🪑</span></button>
-            <button class="poi-btn" data-type="supply"><span class="poi-emoji">🏪</span></button>
-            <button class="poi-btn" data-type="water"><span class="poi-emoji">💧</span></button>
-            <button class="poi-btn" data-type="danger"><span class="poi-emoji">⚠️</span></button>
+<nav class="navbar">
+    <div class="navbar-inner">
+        <div class="navbar-title" contenteditable="true" id="title"></div>
+        <div class="navbar-divider" id="navbar-divider"></div>
+        <div class="navbar-subtitle" contenteditable="true" id="subtitle"></div>
+        <div class="navbar-spacer"></div>
+        <div class="navbar-actions">
+            <button class="navbar-btn primary" id="upload-btn">📤 上传</button>
+            <button class="navbar-btn" id="download-btn" disabled>⬇️ GPX</button>
+            <button class="navbar-btn" id="download-kmz-btn" disabled>⬇️ KMZ</button>
         </div>
     </div>
-    <div class="color-mode-bar" id="color-mode-bar">
-        <div class="color-mode-bar-inner">
-            <span class="color-mode-label">着色：</span>
-            <button class="color-mode-btn active" data-mode="none">无</button>
-            <button class="color-mode-btn" data-mode="elevation">海拔</button>
-            <button class="color-mode-btn" data-mode="slope">坡度</button>
+</nav>
+
+<section class="map-area">
+    <div id="map"></div>
+    <div class="poi-map-toolbar" id="poi-map-toolbar">
+        <div class="poi-map-toolbar-inner">
+            <div class="map-toolbar-group" id="editor-group">
+                <button class="map-tool-btn" id="tool-undo" title="↩ 撤销">↩</button>
+                <button class="map-tool-btn" id="tool-redo" title="↪ 重做">↪</button>
+                <button class="map-tool-btn" id="tool-measure" title="📏 测距">📏</button>
+            </div>
+            <div class="map-toolbar-sep"></div>
+            <div class="map-toolbar-group" id="poi-group">
+                <button class="map-tool-btn" data-type="toilet" title="🚻 厕所">🚻</button>
+                <button class="map-tool-btn" data-type="photo" title="📸 拍照点">📸</button>
+                <button class="map-tool-btn" data-type="rest" title="🪑 休息">🪑</button>
+                <button class="map-tool-btn" data-type="supply" title="🏪 补给">🏪</button>
+                <button class="map-tool-btn" data-type="water" title="💧 饮水">💧</button>
+                <button class="map-tool-btn" data-type="danger" title="⚠️ 注意">⚠️</button>
+            </div>
+        </div>
+    </div>
+    <div class="map-color-bar" id="map-color-bar">
+        <button class="map-tool-btn color-mode-btn active" data-mode="none" title="着色：无">🎨</button>
+        <button class="map-tool-btn color-mode-btn" data-mode="elevation" title="着色：海拔">⛰️</button>
+        <button class="map-tool-btn color-mode-btn" data-mode="slope" title="着色：坡度">📐</button>
+    </div>
+    <div class="map-right-controls" id="map-right-controls">
+        <button class="map-ctrl-btn" id="map-locate" title="我的位置">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/></svg>
+        </button>
+        <button class="map-ctrl-btn" id="map-zoom-in" title="放大">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <button class="map-ctrl-btn" id="map-zoom-out" title="缩小">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="map-ctrl-sep"></div>
+        <div class="map-ctrl-btn" id="layer-toggle" title="图层" style="position:relative;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+            <div class="layer-dropdown" id="layer-dropdown">
+                <div class="ld-section">
+                    <div class="ld-section-title">底图</div>
+                    <label class="ld-item ld-radio"><input type="radio" name="base-layer" value="osm" checked><span class="ld-radio-visual"></span>OpenStreetMap</label>
+                    <label class="ld-item ld-radio"><input type="radio" name="base-layer" value="opentopo"><span class="ld-radio-visual"></span>OpenTopoMap</label>
+                    <label class="ld-item ld-radio"><input type="radio" name="base-layer" value="satellite"><span class="ld-radio-visual"></span>卫星 (Esri)</label>
+                </div>
+                <div class="ld-divider"></div>
+                <div class="ld-section">
+                    <div class="ld-section-title">兴趣点 (OSM)</div>
+                    <label class="ld-item"><input type="checkbox" class="osm-poi-cb" data-cat="toilets"><span class="ld-check-visual"></span>🚻 厕所</label>
+                    <label class="ld-item"><input type="checkbox" class="osm-poi-cb" data-cat="shops"><span class="ld-check-visual"></span>🏪 商店</label>
+                    <label class="ld-item"><input type="checkbox" class="osm-poi-cb" data-cat="food"><span class="ld-check-visual"></span>🍜 餐饮</label>
+                    <label class="ld-item"><input type="checkbox" class="osm-poi-cb" data-cat="water"><span class="ld-check-visual"></span>💧 饮水</label>
+                    <label class="ld-item"><input type="checkbox" class="osm-poi-cb" data-cat="fuel"><span class="ld-check-visual"></span>⛽ 加油站</label>
+                    <label class="ld-item"><input type="checkbox" class="osm-poi-cb" data-cat="lodging"><span class="ld-check-visual"></span>🏨 住宿</label>
+                    <label class="ld-item"><input type="checkbox" class="osm-poi-cb" data-cat="medical"><span class="ld-check-visual"></span>🏥 医疗</label>
+                    <label class="ld-item"><input type="checkbox" class="osm-poi-cb" data-cat="sights"><span class="ld-check-visual"></span>⛰️ 风景点</label>
+                </div>
+            </div>
         </div>
     </div>
     <div class="color-legend" id="color-legend">
@@ -536,15 +621,6 @@
         <div class="color-legend-labels">
             <span id="color-legend-min">0m</span>
             <span id="color-legend-max">1000m</span>
-        </div>
-    </div>
-    <div class="editor-toolbar" id="editor-toolbar">
-        <div class="editor-toolbar-inner">
-            <button class="editor-tool-btn" id="tool-undo" title="撤销">↩</button>
-            <button class="editor-tool-btn" id="tool-redo" title="重做">↪</button>
-            <button class="editor-tool-btn" id="tool-measure" title="测距">📏</button>
-            <button class="editor-tool-btn" id="tool-addpoint" title="添加节点">➕</button>
-            <button class="editor-tool-btn" id="tool-deletepoint" title="删除节点">🗑️</button>
         </div>
     </div>
     <div class="measure-result" id="measure-result"></div>
@@ -556,17 +632,10 @@
         <div class="context-menu-item" data-action="copy-coords">📋 复制坐标</div>
         <div class="context-menu-item" data-action="center-map">🎯 居中地图</div>
     </div>
-    <div class="map-hint" id="map-hint">上传 GPX 文件或拖拽到页面以显示轨迹</div>
+    <div class="map-hint" id="map-hint">上传 GPX / KML / KMZ 文件或拖拽到页面以显示轨迹</div>
 </section>
 
-<section class="elevation-section">
-    <div class="elevation-card" id="elevation-card">
-        <div class="elevation-title">海拔剖面 (Elevation Profile)</div>
-        <canvas id="elevation-chart"></canvas>
-    </div>
-</section>
-
-<section class="stats-section">
+<div class="content-area">
     <div class="stats-grid">
         <div class="stat-card" id="stat-distance-card" style="cursor:pointer;" title="点击设置距离标记间隔">
             <div class="stat-icon">🚴</div>
@@ -589,68 +658,47 @@
             <span class="stat-label">兴趣点</span>
         </div>
     </div>
-</section>
 
-<section class="details-section">
-    <div class="detail-card">
-        <h3>📂 GPX 文件</h3>
-        <div class="upload-zone" id="upload-zone">
-            <div class="upload-zone-icon">📁</div>
-            <div class="upload-zone-text">点击选择或拖拽 GPX 文件到此处</div>
+    <div class="elevation-card" id="elevation-card">
+        <div class="elevation-title">
+            海拔剖面
+            <div class="elevation-btns">
+                <button class="ele-calibrate-btn" id="ele-calibrate-btn" title="校准海拔：查询 DEM 补全缺失的海拔数据">🔄 校准海拔</button>
+                <button class="ele-calibrate-btn" id="gcj02-toggle" title="坐标偏移校正：佳明等国内设备可能使用 GCJ-02 坐标系">📐 偏移校正</button>
+            </div>
         </div>
-        <div class="gpx-actions">
-            <button class="btn btn-primary" id="upload-btn">📤 上传 GPX</button>
-            <button class="btn btn-secondary" id="download-btn" disabled>⬇️ 下载 GPX</button>
-        </div>
-        <div class="gpx-info" id="gpx-info"></div>
-        <input type="file" id="gpx-input" accept=".gpx" hidden>
+        <canvas id="elevation-chart"></canvas>
     </div>
 
-    <div class="detail-card">
-        <h3>🗺️ 路书链接</h3>
-        <div class="route-links" id="route-links">
-            <a href="#" class="route-link strava" target="_blank" id="link-strava">
-                <span class="icon">S</span> Strava
-            </a>
-            <a href="#" class="route-link igp" target="_blank" id="link-igp">
-                <span class="icon">i</span> iGPSPORT
-            </a>
-            <a href="#" class="route-link garmin" target="_blank" id="link-garmin">
-                <span class="icon">G</span> Garmin Connect
-            </a>
+    <div class="details-grid">
+        <div class="detail-card">
+            <h3>📂 GPX 文件</h3>
+            <div class="upload-zone" id="upload-zone">
+                <div class="upload-zone-icon">📁</div>
+                <div class="upload-zone-text">点击选择或拖拽 GPX / KML / KMZ 文件到此处</div>
+            </div>
+            <div class="gpx-actions">
+                <button class="btn btn-primary" id="upload-btn-card">📤 上传 GPX</button>
+                <button class="btn btn-secondary" id="download-btn-card" disabled>⬇️ GPX</button>
+                <button class="btn btn-secondary" id="download-kmz-btn-card" disabled>⬇️ KMZ</button>
+            </div>
+            <div class="gpx-info" id="gpx-info"></div>
+            <input type="file" id="gpx-input" accept=".gpx,.kml,.kmz" hidden>
         </div>
-        <div class="link-input-group" style="margin-top: 14px;">
-            <div class="link-input">
-                <label>Strava</label>
-                <input type="url" id="input-strava" placeholder="https://www.strava.com/activities/...">
+
+        <div class="detail-card poi-section">
+            <h3>📍 兴趣点 (POI)</h3>
+            <div class="poi-list" id="poi-list">
+                <div class="poi-empty">选择地图上方工具栏，点击地图添加</div>
             </div>
-            <div class="link-input">
-                <label>iGPSPORT</label>
-                <input type="url" id="input-igp" placeholder="https://share.igpsport.com/...">
-            </div>
-            <div class="link-input">
-                <label>Garmin</label>
-                <input type="url" id="input-garmin" placeholder="https://connect.garmin.com/...">
+            <div class="poi-actions">
+                <button class="btn btn-secondary" id="poi-export">📤 导出 JSON</button>
+                <button class="btn btn-secondary" id="poi-import-btn">📥 导入 JSON</button>
+                <input type="file" id="poi-import-input" accept=".json" hidden>
             </div>
         </div>
     </div>
-
-    <div class="detail-card poi-section">
-        <h3>📍 兴趣点 (POI)</h3>
-        <div class="poi-list" id="poi-list">
-            <div class="poi-empty">选择地图上方工具栏，点击地图添加</div>
-        </div>
-        <div class="poi-actions">
-            <button class="btn btn-secondary" id="poi-export">📤 导出 JSON</button>
-            <button class="btn btn-secondary" id="poi-import-btn">📥 导入 JSON</button>
-            <input type="file" id="poi-import-input" accept=".json" hidden>
-        </div>
-    </div>
-</section>
-
-<footer class="footer">
-    <p>© 2024 shiyangyu.com · spot-studio</p>
-</footer>
+</div>
 
 <div class="modal-overlay" id="modal-overlay">
     <div class="modal-box">
@@ -709,6 +757,12 @@
 
 <script src="leaflet.js"></script>
 <script>
+if (!window.L) {
+    document.write('<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"><\/script>');
+}
+</script>
+<script src="https://unpkg.com/jszip@3.10.1/dist/jszip.min.js"></script>
+<script>
 (function() {
     const state = {
         map: null,
@@ -719,6 +773,9 @@
         gpxData: null,
         rawPoints: [],
         gpxPoints: [],
+        cumDist: [],
+        totalDist: 0,
+        baseCanvas: null,
         fileName: '',
         totalDistance: 0,
         totalElevationGain: 0,
@@ -740,7 +797,8 @@
         editHandleMarkers: [],
         avgSpeed: 25,
         activityType: 'cycling',
-        markerInterval: 0
+        markerInterval: 0,
+        gcj02Converted: false
     };
 
     let filterEnabled = true;
@@ -777,13 +835,17 @@
 
     function initMap() {
         state.map = L.map('map', {
-            zoomControl: true,
+            zoomControl: false,
             scrollWheelZoom: true
         }).setView([30.5728, 104.0668], 12);
 
         state.layers = {
-            street: L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-                attribution: '&copy; <a href="https://carto.com/">CARTO</a> &copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>',
+            opentopo: L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://opentopomap.org">OpenTopoMap</a> &copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>',
+                maxZoom: 17
+            }),
+            osm: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
                 maxZoom: 19
             }),
             satellite: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
@@ -792,27 +854,56 @@
             })
         };
 
-        state.currentLayer = 'street';
-        state.layers.street.addTo(state.map);
+        state.currentLayer = 'osm';
+        state.layers.osm.addTo(state.map);
 
         setTimeout(() => state.map.invalidateSize(), 100);
     }
 
     function initLayerSwitcher() {
-        const switcher = document.getElementById('layer-switcher');
-        document.getElementById('poi-map-toolbar').addEventListener('click', () => {});
-        switcher.addEventListener('click', e => {
-            const btn = e.target.closest('.layer-btn');
-            if (!btn) return;
-            const layer = btn.dataset.layer;
-            if (layer === state.currentLayer) return;
+        const toggle = document.getElementById('layer-toggle');
+        const dropdown = document.getElementById('layer-dropdown');
+        toggle.addEventListener('click', e => {
+            e.stopPropagation();
+            dropdown.classList.toggle('show');
+        });
+        document.addEventListener('click', e => {
+            if (!dropdown.contains(e.target) && e.target !== toggle && !toggle.contains(e.target)) {
+                dropdown.classList.remove('show');
+            }
+        });
 
-            state.map.removeLayer(state.layers[state.currentLayer]);
-            state.layers[layer].addTo(state.map);
-            state.currentLayer = layer;
+        dropdown.querySelectorAll('input[name="base-layer"]').forEach(radio => {
+            radio.addEventListener('change', () => {
+                const layer = radio.value;
+                if (layer === state.currentLayer) return;
+                state.map.removeLayer(state.layers[state.currentLayer]);
+                state.layers[layer].addTo(state.map);
+                state.currentLayer = layer;
+            });
+        });
 
-            switcher.querySelectorAll('.layer-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+        const osmQueries = {
+            toilets: 'amenity~"toilets|restroom"',
+            shops: 'shop~"convenience|supermarket|kiosk"',
+            food: 'amenity~"restaurant|cafe|fast_food|food_court"',
+            water: 'amenity~"drinking_water"',
+            fuel: 'amenity~"fuel"',
+            lodging: 'tourism~"hotel|hostel|camp_site|guesthouse"',
+            medical: 'amenity~"hospital|clinic|pharmacy|doctors"',
+            sights: 'tourism~"viewpoint|attraction|information"'
+        };
+        const osmIcons = { toilets:'🚻', shops:'🏪', food:'🍜', water:'💧', fuel:'⛽', lodging:'🏨', medical:'🏥', sights:'⛰️' };
+
+        dropdown.querySelectorAll('.osm-poi-cb').forEach(cb => {
+            cb.addEventListener('change', async () => {
+                const cat = cb.dataset.cat;
+                if (cb.checked) {
+                    await fetchAndShowOsmPois(cat, osmQueries[cat], osmIcons[cat]);
+                } else {
+                    clearOsmPoisByCat(cat);
+                }
+            });
         });
     }
 
@@ -823,6 +914,35 @@
         const dLon = toRad(p2.lon - p1.lon);
         const a = Math.sin(dLat/2)**2 + Math.cos(toRad(p1.lat)) * Math.cos(toRad(p2.lat)) * Math.sin(dLon/2)**2;
         return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    }
+
+    const PI = Math.PI, EE = 0.00669342162296594323, A = 6378245.0;
+    function outOfChina(lat, lon) { return lon < 72.004 || lon > 137.8347 || lat < 0.8293 || lat > 55.8271; }
+    function delta(lat, lon) {
+        let dLat = -100 + 2*lon + 3*lat + 0.2*lat*lat + 0.1*lat*lon + 0.2*Math.sqrt(Math.abs(lon));
+        let dLon = 300 + lon + 2*lat + 0.1*lon*lon + 0.1*lat*lon + 0.1*Math.sqrt(Math.abs(lon));
+        dLat += 2*(20*Math.sin(6*lon*PI) + 20*Math.sin(2*lon*PI)) * 2 / 3;
+        dLat += 2*(20*Math.sin(lat*PI) + 40*Math.sin(lat/3*PI)) * 2 / 3;
+        dLat += 2*(160*Math.sin(lat/12*PI) + 320*Math.sin(lat*PI/30)) * 2 / 3;
+        dLon += 2*(20*Math.sin(6*lon*PI) + 20*Math.sin(2*lon*PI)) * 2 / 3;
+        dLon += 2*(20*Math.sin(lon*PI) + 40*Math.sin(lon/3*PI)) * 2 / 3;
+        dLon += 2*(150*Math.sin(lon/12*PI) + 300*Math.sin(lon/30*PI)) * 2 / 3;
+        const rLat = lat / 180 * PI;
+        let magic = Math.sin(rLat); magic = 1 - EE * magic * magic;
+        const sqrtMagic = Math.sqrt(magic);
+        dLat = (dLat * 180) / ((A * (1 - EE)) / (magic * sqrtMagic) * PI);
+        dLon = (dLon * 180) / (A / sqrtMagic * Math.cos(rLat) * PI);
+        return [dLat, dLon];
+    }
+    function gcj02ToWgs84(lat, lon) {
+        if (outOfChina(lat, lon)) return [lat, lon];
+        let wgsLat = lat, wgsLon = lon;
+        for (let i = 0; i < 5; i++) {
+            const [dLat, dLon] = delta(wgsLat, wgsLon);
+            wgsLat = lat - dLat;
+            wgsLon = lon - dLon;
+        }
+        return [wgsLat, wgsLon];
     }
 
     function filterElevation(points) {
@@ -858,6 +978,32 @@
         return smoothed;
     }
 
+    async function fetchElevation(points) {
+        const BATCH_SIZE = 100;
+        const needsElevation = points.some(p => p.ele === 0);
+        if (!needsElevation) return false;
+
+        for (let i = 0; i < points.length; i += BATCH_SIZE) {
+            const batch = points.slice(i, i + BATCH_SIZE);
+            const lats = batch.map(p => p.lat).join(',');
+            const lons = batch.map(p => p.lon).join(',');
+            try {
+                const resp = await fetch(`https://api.open-meteo.com/v1/elevation?latitude=${lats}&longitude=${lons}`);
+                if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+                const data = await resp.json();
+                if (data.elevation) {
+                    data.elevation.forEach((ele, idx) => {
+                        if (points[i + idx].ele === 0) points[i + idx].ele = ele;
+                    });
+                }
+            } catch (e) {
+                console.warn('海拔查询失败:', e);
+                return false;
+            }
+        }
+        return true;
+    }
+
     function hslToHex(h, s, l) {
         s /= 100; l /= 100;
         const a = s * Math.min(l, 1 - l);
@@ -869,14 +1015,14 @@
         if (max === min) return hslToHex(120, 70, 50);
         const ratio = Math.max(0, Math.min(1, (value - min) / (max - min)));
         const h = (1 - ratio) * 240;
-        return hslToHex(h, 80, 50);
+        return hslToHex(h, 70, 50);
     }
 
     function getSlopeColor(grade) {
         const clamped = Math.max(-15, Math.min(15, grade));
         const ratio = (clamped + 15) / 30;
         const h = (1 - ratio) * 240;
-        return hslToHex(h, 80, 50);
+        return hslToHex(h, 70, 50);
     }
 
     function renderColoredTrack(points, colorMode) {
@@ -968,12 +1114,12 @@
             title.textContent = '海拔';
             minLabel.textContent = Math.round(minVal) + 'm';
             maxLabel.textContent = Math.round(maxVal) + 'm';
-            bar.style.background = 'linear-gradient(to right, hsl(240,80%,50%), hsl(180,80%,50%), hsl(120,80%,50%), hsl(60,80%,50%), hsl(0,80%,50%))';
+            bar.style.background = 'linear-gradient(to right, hsl(240,70%,50%), hsl(180,70%,50%), hsl(120,70%,50%), hsl(60,70%,50%), hsl(0,70%,50%))';
         } else if (mode === 'slope') {
             title.textContent = '坡度';
             minLabel.textContent = '-15%';
             maxLabel.textContent = '+15%';
-            bar.style.background = 'linear-gradient(to right, hsl(240,80%,50%), hsl(180,80%,50%), hsl(120,80%,50%), hsl(60,80%,50%), hsl(0,80%,50%))';
+            bar.style.background = 'linear-gradient(to right, hsl(240,70%,50%), hsl(180,70%,50%), hsl(120,70%,50%), hsl(60,70%,50%), hsl(0,70%,50%))';
         }
     }
 
@@ -1063,6 +1209,170 @@
         if (state.markerInterval > 0) addDistanceMarkers();
     }
 
+    function parseKml(kmlString) {
+        console.log('[spot-studio] parseKml, input length:', kmlString.length);
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(kmlString, 'text/xml');
+        const parseError = doc.querySelector('parsererror');
+        if (parseError) { alert('KML 文件解析失败'); return null; }
+
+        function qselAll(parent, tag) {
+            return Array.from(parent.querySelectorAll(tag));
+        }
+
+        const points = [];
+        let totalEleGain = 0;
+        let prevEle = null;
+
+        const tracks = qselAll(doc, 'gx\\:Track, Track');
+        console.log('[spot-studio] tracks found:', tracks.length);
+        if (tracks.length > 0) {
+            tracks.forEach(track => {
+                const whens = qselAll(track, 'when');
+                const coords = qselAll(track, 'gx\\:coord');
+                coords.forEach((c, ci) => {
+                    const parts = c.textContent.trim().split(/[\s,]+/);
+                    const lon = parseFloat(parts[0]);
+                    const lat = parseFloat(parts[1]);
+                    const ele = parts.length > 2 ? parseFloat(parts[2]) : 0;
+                    const time = whens[ci] ? new Date(whens[ci].textContent) : null;
+                    if (!isNaN(lat) && !isNaN(lon)) {
+                        if (prevEle !== null && ele > prevEle) totalEleGain += ele - prevEle;
+                        prevEle = ele;
+                        points.push({ lat, lon, ele: ele || 0, time });
+                    }
+                });
+            });
+        }
+
+        if (points.length === 0) {
+            const lineStrings = qselAll(doc, 'LineString');
+            console.log('[spot-studio] no tracks, trying LineString, found:', lineStrings.length);
+            lineStrings.forEach(ls => {
+                const coords = qselAll(ls, 'coordinates');
+                if (!coords.length) return;
+                coords.forEach(c => {
+                    c.textContent.trim().split(/\s+/).forEach(token => {
+                        const parts = token.split(',');
+                        const lon = parseFloat(parts[0]);
+                        const lat = parseFloat(parts[1]);
+                        const ele = parts.length > 2 ? parseFloat(parts[2]) : 0;
+                        if (!isNaN(lat) && !isNaN(lon)) {
+                            if (prevEle !== null && ele > prevEle) totalEleGain += ele - prevEle;
+                            prevEle = ele;
+                            points.push({ lat, lon, ele: ele || 0, time: null });
+                        }
+                    });
+                });
+            });
+        }
+
+        if (points.length === 0) { alert('KML 文件中未找到轨迹数据'); return null; }
+
+        let totalDist = 0;
+        for (let i = 1; i < points.length; i++) totalDist += haversine(points[i - 1], points[i]);
+
+        let duration = 0;
+        if (points[0].time && points[points.length - 1].time)
+            duration = (points[points.length - 1].time - points[0].time) / 1000;
+
+        const waypoints = [];
+        const placemarks = qselAll(doc, 'Placemark');
+        const symToType = {
+            '拍照点': 'photo', 'photo': 'photo', '📸': 'photo',
+            '厕所': 'toilet', 'toilet': 'toilet', '🚻': 'toilet',
+            '休息': 'rest', 'rest': 'rest', '🪑': 'rest',
+            '补给点': 'supply', 'supply': 'supply', '🏪': 'supply',
+            '饮水': 'water', 'water': 'water', '💧': 'water',
+            '注意': 'danger', 'danger': 'danger', '⚠️': 'danger'
+        };
+
+        placemarks.forEach(pm => {
+            const pointsList = qselAll(pm, 'Point');
+            const point = pointsList[0];
+            if (!point) return;
+            const coordsList = qselAll(point, 'coordinates');
+            const coordsEl = coordsList[0];
+            if (!coordsEl) return;
+            const parts = coordsEl.textContent.trim().split(/[\s,]+/);
+            const lon = parseFloat(parts[0]);
+            const lat = parseFloat(parts[1]);
+            if (isNaN(lat) || isNaN(lon)) return;
+            const nameList = qselAll(pm, 'name');
+            const nameEl = nameList[0];
+            const name = nameEl ? nameEl.textContent.trim() : '';
+            const descList = qselAll(pm, 'description');
+            const descEl = descList[0];
+            const desc = descEl ? descEl.textContent.trim() : '';
+            let type = 'photo';
+            const matchKey = [desc, name].find(k => symToType[k]);
+            if (matchKey) type = symToType[matchKey];
+            else if (desc.includes('📸') || name.includes('拍照')) type = 'photo';
+            else if (desc.includes('🚻') || name.includes('厕所')) type = 'toilet';
+            else if (desc.includes('🪑') || name.includes('休息')) type = 'rest';
+            else if (desc.includes('🏪') || name.includes('补给')) type = 'supply';
+            else if (desc.includes('💧') || name.includes('饮水')) type = 'water';
+            else if (desc.includes('⚠️') || name.includes('注意') || name.includes('Climb')) type = 'danger';
+            waypoints.push({ lat, lng: lon, type, name });
+        });
+
+        const seen = new Set();
+        const uniqueWaypoints = waypoints.filter(w => {
+            const key = `${w.lat.toFixed(7)},${w.lng.toFixed(7)},${w.name}`;
+            if (seen.has(key)) return false;
+            seen.add(key);
+            return true;
+        });
+
+        const nameList = qselAll(doc, 'name');
+        const nameEl = nameList[0];
+        const trackName = nameEl ? nameEl.textContent.trim() : '';
+
+        return {
+            points,
+            totalDistance: totalDist,
+            totalElevationGain: totalEleGain,
+            duration,
+            waypoints: uniqueWaypoints,
+            activityType: 'cycling',
+            trackName,
+            trackDesc: '',
+            creator: 'kml-import'
+        };
+    }
+
+    function loadKmlString(kmlString, fileName) {
+        console.log('[spot-studio] loadKmlString called, length:', kmlString.length);
+        state.gpxData = kmlString;
+        state.fileName = fileName;
+        state.undoStack = [];
+        state.redoStack = [];
+        state.activityType = 'cycling';
+        state.gcj02Converted = false;
+        updateActivityIcon();
+        let result;
+        try { result = parseKml(kmlString); } catch(e) { console.error('[spot-studio] parseKml error:', e); alert('KML 解析出错: ' + e.message); return; }
+        console.log('[spot-studio] parseKml result:', result ? result.points.length + ' points' : 'null');
+        if (!result) return;
+        state.rawPoints = result.points;
+        document.getElementById('title').textContent = result.trackName || fileName.replace(/\.(kml|kmz)$/i, '');
+        document.getElementById('subtitle').textContent = result.trackDesc || '';
+        updateSubtitleToggle();
+        document.getElementById('poi-map-toolbar').classList.add('show');
+        document.getElementById('map-color-bar').style.display = 'flex';
+        document.getElementById('map-right-controls').style.display = 'flex';
+        document.getElementById('coords-display').classList.add('show');
+        updateWithFilter();
+        updateTrackList();
+        if (result.waypoints && result.waypoints.length > 0) {
+            result.waypoints.forEach(w => addPoi(w.lat, w.lng, w.type, w.name));
+        }
+        document.getElementById('download-btn').disabled = false;
+        document.getElementById('download-kmz-btn').disabled = false;
+        syncDownloadBtns();
+        document.getElementById('map-hint').style.display = 'none';
+    }
+
     function parseGpx(gpxString) {
         const parser = new DOMParser();
         const doc = parser.parseFromString(gpxString, 'text/xml');
@@ -1148,8 +1458,10 @@
             totalElevationGain: totalEleGain,
             duration,
             waypoints: uniqueWaypoints,
-            links: parseGpxLinks(doc),
-            activityType: detectActivityType(doc)
+            activityType: detectActivityType(doc),
+            trackName: (doc.querySelector('metadata > name') || doc.querySelector('trk > name'))?.textContent?.trim() || '',
+            trackDesc: doc.querySelector('trk > desc')?.textContent?.trim() || '',
+            creator: doc.querySelector('gpx')?.getAttribute('creator') || ''
         };
     }
 
@@ -1161,17 +1473,20 @@
         return 'cycling';
     }
 
-    function parseGpxLinks(doc) {
-        const links = {};
-        const allLinks = doc.querySelectorAll('metadata > link');
-        allLinks.forEach(link => {
-            const href = link.getAttribute('href');
-            if (!href) return;
-            if (href.includes('strava.com')) links.strava = href;
-            else if (href.includes('igpsport.com')) links.igp = href;
-            else if (href.includes('garmin.com')) links.garmin = href;
-        });
-        return links;
+    function updateSubtitleToggle() {
+        const subtitle = document.getElementById('subtitle');
+        const divider = document.getElementById('navbar-divider');
+        const hasContent = subtitle.textContent.trim().length > 0;
+        divider.style.display = hasContent ? '' : 'none';
+    }
+
+    function syncDownloadBtns() {
+        const navGpx = document.getElementById('download-btn');
+        const navKmz = document.getElementById('download-kmz-btn');
+        const cardGpx = document.getElementById('download-btn-card');
+        const cardKmz = document.getElementById('download-kmz-btn-card');
+        if (cardGpx) cardGpx.disabled = navGpx.disabled;
+        if (cardKmz) cardKmz.disabled = navKmz.disabled;
     }
 
     function renderTrack(points) {
@@ -1305,6 +1620,14 @@
         ctx.strokeStyle = '#87314e';
         ctx.lineWidth = 2;
         ctx.stroke();
+
+        state.cumDist = cumulativeDist;
+        state.totalDist = totalDist;
+        const offscreen = document.createElement('canvas');
+        offscreen.width = canvas.width;
+        offscreen.height = canvas.height;
+        offscreen.getContext('2d').drawImage(canvas, 0, 0);
+        state.baseCanvas = offscreen;
     }
 
     function updateActivityIcon() {
@@ -1338,55 +1661,156 @@
         info.classList.add('show');
     }
 
-    function loadGpxString(gpxString, fileName) {
+    async function loadGpxString(gpxString, fileName) {
         const result = parseGpx(gpxString);
         if (!result) return;
 
         state.gpxData = gpxString;
-        state.rawPoints = result.points;
         state.fileName = fileName || 'route.gpx';
         state.undoStack = [];
         state.redoStack = [];
         state.activityType = result.activityType || 'cycling';
         updateActivityIcon();
 
-        const titleText = fileName ? fileName.replace(/\.gpx$/i, '') : '';
+        const isGarmin = /garmin/i.test(result.creator);
+        const inChina = result.points.some(p => !outOfChina(p.lat, p.lon));
+        if (isGarmin && inChina) {
+            result.points.forEach(p => {
+                const [lat, lon] = gcj02ToWgs84(p.lat, p.lon);
+                p.lat = lat; p.lon = lon;
+            });
+            state.gcj02Converted = true;
+        } else {
+            state.gcj02Converted = false;
+        }
+        state.rawPoints = result.points;
+
+        const titleText = result.trackName || (fileName ? fileName.replace(/\.gpx$/i, '') : '');
         document.getElementById('title').textContent = titleText;
+        document.getElementById('subtitle').textContent = result.trackDesc || '';
+        updateSubtitleToggle();
 
         document.getElementById('poi-map-toolbar').classList.add('show');
-        document.getElementById('layer-switcher').classList.add('show');
-        document.getElementById('color-mode-bar').classList.add('show');
-        document.getElementById('editor-toolbar').classList.add('show');
+        document.getElementById('map-color-bar').style.display = 'flex';
+        document.getElementById('map-right-controls').style.display = 'flex';
         document.getElementById('coords-display').classList.add('show');
+
+        const info = document.getElementById('gpx-info');
+        const hasZeroEle = result.points.some(p => p.ele === 0);
+        if (hasZeroEle && result.points.length > 0) {
+            info.innerHTML = '⏳ 正在查询海拔数据...';
+            info.classList.add('show');
+            const fetched = await fetchElevation(result.points);
+            if (fetched) {
+                result.totalElevationGain = 0;
+                let prevEle = null;
+                result.points.forEach(p => {
+                    if (prevEle !== null && p.ele > prevEle) {
+                        result.totalElevationGain += p.ele - prevEle;
+                    }
+                    prevEle = p.ele;
+                });
+            } else {
+                info.innerHTML = '⚠️ 海拔查询失败，使用默认值 0';
+            }
+        }
+
         updateWithFilter();
         updateTrackList();
-
-        if (result.links) {
-            const linkMap = { strava: 'input-strava', igp: 'input-igp', garmin: 'input-garmin' };
-            Object.keys(linkMap).forEach(key => {
-                if (result.links[key]) {
-                    document.getElementById(linkMap[key]).value = result.links[key];
-                    document.getElementById('link-' + key).href = result.links[key];
-                }
-            });
-        }
 
         if (result.waypoints && result.waypoints.length > 0) {
             result.waypoints.forEach(w => addPoi(w.lat, w.lng, w.type, w.name));
         }
 
         document.getElementById('download-btn').disabled = false;
+        document.getElementById('download-kmz-btn').disabled = false;
+        syncDownloadBtns();
         document.getElementById('map-hint').style.display = 'none';
     }
 
     function handleFile(file) {
-        if (!file || !file.name.endsWith('.gpx')) {
-            alert('请选择 .gpx 格式的文件');
-            return;
+        if (!file) return;
+        const ext = file.name.split('.').pop().toLowerCase();
+        console.log('[spot-studio] handleFile:', file.name, ext);
+        if (ext === 'kmz' && window.JSZip) {
+            const reader = new FileReader();
+            reader.onload = e => {
+                console.log('[spot-studio] KMZ loaded, size:', e.target.result.byteLength);
+                JSZip.loadAsync(e.target.result).then(zip => {
+                    const kmlFile = Object.keys(zip.files).find(n => n.endsWith('.kml'));
+                    console.log('[spot-studio] KML files in KMZ:', Object.keys(zip.files), 'found:', kmlFile);
+                    if (!kmlFile) { alert('KMZ 中未找到 .kml 文件'); return; }
+                    zip.file(kmlFile).async('string').then(kml => {
+                        console.log('[spot-studio] KML extracted, length:', kml.length);
+                        loadKmlString(kml, file.name);
+                    });
+                }).catch(err => { console.error('[spot-studio] KMZ error:', err); alert('KMZ 解压失败'); });
+            };
+            reader.readAsArrayBuffer(file);
+        } else if (ext === 'kml') {
+            const reader = new FileReader();
+            reader.onload = e => loadKmlString(e.target.result, file.name);
+            reader.readAsText(file);
+        } else if (ext === 'gpx') {
+            const reader = new FileReader();
+            reader.onload = e => loadGpxString(e.target.result, file.name);
+            reader.readAsText(file);
+        } else {
+            alert('请选择 .gpx、.kml 或 .kmz 格式的文件');
         }
-        const reader = new FileReader();
-        reader.onload = e => loadGpxString(e.target.result, file.name);
-        reader.readAsText(file);
+    }
+
+    function downloadGpx() {
+        if (!state.gpxData || state.rawPoints.length === 0) return;
+        const pts = state.rawPoints;
+        const trkpts = pts.map(p => {
+            let s = `    <trkpt lat="${p.lat.toFixed(7)}" lon="${p.lon.toFixed(7)}">`;
+            s += `\n      <ele>${p.ele.toFixed(1)}</ele>`;
+            if (p.time) s += `\n      <time>${p.time.toISOString()}</time>`;
+            s += `\n    </trkpt>`;
+            return s;
+        }).join('\n');
+        const trackName = document.getElementById('title').textContent.trim();
+        let gpx = `<?xml version="1.0" encoding="UTF-8"?>\n<gpx creator="spot-studio" version="1.1"\n  xmlns="http://www.topografix.com/GPX/1/1"\n  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"\n  xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/11.xsd">\n  <metadata>\n    <name>${trackName}</name>\n    <author>\n      <name>spot-studio</name>\n    </author>\n    <link href="https://github.com/techysy/spot-studio">\n      <text>spot-studio</text>\n    </link>\n  </metadata>\n  <trk>\n    <name>${trackName}</name>\n    <trkseg>\n${trkpts}\n    </trkseg>\n  </trk>\n</gpx>`;
+        if (pois.length > 0) {
+            const wpts = pois.map(p => {
+                const info = POI_TYPES[p.type];
+                return `  <wpt lat="${p.lat}" lon="${p.lng}">\n    <name>${p.name}</name>\n    <desc>${info.emoji} ${info.label}</desc>\n    <sym>${info.label}</sym>\n  </wpt>`;
+            }).join('\n');
+            gpx = gpx.replace('<trk>', wpts + '\n<trk>');
+        }
+        const blob = new Blob([gpx], { type: 'application/gpx+xml' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = (trackName || 'route') + '.gpx';
+        a.click();
+        URL.revokeObjectURL(url);
+    }
+
+    function downloadKmz() {
+        if (!state.gpxData || state.rawPoints.length === 0 || !window.JSZip) return;
+        const trackName = document.getElementById('title').textContent.trim() || 'route';
+        const pts = state.rawPoints;
+        const coordinates = pts.map(p => `${p.lon.toFixed(7)},${p.lat.toFixed(7)},${p.ele.toFixed(1)}`).join('\n          ');
+        let kml = `<?xml version="1.0" encoding="UTF-8"?>\n<kml xmlns="http://www.opengis.net/kml/2.2">\n  <Document>\n    <name>${trackName}</name>\n    <author>spot-studio</author>\n    <Style id="trackStyle">\n      <LineStyle>\n        <color>ff4e3c8e</color>\n        <width>3</width>\n      </LineStyle>\n    </Style>\n    <Placemark>\n      <name>${trackName}</name>\n      <styleUrl>#trackStyle</styleUrl>\n      <LineString>\n        <tessellate>1</tessellate>\n        <coordinates>\n          ${coordinates}\n        </coordinates>\n      </LineString>\n    </Placemark>`;
+        if (pois.length > 0) {
+            pois.forEach(p => {
+                const info = POI_TYPES[p.type];
+                kml += `\n    <Placemark>\n      <name>${p.name}</name>\n      <description>${info.emoji} ${info.label}</description>\n      <Point>\n        <coordinates>${p.lng},${p.lat},0</coordinates>\n      </Point>\n    </Placemark>`;
+            });
+        }
+        kml += `\n  </Document>\n</kml>`;
+        const zip = new JSZip();
+        zip.file('doc.kml', kml);
+        zip.generateAsync({ type: 'blob' }).then(blob => {
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = trackName + '.kmz';
+            a.click();
+            URL.revokeObjectURL(url);
+        });
     }
 
     function initUpload() {
@@ -1396,6 +1820,8 @@
         const downloadBtn = document.getElementById('download-btn');
 
         btn.addEventListener('click', () => input.click());
+        const cardUploadBtn = document.getElementById('upload-btn-card');
+        if (cardUploadBtn) cardUploadBtn.addEventListener('click', () => input.click());
         zone.addEventListener('click', () => input.click());
 
         input.addEventListener('change', e => {
@@ -1416,40 +1842,14 @@
             if (e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]);
         });
 
-        downloadBtn.addEventListener('click', () => {
-            if (!state.gpxData) return;
-            let gpx = state.gpxData;
-            if (pois.length > 0) {
-                const wpts = pois.map(p => {
-                    const info = POI_TYPES[p.type];
-                    return `  <wpt lat="${p.lat}" lon="${p.lng}">\n    <name>${p.name}</name>\n    <desc>${info.emoji} ${info.label}</desc>\n    <sym>${info.label}</sym>\n  </wpt>`;
-                }).join('\n');
-                if (gpx.includes('<trk>')) {
-                    gpx = gpx.replace('<trk>', wpts + '\n<trk>');
-                } else if (gpx.includes('<gpx')) {
-                    gpx = gpx.replace(/(<gpx[^>]*>)/, '$1\n' + wpts);
-                }
-            }
-            const blob = new Blob([gpx], { type: 'application/gpx+xml' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = state.fileName || 'route.gpx';
-            a.click();
-            URL.revokeObjectURL(url);
-        });
-    }
+        downloadBtn.addEventListener('click', downloadGpx);
+        const dlCardGpx = document.getElementById('download-btn-card');
+        if (dlCardGpx) dlCardGpx.addEventListener('click', downloadGpx);
 
-    function initRouteLinks() {
-        const inputs = { strava: document.getElementById('input-strava'), igp: document.getElementById('input-igp'), garmin: document.getElementById('input-garmin') };
-        const links = { strava: document.getElementById('link-strava'), igp: document.getElementById('link-igp'), garmin: document.getElementById('link-garmin') };
-
-        Object.keys(inputs).forEach(key => {
-            inputs[key].addEventListener('input', () => {
-                const url = inputs[key].value.trim();
-                if (url) links[key].href = url;
-            });
-        });
+        const downloadKmzBtn = document.getElementById('download-kmz-btn');
+        downloadKmzBtn.addEventListener('click', downloadKmz);
+        const dlCardKmz = document.getElementById('download-kmz-btn-card');
+        if (dlCardKmz) dlCardKmz.addEventListener('click', downloadKmz);
     }
 
     function initFilterControls() {
@@ -1525,27 +1925,56 @@
     }
 
     function snapToTrack(lat, lng) {
-        if (!state.gpxPoints.length) return { lat, lng };
+        if (!state.gpxPoints.length) return { lat, lng, snapped: false };
+        const SNAP_MAX = 100;
         let minDist = Infinity;
         let snapped = { lat, lng };
-        for (const pt of state.gpxPoints) {
-            const d = haversine({ lat, lon: lng }, { lat: pt.lat, lon: pt.lon });
-            if (d < minDist) { minDist = d; snapped = { lat: pt.lat, lng: pt.lon }; }
+        let closestIdx = 0;
+        for (let i = 0; i < state.gpxPoints.length; i++) {
+            const d = haversine({ lat, lon: lng }, { lat: state.gpxPoints[i].lat, lon: state.gpxPoints[i].lon });
+            if (d < minDist) { minDist = d; snapped = { lat: state.gpxPoints[i].lat, lng: state.gpxPoints[i].lon }; closestIdx = i; }
         }
-        return snapped;
+        return minDist <= SNAP_MAX ? { ...snapped, snapped: true, dist: Math.round(minDist), idx: closestIdx } : { lat, lng, snapped: false };
+    }
+
+    function showSnapToast(msg) {
+        let toast = document.getElementById('snap-toast');
+        if (!toast) {
+            toast = document.createElement('div');
+            toast.id = 'snap-toast';
+            toast.style.cssText = 'position:fixed;bottom:80px;left:50%;transform:translateX(-50%);z-index:9999;background:rgba(0,0,0,0.75);color:#fff;padding:6px 16px;border-radius:20px;font-size:0.82em;pointer-events:none;transition:opacity 0.3s;opacity:0;';
+            document.body.appendChild(toast);
+        }
+        toast.textContent = msg;
+        toast.style.opacity = '1';
+        clearTimeout(toast._timer);
+        toast._timer = setTimeout(() => { toast.style.opacity = '0'; }, 1500);
     }
 
     function addPoi(lat, lng, type, name) {
         const info = POI_TYPES[type];
-        const snapped = snapToTrack(lat, lng);
-        const dist = haversine({ lat, lon: lng }, { lat: snapped.lat, lon: snapped.lng });
-        const marker = L.marker([snapped.lat, snapped.lng], { icon: createPoiIcon(type) }).addTo(state.map);
+        const snapResult = snapToTrack(lat, lng);
+        const snappedLat = snapResult.lat;
+        const snappedLng = snapResult.lng;
         const poiName = name || info.label;
-        const snapText = dist > 1 ? ` (吸附 ${Math.round(dist)}m)` : '';
-        marker.bindPopup(`<b>${info.emoji} ${poiName}</b>${snapText}`);
-        const poi = { lat: snapped.lat, lng: snapped.lng, type, name: poiName, marker };
+
+        const duplicate = pois.find(p =>
+            p.type === type && p.name === poiName &&
+            haversine({ lat: snappedLat, lon: snappedLng }, { lat: p.lat, lon: p.lng }) < 5
+        );
+        if (duplicate) return false;
+
+        const marker = L.marker([snappedLat, snappedLng], { icon: createPoiIcon(type) }).addTo(state.map);
+        let popupText = `<b>${info.emoji} ${poiName}</b>`;
+        if (snapResult.snapped) {
+            popupText += `<br><small style="color:#27ae60;">✓ 已吸附到路径 (${snapResult.dist}m)</small>`;
+            showSnapToast(`✓ 已吸附到路径 (${snapResult.dist}m)`);
+        }
+        marker.bindPopup(popupText);
+        const poi = { lat: snappedLat, lng: snappedLng, type, name: poiName, marker };
         pois.push(poi);
         renderPoiList();
+        return true;
     }
 
     function removePoi(idx) {
@@ -1583,7 +2012,7 @@
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'pois.json';
+        a.download = (document.getElementById('title').textContent.trim() || 'pois') + '.json';
         a.click();
         URL.revokeObjectURL(url);
     }
@@ -1594,8 +2023,7 @@
             if (!Array.isArray(data)) return;
             data.forEach(p => {
                 if (p.lat && p.lng && p.type && POI_TYPES[p.type]) {
-                    const snapped = snapToTrack(p.lat, p.lng);
-                    addPoi(snapped.lat, snapped.lng, p.type, p.name);
+                    addPoi(p.lat, p.lng, p.type, p.name);
                 }
             });
         } catch (e) {
@@ -1603,11 +2031,89 @@
         }
     }
 
+    const osmPoiMarkersByCat = {};
+
+    async function fetchAndShowOsmPois(cat, query, icon) {
+        if (!state.gpxPoints.length) return;
+        const bounds = state.map.getBounds();
+        const s = bounds.getSouth(), w = bounds.getWest(), n = bounds.getNorth(), e = bounds.getEast();
+        const overpassQuery = `[out:json][timeout:15];\n(\nnode[${query}](${s},${w},${n},${e});\n);\nout body;`;
+        const endpoints = [
+            'https://overpass-api.de/api/interpreter',
+            'https://overpass.kumi.systems/api/interpreter'
+        ];
+        let data = null;
+        for (const url of endpoints) {
+            try {
+                const resp = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: 'data=' + encodeURIComponent(overpassQuery)
+                });
+                if (!resp.ok) continue;
+                data = await resp.json();
+                break;
+            } catch (e) { continue; }
+        }
+        if (!data) { console.warn('Overpass API failed'); return; }
+        const catColors = {
+            toilets:'#607D8B', shops:'#4CAF50', food:'#FF9800',
+            water:'#2196F3', fuel:'#F44336', lodging:'#9C27B0',
+            medical:'#00BCD4', sights:'#8BC34A'
+        };
+        const catEmoji = {
+            toilets:'🚻', shops:'🏪', food:'🍜', water:'💧',
+            fuel:'⛽', lodging:'🏨', medical:'🏥', sights:'⛰️'
+        };
+        const color = catColors[cat] || '#666';
+        const emoji = catEmoji[cat] || '📌';
+        const markers = [];
+        (data.elements || []).forEach(el => {
+                const tags = el.tags || {};
+                const name = tags.name || tags['name:zh'] || tags['name:en'] || '';
+                const iconHtml = `<div style="width:28px;height:28px;border-radius:50%;background:${color};border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center;font-size:14px;line-height:1;">${emoji}</div>`;
+                const marker = L.marker([el.lat, el.lon], {
+                    icon: L.divIcon({ html: iconHtml, iconSize: [28, 28], iconAnchor: [14, 14], className: '' })
+                }).addTo(state.map);
+
+                let tagsHtml = '';
+                const importantKeys = ['name', 'name:zh', 'name:en', 'ele', 'cuisine', 'opening_hours', 'phone', 'website', 'addr'];
+                for (const [k, v] of Object.entries(tags)) {
+                    if (k.startsWith('name:') || k === 'name') continue;
+                    tagsHtml += `<tr><td style="padding:2px 8px 2px 0;color:#888;white-space:nowrap;font-size:0.82em;">${k}</td><td style="padding:2px 0;font-size:0.82em;">${v}</td></tr>`;
+                }
+                if (tagsHtml) tagsHtml = `<table style="border-collapse:collapse;margin-top:6px;width:100%;">${tagsHtml}</table>`;
+
+                const popupHtml = `
+                    <div style="min-width:200px;max-width:280px;">
+                        <div style="font-weight:600;font-size:0.95em;margin-bottom:2px;">${name || cat}</div>
+                        <div style="font-size:0.75em;color:#999;margin-bottom:4px;">${el.lat.toFixed(6)}, ${el.lon.toFixed(6)}</div>
+                        ${tagsHtml}
+                        <div style="border-top:1px solid #eee;margin-top:8px;padding-top:8px;">
+                            <button class="osm-poi-import-btn" data-lat="${el.lat}" data-lng="${el.lon}" data-name="${(name || cat).replace(/"/g,'&quot;')}" data-cat="${cat}" data-emoji="${emoji}"
+                                style="width:100%;padding:6px 0;border:1px solid #ddd;border-radius:6px;background:#f8f8f8;cursor:pointer;font-size:0.82em;color:#333;display:flex;align-items:center;justify-content:center;gap:6px;transition:all 0.15s;">
+                                <span style="font-size:1.1em;">⊕</span> 将兴趣点添加到文件
+                            </button>
+                        </div>
+                    </div>`;
+                marker.bindPopup(popupHtml);
+                markers.push(marker);
+            });
+            osmPoiMarkersByCat[cat] = markers;
+    }
+
+    function clearOsmPoisByCat(cat) {
+        if (osmPoiMarkersByCat[cat]) {
+            osmPoiMarkersByCat[cat].forEach(m => state.map.removeLayer(m));
+            delete osmPoiMarkersByCat[cat];
+        }
+    }
+
     function initPoi() {
         const toolbar = document.getElementById('poi-map-toolbar');
 
         state.map.on('click', async function(e) {
-            if (!activePoiType) return;
+            if (!activePoiType || state.measureMode || state.addPointMode || state.deletePointMode) return;
             const info = POI_TYPES[activePoiType];
             const name = await showModal(`添加${info.label}`, info.label, '输入名称，留空使用默认');
             if (name === null) return;
@@ -1615,11 +2121,11 @@
         });
 
         toolbar.addEventListener('click', e => {
-            const btn = e.target.closest('.poi-btn');
+            const btn = e.target.closest('.map-tool-btn[data-type]');
             if (!btn) return;
             const type = btn.dataset.type;
 
-            toolbar.querySelectorAll('.poi-btn').forEach(b => b.classList.remove('active'));
+            toolbar.querySelectorAll('.map-tool-btn[data-type]').forEach(b => b.classList.remove('active'));
 
             if (activePoiType === type) {
                 activePoiType = null;
@@ -1646,13 +2152,13 @@
     }
 
     function initColorMode() {
-        const bar = document.getElementById('color-mode-bar');
-        bar.addEventListener('click', e => {
+        const colorBar = document.getElementById('map-color-bar');
+        colorBar.addEventListener('click', e => {
             const btn = e.target.closest('.color-mode-btn');
             if (!btn) return;
             const mode = btn.dataset.mode;
 
-            bar.querySelectorAll('.color-mode-btn').forEach(b => b.classList.remove('active'));
+            colorBar.querySelectorAll('.color-mode-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             state.colorMode = mode;
 
@@ -1828,8 +2334,6 @@
     function initEditorToolbar() {
         const undoBtn = document.getElementById('tool-undo');
         const redoBtn = document.getElementById('tool-redo');
-        const addBtn = document.getElementById('tool-addpoint');
-        const deleteBtn = document.getElementById('tool-deletepoint');
 
         undoBtn.addEventListener('click', () => {
             if (state.undoStack.length === 0) return;
@@ -1859,42 +2363,6 @@
             }
             updateWithFilter();
             updateUndoRedoButtons();
-        });
-
-        addBtn.addEventListener('click', () => {
-            state.addPointMode = !state.addPointMode;
-            addBtn.classList.toggle('active', state.addPointMode);
-            state.deletePointMode = false;
-            deleteBtn.classList.remove('active');
-            document.getElementById('map').style.cursor = state.addPointMode ? 'crosshair' : '';
-            if (!state.addPointMode) removeEditHandles();
-        });
-
-        deleteBtn.addEventListener('click', () => {
-            state.deletePointMode = !state.deletePointMode;
-            deleteBtn.classList.toggle('active', state.deletePointMode);
-            state.addPointMode = false;
-            addBtn.classList.remove('active');
-            document.getElementById('map').style.cursor = state.deletePointMode ? 'crosshair' : '';
-            if (state.deletePointMode) showEditHandles();
-            else removeEditHandles();
-        });
-
-        state.map.on('click', function(e) {
-            if (state.addPointMode && state.rawPoints.length > 0) {
-                let minDist = Infinity;
-                let insertIdx = state.rawPoints.length;
-                for (let i = 1; i < state.rawPoints.length; i++) {
-                    const d = distToSegment(e.latlng, state.rawPoints[i-1], state.rawPoints[i]);
-                    if (d < minDist) { minDist = d; insertIdx = i; }
-                }
-                state.undoStack.push({ type: 'add', index: insertIdx, point: { lat: e.latlng.lat, lon: e.latlng.lng, ele: 0, time: null } });
-                state.redoStack = [];
-                state.rawPoints.splice(insertIdx, 0, { lat: e.latlng.lat, lon: e.latlng.lng, ele: 0, time: null });
-                updateWithFilter();
-
-                updateUndoRedoButtons();
-            }
         });
     }
 
@@ -1973,19 +2441,25 @@
         const canvas = document.getElementById('elevation-chart');
         const card = document.getElementById('elevation-card');
         let hoverMarker = null;
-        let crosshairLine = null;
 
         card.addEventListener('mouseenter', () => {
             if (!state.gpxPoints.length) return;
             hoverMarker = L.circleMarker([0, 0], {
-                radius: 6, color: '#fff', fillColor: 'var(--accent)',
+                radius: 6, color: '#fff', fillColor: '#5ba3e6',
                 fillOpacity: 1, weight: 2, className: 'elevation-hover-marker'
             }).addTo(state.map);
         });
 
         card.addEventListener('mouseleave', () => {
             if (hoverMarker) { state.map.removeLayer(hoverMarker); hoverMarker = null; }
-            if (crosshairLine) { canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height); drawElevationProfile(state.gpxPoints); crosshairLine = null; }
+            if (state.baseCanvas) {
+                const ctx = canvas.getContext('2d');
+                const dpr = window.devicePixelRatio || 1;
+                ctx.setTransform(1, 0, 0, 1, 0, 0);
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(state.baseCanvas, 0, 0);
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            }
         });
 
         canvas.addEventListener('mousemove', function(e) {
@@ -1996,32 +2470,37 @@
             const mx = e.clientX - rect.left - pad.left;
             const ratio = Math.max(0, Math.min(1, mx / cw));
 
-            let cumDist = [0];
-            for (let i = 1; i < state.gpxPoints.length; i++) {
-                cumDist.push(cumDist[i-1] + haversine(state.gpxPoints[i-1], state.gpxPoints[i]));
-            }
-            const totalDist = cumDist[cumDist.length - 1];
-            const targetDist = ratio * totalDist;
+            const targetDist = ratio * state.totalDist;
 
             let ptIdx = 0;
-            for (let i = 1; i < cumDist.length; i++) {
-                if (cumDist[i] >= targetDist) { ptIdx = i; break; }
+            for (let i = 1; i < state.cumDist.length; i++) {
+                if (state.cumDist[i] >= targetDist) { ptIdx = i; break; }
             }
             const pt = state.gpxPoints[ptIdx];
             hoverMarker.setLatLng([pt.lat, pt.lon]);
 
-            drawElevationProfile(state.gpxPoints);
-
             const ctx = canvas.getContext('2d');
             const dpr = window.devicePixelRatio || 1;
             const canvasRect = canvas.getBoundingClientRect();
-            const drawCw = canvasRect.width - pad.left - pad.right;
-            const drawCh = canvasRect.height - pad.top - pad.bottom;
+            const cssW = canvasRect.width;
+            const cssH = canvasRect.height;
+            const drawCw = cssW - pad.left - pad.right;
+            const drawCh = cssH - pad.top - pad.bottom;
             const x = pad.left + ratio * drawCw;
 
-            ctx.save();
-            ctx.scale(dpr, dpr);
-            ctx.strokeStyle = 'rgba(135,49,78,0.6)';
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            if (state.baseCanvas) ctx.drawImage(state.baseCanvas, 0, 0);
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+            const eles = state.gpxPoints.map(p => p.ele);
+            const minEle = Math.min(...eles);
+            const maxEle = Math.max(...eles);
+            const eleRange = maxEle - minEle || 1;
+            const elePadding = eleRange * 0.1;
+            const scaleY = pad.top + drawCh - ((pt.ele - minEle + elePadding) / (eleRange + elePadding * 2)) * drawCh;
+
+            ctx.strokeStyle = 'rgba(135,49,78,0.5)';
             ctx.lineWidth = 1;
             ctx.setLineDash([4, 3]);
             ctx.beginPath();
@@ -2030,39 +2509,45 @@
             ctx.stroke();
             ctx.setLineDash([]);
 
-            ctx.fillStyle = 'rgba(30,30,30,0.85)';
+            const prevPt = ptIdx > 0 ? state.gpxPoints[ptIdx - 1] : pt;
+            const segDist = haversine(prevPt, pt);
+            const grade = segDist > 0 ? ((pt.ele - prevPt.ele) / segDist) * 100 : 0;
+
+            const tipW = 115, tipH = 54;
+            let tipX = x + 12;
+            if (tipX + tipW > cssW - pad.right) tipX = x - tipW - 12;
+            if (tipX < pad.left) tipX = pad.left;
+            const tipY = Math.max(pad.top + 2, scaleY - tipH - 10);
+
+            ctx.fillStyle = 'rgba(30,30,30,0.88)';
             ctx.beginPath();
-            const tipW = 110, tipH = 42, tipX = Math.min(x + 8, canvasRect.width - pad.right - tipW - 4), tipY = pad.top + 8;
-            const r = 6;
-            ctx.moveTo(tipX + r, tipY);
-            ctx.lineTo(tipX + tipW - r, tipY);
-            ctx.quadraticCurveTo(tipX + tipW, tipY, tipX + tipW, tipY + r);
-            ctx.lineTo(tipX + tipW, tipY + tipH - r);
-            ctx.quadraticCurveTo(tipX + tipW, tipY + tipH, tipX + tipW - r, tipY + tipH);
-            ctx.lineTo(tipX + r, tipY + tipH);
-            ctx.quadraticCurveTo(tipX, tipY + tipH, tipX, tipY + tipH - r);
-            ctx.lineTo(tipX, tipY + r);
-            ctx.quadraticCurveTo(tipX, tipY, tipX + r, tipY);
+            const tr = 8;
+            ctx.moveTo(tipX + tr, tipY);
+            ctx.lineTo(tipX + tipW - tr, tipY);
+            ctx.quadraticCurveTo(tipX + tipW, tipY, tipX + tipW, tipY + tr);
+            ctx.lineTo(tipX + tipW, tipY + tipH - tr);
+            ctx.quadraticCurveTo(tipX + tipW, tipY + tipH, tipX + tipW - tr, tipY + tipH);
+            ctx.lineTo(tipX + tr, tipY + tipH);
+            ctx.quadraticCurveTo(tipX, tipY + tipH, tipX, tipY + tipH - tr);
+            ctx.lineTo(tipX, tipY + tr);
+            ctx.quadraticCurveTo(tipX, tipY, tipX + tr, tipY);
             ctx.closePath();
             ctx.fill();
 
             ctx.fillStyle = '#fff';
-            ctx.font = 'bold 11px -apple-system, sans-serif';
-            ctx.textAlign = 'left';
-            ctx.fillText(`${(targetDist / 1000).toFixed(2)} km`, tipX + 8, tipY + 16);
             ctx.font = '11px -apple-system, sans-serif';
-            ctx.fillText(`海拔 ${Math.round(pt.ele)} m`, tipX + 8, tipY + 32);
+            ctx.textAlign = 'left';
+            ctx.fillText(`海拔：${Math.round(pt.ele)} m`, tipX + 12, tipY + 18);
+            ctx.fillText(`距离：${(targetDist / 1000).toFixed(2)} km`, tipX + 12, tipY + 34);
+            ctx.fillText(`坡度：${grade.toFixed(1)} %`, tipX + 12, tipY + 50);
 
-            const scaleY = pad.top + drawCh - ((pt.ele - Math.min(...state.gpxPoints.map(p => p.ele))) / (Math.max(...state.gpxPoints.map(p => p.ele)) - Math.min(...state.gpxPoints.map(p => p.ele)) || 1)) * drawCh;
             ctx.beginPath();
             ctx.arc(x, scaleY, 5, 0, Math.PI * 2);
-            ctx.fillStyle = 'var(--accent)';
+            ctx.fillStyle = '#5ba3e6';
             ctx.fill();
             ctx.strokeStyle = '#fff';
             ctx.lineWidth = 2;
             ctx.stroke();
-
-            ctx.restore();
         });
 
         canvas.addEventListener('click', function(e) {
@@ -2073,16 +2558,11 @@
             const mx = e.clientX - rect.left - pad.left;
             const ratio = Math.max(0, Math.min(1, mx / cw));
 
-            let cumDist = [0];
-            for (let i = 1; i < state.gpxPoints.length; i++) {
-                cumDist.push(cumDist[i-1] + haversine(state.gpxPoints[i-1], state.gpxPoints[i]));
-            }
-            const totalDist = cumDist[cumDist.length - 1];
-            const targetDist = ratio * totalDist;
+            const targetDist = ratio * state.totalDist;
 
             let ptIdx = 0;
-            for (let i = 1; i < cumDist.length; i++) {
-                if (cumDist[i] >= targetDist) { ptIdx = i; break; }
+            for (let i = 1; i < state.cumDist.length; i++) {
+                if (state.cumDist[i] >= targetDist) { ptIdx = i; break; }
             }
             const pt = state.gpxPoints[ptIdx];
             state.map.setView([pt.lat, pt.lon], Math.max(state.map.getZoom(), 14));
@@ -2093,7 +2573,6 @@
         initMap();
         initLayerSwitcher();
         initUpload();
-        initRouteLinks();
         initFilterControls();
         initPoi();
         initColorMode();
@@ -2104,6 +2583,91 @@
         initEditorToolbar();
         initElevationInteraction();
         updateUndoRedoButtons();
+
+        document.getElementById('map').addEventListener('click', async function(e) {
+            const btn = e.target.closest('.osm-poi-import-btn');
+            if (!btn) return;
+            e.preventDefault(); e.stopPropagation();
+            const lat = parseFloat(btn.dataset.lat);
+            const lng = parseFloat(btn.dataset.lng);
+            const cat = btn.dataset.cat;
+            const defaultName = btn.dataset.name;
+            const catLabels = {
+                toilets:'厕所', shops:'商店', food:'餐饮', water:'饮水',
+                fuel:'加油站', lodging:'住宿', medical:'医疗', sights:'风景点'
+            };
+            const typeMap = { toilets:'toilet', shops:'supply', food:'supply', water:'water', fuel:'supply', lodging:'rest', medical:'rest', sights:'photo' };
+            const poiType = typeMap[cat] || 'photo';
+            const name = await showModal(`添加${catLabels[cat] || '兴趣点'}`, defaultName, '输入名称，留空使用默认');
+            if (name === null) return;
+            addPoi(lat, lng, poiType, name || defaultName);
+            state.map.closePopup();
+        });
+
+        document.getElementById('map-zoom-in').addEventListener('click', () => state.map.zoomIn());
+        document.getElementById('map-zoom-out').addEventListener('click', () => state.map.zoomOut());
+        document.getElementById('map-locate').addEventListener('click', () => {
+            if (!navigator.geolocation) { alert('浏览器不支持定位'); return; }
+            const btn = document.getElementById('map-locate');
+            btn.classList.add('active');
+            navigator.geolocation.getCurrentPosition(pos => {
+                state.map.setView([pos.coords.latitude, pos.coords.longitude], 14);
+                btn.classList.remove('active');
+            }, () => {
+                alert('无法获取位置');
+                btn.classList.remove('active');
+            });
+        });
+
+        const subtitleEl = document.getElementById('subtitle');
+        new MutationObserver(() => updateSubtitleToggle()).observe(subtitleEl, { childList: true, characterData: true, subtree: true });
+        window.addEventListener('resize', () => updateSubtitleToggle());
+
+        document.getElementById('ele-calibrate-btn').addEventListener('click', async () => {
+            if (state.rawPoints.length === 0) return;
+            const btn = document.getElementById('ele-calibrate-btn');
+            const zeroCount = state.rawPoints.filter(p => p.ele === 0).length;
+            if (zeroCount === 0) { alert('所有轨迹点已有海拔数据，无需校准'); return; }
+            btn.disabled = true;
+            btn.textContent = '⏳ 查询中...';
+            const fetched = await fetchElevation(state.rawPoints);
+            if (fetched) {
+                state.totalElevationGain = 0;
+                let prevEle = null;
+                state.rawPoints.forEach(p => {
+                    if (prevEle !== null && p.ele > prevEle) {
+                        state.totalElevationGain += p.ele - prevEle;
+                    }
+                    prevEle = p.ele;
+                });
+                updateWithFilter();
+                const info = document.getElementById('gpx-info');
+                info.innerHTML = `✅ 海拔校准完成，已补全 ${zeroCount} 个轨迹点`;
+                info.classList.add('show');
+            } else {
+                alert('海拔查询失败，请检查网络连接');
+            }
+            btn.disabled = false;
+            btn.textContent = '🔄 校准海拔';
+        });
+
+        document.getElementById('gcj02-toggle').addEventListener('click', () => {
+            if (!state.gpxData) return;
+            const result = parseGpx(state.gpxData);
+            if (!result) return;
+            const shouldConvert = !state.gcj02Converted;
+            if (shouldConvert) {
+                result.points.forEach(p => {
+                    const [lat, lon] = gcj02ToWgs84(p.lat, p.lon);
+                    p.lat = lat; p.lon = lon;
+                });
+            }
+            state.gcj02Converted = shouldConvert;
+            state.rawPoints = result.points;
+            updateWithFilter();
+            const btn = document.getElementById('gcj02-toggle');
+            btn.classList.toggle('active', shouldConvert);
+        });
 
         document.getElementById('stat-duration-card').addEventListener('click', async function() {
             const current = state.avgSpeed || 25;
