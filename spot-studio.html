@@ -122,13 +122,13 @@
         }
         #map {
             width: 100%;
-            height: calc(100vh - 48px - 260px);
-            min-height: 350px;
+            height: calc(100vh - 48px - 440px);
+            min-height: 250px;
             background: #e8e8e8;
         }
         .map-hint {
             position: absolute;
-            bottom: 16px;
+            bottom: 40px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 500;
@@ -326,12 +326,13 @@
             font-weight: 700; padding: 0 3px;
         }
         .map-color-bar {
-            position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%);
+            position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
             z-index: 1000; display: none;
             gap: 6px; padding: 6px 10px;
             background: rgba(255,255,255,0.95); border-radius: 10px;
             box-shadow: 0 2px 12px rgba(0,0,0,0.15); backdrop-filter: blur(8px);
         }
+        .map-color-bar.show { display: flex; }
         .map-right-controls {
             position: absolute; top: 12px; right: 12px;
             z-index: 1000; display: none;
@@ -414,23 +415,29 @@
         .footer { display: none; }
 
         .color-legend {
-            position: absolute; bottom: 52px; right: 12px; z-index: 1000;
+            position: absolute; bottom: 40px; right: 12px; z-index: 1000;
             background: rgba(255,255,255,0.95); border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.12); padding: 10px 12px;
-            display: none; min-width: 140px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12); padding: 8px 14px;
+            display: none; min-width: 160px;
         }
         .color-legend.show { display: block; }
-        .color-legend-title { font-size: 0.75em; color: var(--text-secondary); margin-bottom: 6px; font-weight: 600; }
         .color-legend-bar {
-            height: 12px; border-radius: 3px; margin-bottom: 4px;
-            background: linear-gradient(to right, hsl(240,70%,50%), hsl(180,70%,50%), hsl(120,70%,50%), hsl(60,70%,50%), hsl(0,70%,50%));
+            height: 12px; border-radius: 3px; margin-bottom: 6px;
+            background: linear-gradient(to right,
+                hsl(240,70%,50%), hsl(230,70%,50%), hsl(220,70%,50%), hsl(210,70%,50%),
+                hsl(200,70%,50%), hsl(190,70%,50%), hsl(180,70%,50%), hsl(170,70%,50%),
+                hsl(160,70%,50%), hsl(150,70%,50%), hsl(140,70%,50%), hsl(130,70%,50%),
+                hsl(120,70%,50%), hsl(110,70%,50%), hsl(100,70%,50%), hsl(90,70%,50%),
+                hsl(80,70%,50%), hsl(70,70%,50%), hsl(60,70%,50%), hsl(50,70%,50%),
+                hsl(40,70%,50%), hsl(30,70%,50%), hsl(20,70%,50%), hsl(10,70%,50%),
+                hsl(0,70%,50%));
         }
-        .color-legend-labels { display: flex; justify-content: space-between; font-size: 0.7em; color: var(--text-muted); }
+        .color-legend-labels { display: flex; justify-content: space-between; font-size: 0.7em; color: var(--text-muted); gap: 12px; }
 
         .distance-markers { display: none; }
 
         .measure-result {
-            position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
+            position: absolute; top: 56px; left: 50%; transform: translateX(-50%);
             z-index: 1001; background: rgba(0,0,0,0.8); color: #fff;
             padding: 8px 16px; border-radius: 8px; font-size: 0.85em;
             display: none; pointer-events: none; white-space: nowrap;
@@ -438,7 +445,7 @@
         .measure-result.show { display: block; }
 
         .context-menu {
-            position: absolute; z-index: 2000;
+            position: fixed; z-index: 2000;
             background: var(--card); border-radius: 10px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.18); padding: 6px 0;
             min-width: 160px; display: none;
@@ -479,13 +486,16 @@
         }
         .track-item-del:hover { opacity: 1; }
 
+
         .coords-display {
-            position: absolute; bottom: 12px; left: 12px; z-index: 1000;
+            position: absolute; bottom: 40px; left: 12px; z-index: 1000;
             background: rgba(0,0,0,0.7); color: #fff;
             padding: 4px 10px; border-radius: 6px; font-size: 0.72em;
             font-family: 'SF Mono', 'Menlo', monospace; display: none;
+            white-space: nowrap;
         }
         .coords-display.show { display: block; }
+        .color-legend { flex: 1; justify-content: flex-end; }
 
         .modal-overlay {
             position: fixed; inset: 0; z-index: 9999;
@@ -534,7 +544,7 @@
             .navbar-subtitle { display: none; }
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
             .details-grid { grid-template-columns: 1fr; }
-            #map { height: calc(100vh - 48px - 300px); min-height: 300px; }
+            #map { height: calc(100vh - 48px - 400px); min-height: 250px; }
             .stat-value { font-size: 1.3em; }
         }
     </style>
@@ -615,25 +625,24 @@
             </div>
         </div>
     </div>
+    <div class="measure-result" id="measure-result"></div>
     <div class="color-legend" id="color-legend">
-        <div class="color-legend-title" id="color-legend-title">海拔</div>
         <div class="color-legend-bar" id="color-legend-bar"></div>
         <div class="color-legend-labels">
             <span id="color-legend-min">0m</span>
             <span id="color-legend-max">1000m</span>
         </div>
     </div>
-    <div class="measure-result" id="measure-result"></div>
     <div class="coords-display" id="coords-display">0.000000, 0.000000</div>
-    <div class="context-menu" id="context-menu">
-        <div class="context-menu-item" data-action="mark">📍 放置标记</div>
-        <div class="context-menu-item" data-action="measure-here">📏 从这里测距</div>
-        <div class="context-menu-divider"></div>
-        <div class="context-menu-item" data-action="copy-coords">📋 复制坐标</div>
-        <div class="context-menu-item" data-action="center-map">🎯 居中地图</div>
-    </div>
     <div class="map-hint" id="map-hint">上传 GPX / KML / KMZ 文件或拖拽到页面以显示轨迹</div>
 </section>
+<div class="context-menu" id="context-menu">
+    <div class="context-menu-item" data-action="mark">📍 放置标记</div>
+    <div class="context-menu-item" data-action="measure-here">📏 从这里测距</div>
+    <div class="context-menu-divider"></div>
+    <div class="context-menu-item" data-action="copy-coords">📋 复制坐标</div>
+    <div class="context-menu-item" data-action="center-map">🎯 居中地图</div>
+</div>
 
 <div class="content-area">
     <div class="stats-grid">
@@ -694,6 +703,7 @@
             <div class="poi-actions">
                 <button class="btn btn-secondary" id="poi-export">📤 导出 JSON</button>
                 <button class="btn btn-secondary" id="poi-import-btn">📥 导入 JSON</button>
+                <button class="btn btn-secondary" id="poi-clear-all" style="color:var(--accent);border-color:var(--accent);">🗑 清空</button>
                 <input type="file" id="poi-import-input" accept=".json" hidden>
             </div>
         </div>
@@ -911,7 +921,7 @@ if (!window.L) {
         const R = 6371000;
         const toRad = d => d * Math.PI / 180;
         const dLat = toRad(p2.lat - p1.lat);
-        const dLon = toRad(p2.lon - p1.lon);
+        const dLon = toRad((p2.lon ?? p2.lng) - (p1.lon ?? p1.lng));
         const a = Math.sin(dLat/2)**2 + Math.cos(toRad(p1.lat)) * Math.cos(toRad(p2.lat)) * Math.sin(dLon/2)**2;
         return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
     }
@@ -1019,8 +1029,15 @@ if (!window.L) {
     }
 
     function getSlopeColor(grade) {
-        const clamped = Math.max(-15, Math.min(15, grade));
-        const ratio = (clamped + 15) / 30;
+        const clamped = Math.max(-25, Math.min(25, grade));
+        let ratio;
+        if (clamped <= -10) {
+            ratio = (clamped + 25) / 15 * 0.2;
+        } else if (clamped >= 10) {
+            ratio = 0.8 + (clamped - 10) / 15 * 0.2;
+        } else {
+            ratio = 0.2 + (clamped + 10) / 20 * 0.6;
+        }
         const h = (1 - ratio) * 240;
         return hslToHex(h, 70, 50);
     }
@@ -1100,9 +1117,14 @@ if (!window.L) {
         if (state.markerInterval > 0) addDistanceMarkers();
     }
 
+    function getGradientBg() {
+        const stops = [];
+        for (let h = 240; h >= 0; h -= 10) stops.push(`hsl(${h},70%,50%)`);
+        return `linear-gradient(to right, ${stops.join(', ')})`;
+    }
+
     function updateColorLegend(mode, minVal, maxVal) {
         const legend = document.getElementById('color-legend');
-        const title = document.getElementById('color-legend-title');
         const bar = document.getElementById('color-legend-bar');
         const minLabel = document.getElementById('color-legend-min');
         const maxLabel = document.getElementById('color-legend-max');
@@ -1111,23 +1133,21 @@ if (!window.L) {
         legend.classList.add('show');
 
         if (mode === 'elevation') {
-            title.textContent = '海拔';
             minLabel.textContent = Math.round(minVal) + 'm';
             maxLabel.textContent = Math.round(maxVal) + 'm';
-            bar.style.background = 'linear-gradient(to right, hsl(240,70%,50%), hsl(180,70%,50%), hsl(120,70%,50%), hsl(60,70%,50%), hsl(0,70%,50%))';
+            bar.style.background = getGradientBg();
         } else if (mode === 'slope') {
-            title.textContent = '坡度';
-            minLabel.textContent = '-15%';
-            maxLabel.textContent = '+15%';
-            bar.style.background = 'linear-gradient(to right, hsl(240,70%,50%), hsl(180,70%,50%), hsl(120,70%,50%), hsl(60,70%,50%), hsl(0,70%,50%))';
+            minLabel.textContent = '-25%';
+            maxLabel.textContent = '+25%';
+            bar.style.background = getGradientBg();
         }
     }
 
     function updateSlopeLegend() {
         const minLabel = document.getElementById('color-legend-min');
         const maxLabel = document.getElementById('color-legend-max');
-        minLabel.textContent = '-15% 下坡';
-        maxLabel.textContent = '+15% 上坡';
+        minLabel.textContent = '-25%';
+        maxLabel.textContent = '+25%';
     }
 
     function addDistanceMarkers() {
@@ -1359,7 +1379,7 @@ if (!window.L) {
         document.getElementById('subtitle').textContent = result.trackDesc || '';
         updateSubtitleToggle();
         document.getElementById('poi-map-toolbar').classList.add('show');
-        document.getElementById('map-color-bar').style.display = 'flex';
+        document.getElementById('map-color-bar').classList.add('show');
         document.getElementById('map-right-controls').style.display = 'flex';
         document.getElementById('coords-display').classList.add('show');
         updateWithFilter();
@@ -1691,7 +1711,7 @@ if (!window.L) {
         updateSubtitleToggle();
 
         document.getElementById('poi-map-toolbar').classList.add('show');
-        document.getElementById('map-color-bar').style.display = 'flex';
+        document.getElementById('map-color-bar').classList.add('show');
         document.getElementById('map-right-controls').style.display = 'flex';
         document.getElementById('coords-display').classList.add('show');
 
@@ -2040,7 +2060,8 @@ if (!window.L) {
         const overpassQuery = `[out:json][timeout:15];\n(\nnode[${query}](${s},${w},${n},${e});\n);\nout body;`;
         const endpoints = [
             'https://overpass-api.de/api/interpreter',
-            'https://overpass.kumi.systems/api/interpreter'
+            'https://overpass.kumi.systems/api/interpreter',
+            'https://corsproxy.io/?https://overpass-api.de/api/interpreter'
         ];
         let data = null;
         for (const url of endpoints) {
@@ -2149,6 +2170,13 @@ if (!window.L) {
             reader.onload = ev => importPois(ev.target.result);
             reader.readAsText(file);
         });
+        document.getElementById('poi-clear-all').addEventListener('click', () => {
+            if (pois.length === 0) return;
+            if (!confirm('确定清空所有兴趣点？')) return;
+            pois.forEach(p => state.map.removeLayer(p.marker));
+            pois.length = 0;
+            renderPoiList();
+        });
     }
 
     function initColorMode() {
@@ -2195,6 +2223,7 @@ if (!window.L) {
 
         state.map.on('contextmenu', function(e) {
             e.originalEvent.preventDefault();
+            if (state.measureMode) return;
             contextLatLng = e.latlng;
             if (contextMarker) state.map.removeLayer(contextMarker);
             contextMarker = L.marker(e.latlng, {
@@ -2204,8 +2233,8 @@ if (!window.L) {
                 })
             }).addTo(state.map);
 
-            menu.style.left = e.originalEvent.pageX + 'px';
-            menu.style.top = e.originalEvent.pageY + 'px';
+            menu.style.left = e.originalEvent.clientX + 'px';
+            menu.style.top = e.originalEvent.clientY + 'px';
             menu.classList.add('show');
         });
 
@@ -2247,24 +2276,40 @@ if (!window.L) {
         const btn = document.getElementById('tool-measure');
         const result = document.getElementById('measure-result');
 
-        btn.addEventListener('click', () => {
-            state.measureMode = !state.measureMode;
-            btn.classList.toggle('active', state.measureMode);
-            document.getElementById('map').style.cursor = state.measureMode ? 'crosshair' : '';
+        function startMeasure() {
+            state.measureMode = true;
+            btn.classList.add('active');
+            document.getElementById('map').style.cursor = 'crosshair';
+            result.textContent = '点击地图放置测距点，双击结束';
+            result.classList.add('show');
+        }
 
-            if (!state.measureMode) {
-                clearMeasure();
-                result.classList.remove('show');
+        function stopMeasure() {
+            state.measureMode = false;
+            btn.classList.remove('active');
+            document.getElementById('map').style.cursor = '';
+            clearMeasure();
+            result.classList.remove('show');
+        }
+
+        function restartMeasure() {
+            clearMeasure();
+            result.textContent = '点击地图放置测距点，双击结束';
+            result.classList.add('show');
+        }
+
+        btn.addEventListener('click', () => {
+            if (state.measureMode) {
+                stopMeasure();
             } else {
-                result.textContent = '点击地图放置测距点，双击结束';
-                result.classList.add('show');
+                startMeasure();
             }
         });
 
         state.map.on('click', function(e) {
             if (!state.measureMode) return;
 
-            state.measurePoints.push(e.latlng);
+            state.measurePoints.push({ lat: e.latlng.lat, lng: e.latlng.lng });
 
             const icon = L.divIcon({
                 html: `<div style="background:var(--accent);color:#fff;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;box-shadow:0 1px 4px rgba(0,0,0,0.3);">${state.measurePoints.length}</div>`,
@@ -2296,6 +2341,14 @@ if (!window.L) {
             document.getElementById('map').style.cursor = '';
             if (state.measurePoints.length === 0) result.classList.remove('show');
         });
+
+        state.map.on('contextmenu', function() {
+            if (state.measureMode) {
+                restartMeasure();
+            }
+        });
+
+        state._stopMeasure = stopMeasure;
     }
 
     function startMeasureFrom(latlng) {
@@ -2303,7 +2356,7 @@ if (!window.L) {
         state.measureMode = true;
         document.getElementById('tool-measure').classList.add('active');
         document.getElementById('map').style.cursor = 'crosshair';
-        state.measurePoints.push(latlng);
+        state.measurePoints.push({ lat: latlng.lat, lng: latlng.lng });
 
         const icon = L.divIcon({
             html: `<div style="background:var(--accent);color:#fff;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;box-shadow:0 1px 4px rgba(0,0,0,0.3);">1</div>`,
