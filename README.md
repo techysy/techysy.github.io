@@ -175,6 +175,14 @@ jekyll serve --host 0.0.0.0 --port 4000
 
 ---
 
+## ☕ 用爱发电
+
+2026-10 起入驻爱发电：https://ifdian.net/a/yu_shiyang
+
+主要用来持续维护 spot-studio、天府绿道 ITT 排行榜、3D 打印螺纹速查这几个免费小工具（数据来源更新、新功能）。感兴趣可以关注主页，也欢迎来催更。
+
+---
+
 ## 👤 作者
 
 - **余师洋**
@@ -183,6 +191,7 @@ jekyll serve --host 0.0.0.0 --port 4000
 - 🏃 Strava：https://www.strava.com/athletes/yangyu
 - 📺 Bilibili：https://space.bilibili.com/10419858
 - 📕 小红书：https://www.xiaohongshu.com/user/profile/5a5d020711be101b3d65cece
+- ☕ 爱发电：https://ifdian.net/a/yu_shiyang
 
 ---
 
